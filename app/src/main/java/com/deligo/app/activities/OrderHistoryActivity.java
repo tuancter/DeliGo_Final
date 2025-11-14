@@ -60,13 +60,7 @@ public class OrderHistoryActivity extends AppCompatActivity implements OrderAdap
     }
 
     private void setupViewModel() {
-        ViewModelFactory factory = new ViewModelFactory(
-                null,
-                null,
-                null,
-                new CartRepositoryImpl(),
-                new OrderRepositoryImpl()
-        );
+        ViewModelFactory factory = new ViewModelFactory();
         orderViewModel = new ViewModelProvider(this, factory).get(OrderViewModel.class);
     }
 

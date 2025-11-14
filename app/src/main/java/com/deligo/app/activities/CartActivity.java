@@ -66,12 +66,7 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnCar
     }
 
     private void setupViewModel() {
-        ViewModelFactory factory = new ViewModelFactory(
-                null,
-                null,
-                null,
-                new CartRepositoryImpl()
-        );
+        ViewModelFactory factory = new ViewModelFactory();
         cartViewModel = new ViewModelProvider(this, factory).get(CartViewModel.class);
     }
 

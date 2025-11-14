@@ -61,14 +61,7 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void setupViewModel() {
-        ViewModelFactory factory = new ViewModelFactory(
-                null,
-                null,
-                null,
-                null,
-                new OrderRepositoryImpl(),
-                new ProfileRepositoryImpl()
-        );
+        ViewModelFactory factory = new ViewModelFactory();
         profileViewModel = new ViewModelProvider(this, factory).get(ProfileViewModel.class);
     }
 

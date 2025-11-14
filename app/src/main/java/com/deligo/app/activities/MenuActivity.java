@@ -61,11 +61,7 @@ public class MenuActivity extends AppCompatActivity implements FoodAdapter.OnFoo
     }
 
     private void setupViewModel() {
-        ViewModelFactory factory = new ViewModelFactory(
-                null,
-                new FoodRepositoryImpl(),
-                new CategoryRepositoryImpl()
-        );
+        ViewModelFactory factory = new ViewModelFactory();
         menuViewModel = new ViewModelProvider(this, factory).get(MenuViewModel.class);
     }
 

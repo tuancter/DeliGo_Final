@@ -85,13 +85,7 @@ public class OrderDetailActivity extends AppCompatActivity {
     }
 
     private void setupViewModel() {
-        ViewModelFactory factory = new ViewModelFactory(
-                null,
-                null,
-                null,
-                new CartRepositoryImpl(),
-                new OrderRepositoryImpl()
-        );
+        ViewModelFactory factory = new ViewModelFactory();
         orderViewModel = new ViewModelProvider(this, factory).get(OrderViewModel.class);
     }
 

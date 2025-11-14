@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
     }
     
     private void initViewModel() {
-        ViewModelFactory factory = new ViewModelFactory(new AuthRepositoryImpl());
+        ViewModelFactory factory = new ViewModelFactory();
         authViewModel = new ViewModelProvider(this, factory).get(AuthViewModel.class);
     }
     
