@@ -69,7 +69,7 @@ public class AdminComplaintsActivity extends AppCompatActivity implements AdminC
     }
 
     private void setupViewModel() {
-        ViewModelFactory factory = new ViewModelFactory(this);
+        ViewModelFactory factory = new ViewModelFactory();
         complaintViewModel = new ViewModelProvider(this, factory).get(ComplaintViewModel.class);
 
         // Observe complaints
