@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.deligo.app.R;
+import com.deligo.app.models.User;
 import com.deligo.app.repositories.AuthRepositoryImpl;
 import com.deligo.app.utils.UIHelper;
 import com.deligo.app.utils.ViewModelFactory;
@@ -112,9 +113,7 @@ public class LoginActivity extends AppCompatActivity {
                 case SUCCESS:
                     showLoading(false);
                     UIHelper.showSuccessToast(this, "Login successful!");
-                    // TODO: Navigate to appropriate main screen based on user role
-                    // For now, just finish the activity
-                    finish();
+                    navigateToMainScreen(authState.getUser());
                     break;
                     
                 case ERROR:
@@ -137,5 +136,24 @@ public class LoginActivity extends AppCompatActivity {
             progressBar.setVisibility(View.GONE);
             btnLogin.setEnabled(true);
         }
+    }
+    
+    private void navigateToMainScreen(User user) {
+        if (user == null) {
+            UIHelper.showErrorToast(this, "User data not found");
+            return;
+        }
+        
+        Intent intent;
+        String role = user.getRole();
+        
+        if ("admin".equalsIgnoreCase(role)) {
+            intent = new Intent(LoginActivity.this, AdminMainActivity.class);
+        } else {
+            intent = new Intent(LoginActivity.this, CustomerMainActivity.class);
+        }
+        
+        startActivity(intent);
+        finish();
     }
 }

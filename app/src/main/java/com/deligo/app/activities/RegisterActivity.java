@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.deligo.app.R;
+import com.deligo.app.models.User;
 import com.deligo.app.repositories.AuthRepositoryImpl;
 import com.deligo.app.utils.UIHelper;
 import com.deligo.app.utils.ViewModelFactory;
@@ -140,8 +141,7 @@ public class RegisterActivity extends AppCompatActivity {
                 case SUCCESS:
                     showLoading(false);
                     UIHelper.showSuccessToast(this, "Registration successful!");
-                    // Navigate back to login or to main screen
-                    finish();
+                    navigateToMainScreen(authState.getUser());
                     break;
                     
                 case ERROR:
@@ -164,5 +164,24 @@ public class RegisterActivity extends AppCompatActivity {
             progressBar.setVisibility(View.GONE);
             btnRegister.setEnabled(true);
         }
+    }
+    
+    private void navigateToMainScreen(User user) {
+        if (user == null) {
+            UIHelper.showErrorToast(this, "User data not found");
+            return;
+        }
+        
+        Intent intent;
+        String role = user.getRole();
+        
+        if ("admin".equalsIgnoreCase(role)) {
+            intent = new Intent(RegisterActivity.this, AdminMainActivity.class);
+        } else {
+            intent = new Intent(RegisterActivity.this, CustomerMainActivity.class);
+        }
+        
+        startActivity(intent);
+        finish();
     }
 }
