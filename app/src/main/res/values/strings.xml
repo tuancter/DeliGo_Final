@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">DeliGo</string>
+    <string name="app_tagline">Đặt đồ ăn nhanh chóng, tiện lợi</string>
+    <string name="app_description">Ứng dụng đặt đồ ăn trực tuyến cho nhà hàng của bạn</string>
+    
+    <!-- Welcome Messages -->
+    <string name="welcome_customer">Chào mừng đến với DeliGo!</string>
+    <string name="welcome_admin">Quản lý nhà hàng DeliGo</string>
+    
+    <!-- Common Actions -->
+    <string name="action_login">Đăng nhập</string>
+    <string name="action_register">Đăng ký</string>
+    <string name="action_logout">Đăng xuất</string>
+    <string name="action_save">Lưu</string>
+    <string name="action_cancel">Hủy</string>
+    <string name="action_delete">Xóa</string>
+    <string name="action_edit">Sửa</string>
+    <string name="action_add">Thêm</string>
+    <string name="action_search">Tìm kiếm</string>
+    <string name="action_filter">Lọc</string>
+    <string name="action_submit">Gửi</string>
+    <string name="action_confirm">Xác nhận</string>
+    <string name="action_retry">Thử lại</string>
+    
+    <!-- Navigation -->
+    <string name="nav_home">Trang chủ</string>
+    <string name="nav_menu">Thực đơn</string>
+    <string name="nav_cart">Giỏ hàng</string>
+    <string name="nav_orders">Đơn hàng</string>
+    <string name="nav_profile">Hồ sơ</string>
+    <string name="nav_statistics">Thống kê</string>
+    <string name="nav_complaints">Khiếu nại</string>
+    
+    <!-- Status Messages -->
+    <string name="status_loading">Đang tải…</string>
+    <string name="status_success">Thành công!</string>
+    <string name="status_error">Đã xảy ra lỗi</string>
+    <string name="status_empty">Không có dữ liệu</string>
+    
+    <!-- Order Status -->
+    <string name="order_status_pending">Chờ xử lý</string>
+    <string name="order_status_accepted">Đã chấp nhận</string>
+    <string name="order_status_preparing">Đang chuẩn bị</string>
+    <string name="order_status_completed">Hoàn thành</string>
+    <string name="order_status_cancelled">Đã hủy</string>
+    
+    <!-- Payment Status -->
+    <string name="payment_pending">Chờ thanh toán</string>
+    <string name="payment_completed">Đã thanh toán</string>
+    <string name="payment_failed">Thanh toán thất bại</string>
+    
+    <!-- Error Messages -->
+    <string name="error_network">Lỗi kết nối mạng</string>
+    <string name="error_authentication">Lỗi xác thực</string>
+    <string name="error_invalid_input">Dữ liệu không hợp lệ</string>
+    <string name="error_unknown">Lỗi không xác định</string>
+    
+    <!-- Validation Messages -->
+    <string name="validation_required">Trường này là bắt buộc</string>
+    <string name="validation_email_invalid">Email không hợp lệ</string>
+    <string name="validation_phone_invalid">Số điện thoại không hợp lệ</string>
+    <string name="validation_password_short">Mật khẩu phải có ít nhất 8 ký tự</string>
+    
+    <!-- Confirmation Messages -->
+    <string name="confirm_delete">Bạn có chắc muốn xóa?</string>
+    <string name="confirm_logout">Bạn có chắc muốn đăng xuất?</string>
+    <string name="confirm_cancel_order">Bạn có chắc muốn hủy đơn hàng?</string>
+</resources>
