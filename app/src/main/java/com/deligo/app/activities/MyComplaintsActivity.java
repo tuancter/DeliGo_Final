@@ -38,7 +38,7 @@ public class MyComplaintsActivity extends AppCompatActivity {
         // Get current user
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser == null) {
-            Toast.makeText(this, "Please login to view complaints", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_login_required), Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -92,7 +92,7 @@ public class MyComplaintsActivity extends AppCompatActivity {
 
         complaintViewModel.getErrorMessage().observe(this, error -> {
             if (error != null && !error.isEmpty()) {
-                Toast.makeText(this, "Error: " + error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.error_prefix, error), Toast.LENGTH_SHORT).show();
             }
         });
     }

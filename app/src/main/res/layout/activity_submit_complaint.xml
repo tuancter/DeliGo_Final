@@ -17,7 +17,7 @@
             android:id="@+id/titleTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Submit Complaint"
+            android:text="@string/submit_complaint"
             android:textColor="#212121"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -47,7 +47,7 @@
                     android:id="@+id/orderIdLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Order ID:"
+                    android:text="@string/text_order_id_label"
                     android:textColor="#757575"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Date:"
+                    android:text="@string/text_date_label"
                     android:textColor="#757575"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +96,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Total:"
+                    android:text="@string/text_total_label"
                     android:textColor="#757575"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -141,7 +141,7 @@
                     android:id="@+id/complaintLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Describe Your Issue"
+                    android:text="@string/describe_your_issue"
                     android:textColor="#212121"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -149,7 +149,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <!-- Complaint Input -->
-                <EditText android:id="@+id/complaintEditText" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Please describe your complaint in detail..." android:padding="16dp" android:background="@drawable/card_background" />
+                <EditText android:id="@+id/complaintEditText" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/hint_complaint_detail" android:padding="16dp" android:background="@drawable/card_background" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -72,13 +72,13 @@ public class EditProfileActivity extends AppCompatActivity {
 
             // Validate inputs
             if (fullName.isEmpty()) {
-                fullNameEditText.setError("Full name is required");
+                fullNameEditText.setError(getString(R.string.validation_name_required));
                 fullNameEditText.requestFocus();
                 return;
             }
 
             if (phone.isEmpty()) {
-                phoneEditText.setError("Phone is required");
+                phoneEditText.setError(getString(R.string.validation_phone_required));
                 phoneEditText.requestFocus();
                 return;
             }
@@ -113,7 +113,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
         profileViewModel.getProfileUpdated().observe(this, updated -> {
             if (updated) {
-                Toast.makeText(this, "Profile updated successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.toast_profile_updated), Toast.LENGTH_SHORT).show();
                 profileViewModel.resetProfileUpdated();
                 finish();
             }

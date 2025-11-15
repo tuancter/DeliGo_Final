@@ -87,7 +87,7 @@ public class AddEditFoodActivity extends AppCompatActivity {
         foodId = getIntent().getStringExtra("foodId");
         if (foodId != null) {
             isEditMode = true;
-            toolbar.setTitle("Edit Food");
+            toolbar.setTitle(R.string.edit_food);
             
             // Populate fields with existing data
             nameEditText.setText(getIntent().getStringExtra("foodName"));
@@ -99,7 +99,7 @@ public class AddEditFoodActivity extends AppCompatActivity {
             // Category will be set after categories are loaded
         } else {
             isEditMode = false;
-            toolbar.setTitle("Add Food");
+            toolbar.setTitle(R.string.add_food);
         }
     }
 
@@ -173,17 +173,17 @@ public class AddEditFoodActivity extends AppCompatActivity {
         boolean isAvailable = availableSwitch.isChecked();
 
         if (name.isEmpty()) {
-            nameEditText.setError("Name is required");
+            nameEditText.setError(getString(R.string.validation_name_required));
             return;
         }
 
         if (description.isEmpty()) {
-            descriptionEditText.setError("Description is required");
+            descriptionEditText.setError(getString(R.string.validation_description_required));
             return;
         }
 
         if (priceStr.isEmpty()) {
-            priceEditText.setError("Price is required");
+            priceEditText.setError(getString(R.string.validation_price_required));
             return;
         }
 
@@ -191,22 +191,22 @@ public class AddEditFoodActivity extends AppCompatActivity {
         try {
             price = Double.parseDouble(priceStr);
             if (price <= 0) {
-                priceEditText.setError("Price must be greater than 0");
+                priceEditText.setError(getString(R.string.validation_price_positive));
                 return;
             }
         } catch (NumberFormatException e) {
-            priceEditText.setError("Invalid price");
+            priceEditText.setError(getString(R.string.validation_price_invalid));
             return;
         }
 
         if (categoryName.isEmpty()) {
-            Toast.makeText(this, "Please select a category", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_select_category), Toast.LENGTH_SHORT).show();
             return;
         }
 
         String categoryId = categoryNameToIdMap.get(categoryName);
         if (categoryId == null) {
-            Toast.makeText(this, "Invalid category selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_invalid_category), Toast.LENGTH_SHORT).show();
             return;
         }
 

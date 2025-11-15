@@ -150,7 +150,7 @@ public class AdminStatisticsActivity extends AppCompatActivity {
 
         if (statusMap.isEmpty()) {
             TextView noDataText = new TextView(this);
-            noDataText.setText("No orders in this period");
+            noDataText.setText(R.string.label_no_orders_this_period);
             noDataText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             noDataText.setPadding(16, 16, 16, 16);
             statusContainer.addView(noDataText);
@@ -167,7 +167,7 @@ public class AdminStatisticsActivity extends AppCompatActivity {
             text1.setTextSize(16);
             text1.setTextColor(getResources().getColor(android.R.color.black, null));
 
-            text2.setText(String.format(Locale.getDefault(), "%d orders", entry.getValue()));
+            text2.setText(getString(R.string.label_orders_count, entry.getValue()));
             text2.setTextSize(14);
             text2.setTextColor(getResources().getColor(android.R.color.darker_gray, null));
 

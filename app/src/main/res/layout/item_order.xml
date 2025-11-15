@@ -25,7 +25,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Order #12345"
+                android:text="@string/text_order_placeholder"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -33,7 +33,7 @@
                 android:id="@+id/tvOrderDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Jan 15, 2024"
+                android:text="@string/text_date_placeholder"
                 android:textSize="13sp"
                 android:textColor="@android:color/darker_gray" />
         </LinearLayout>
@@ -43,7 +43,7 @@
             android:id="@+id/tvOrderStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pending"
+            android:text="@string/pending"
             android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="@android:color/holo_orange_dark"
@@ -62,7 +62,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Payment: "
+                android:text="@string/payment"
                 android:textSize="14sp"
                 android:textColor="@android:color/darker_gray" />
 
@@ -70,7 +70,7 @@
                 android:id="@+id/tvPaymentStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pending"
+                android:text="@string/pending"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -85,7 +85,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Total Amount"
+                android:text="@string/total_amount"
                 android:textSize="14sp"
                 android:textColor="@android:color/darker_gray" />
 
@@ -93,7 +93,7 @@
                 android:id="@+id/tvTotalAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0đ"
+                android:text="@string/default_zero_vnd"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/holo_red_dark" />

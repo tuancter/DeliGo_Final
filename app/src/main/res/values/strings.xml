@@ -231,4 +231,109 @@
     <string name="default_dash">-</string>
     <string name="default_zero">0</string>
     <string name="default_zero_vnd">0đ</string>
+    
+    <!-- Dialog titles -->
+    <string name="dialog_delete_food">Xóa món ăn</string>
+    <string name="dialog_delete_food_message">Bạn có chắc muốn xóa %s?</string>
+    <string name="dialog_delete_category">Xóa danh mục</string>
+    <string name="dialog_delete_category_message">Bạn có chắc muốn xóa %s?</string>
+    <string name="dialog_add_category">Thêm danh mục</string>
+    <string name="dialog_edit_category">Sửa danh mục</string>
+    <string name="dialog_order_success">Đặt hàng thành công</string>
+    <string name="dialog_order_success_message">Đơn hàng của bạn đã được đặt thành công. Bạn có thể theo dõi đơn hàng trong phần Đơn hàng.</string>
+    <string name="dialog_resolve_complaint">Giải quyết khiếu nại</string>
+    <string name="dialog_resolve_complaint_message">Bạn có chắc muốn đánh dấu khiếu nại này là đã giải quyết?</string>
+    <string name="dialog_reject_complaint">Từ chối khiếu nại</string>
+    <string name="dialog_reject_complaint_message">Bạn có chắc muốn từ chối khiếu nại này?</string>
+    <string name="button_view_orders">Xem đơn hàng</string>
+    <string name="button_continue_shopping">Tiếp tục mua sắm</string>
+    
+    <!-- Toast messages -->
+    <string name="toast_profile_updated">Cập nhật hồ sơ thành công</string>
+    <string name="toast_order_updated">Cập nhật đơn hàng thành công</string>
+    <string name="toast_complaint_updated">Cập nhật khiếu nại thành công</string>
+    <string name="toast_review_submitted">Đánh giá đã được gửi!</string>
+    <string name="toast_complaint_submitted">Khiếu nại đã được gửi!</string>
+    <string name="toast_login_required">Vui lòng đăng nhập để tiếp tục</string>
+    <string name="toast_invalid_item">Mục không hợp lệ</string>
+    <string name="toast_not_found">Không tìm thấy</string>
+    <string name="toast_category_empty">Tên danh mục không được để trống</string>
+    <string name="toast_select_category">Vui lòng chọn danh mục</string>
+    <string name="toast_invalid_category">Danh mục không hợp lệ</string>
+    <string name="toast_select_rating">Vui lòng chọn đánh giá</string>
+    <string name="toast_describe_complaint">Vui lòng mô tả khiếu nại của bạn</string>
+    <string name="toast_user_not_found">Không tìm thấy thông tin người dùng</string>
+    
+    <!-- Error messages -->
+    <string name="error_food_not_found">Không tìm thấy món ăn</string>
+    <string name="error_order_not_found">Không tìm thấy đơn hàng</string>
+    <string name="error_food_info_unavailable">Thông tin món ăn không khả dụng</string>
+    <string name="error_prefix">Lỗi: %s</string>
+    
+    <!-- Input hints -->
+    <string name="hint_category_name">Tên danh mục</string>
+    
+    <!-- Labels -->
+    <string name="label_no_orders_this_period">Không có đơn hàng trong khoảng thời gian này</string>
+    <string name="label_orders_count">%d đơn hàng</string>
+    <string name="label_no_rating">Chưa có đánh giá</string>
+    <string name="label_rating_na">N/A</string>
+    <string name="label_order_id">Mã đơn hàng: #%s</string>
+    <string name="label_customer_id">Mã khách hàng: %s</string>
+    <string name="label_date">Ngày: %s</string>
+    <string name="label_status">Trạng thái: %s</string>
+    <string name="label_payment">Thanh toán: %s</string>
+    <string name="label_payment_method">Phương thức thanh toán: %s</string>
+    <string name="label_address">Địa chỉ: %s</string>
+    <string name="label_note">Ghi chú: %s</string>
+    
+    <!-- Validation -->
+    <string name="validation_name_required">Tên là bắt buộc</string>
+    <string name="validation_phone_required">Số điện thoại là bắt buộc</string>
+    <string name="validation_description_required">Mô tả là bắt buộc</string>
+    <string name="validation_price_required">Giá là bắt buộc</string>
+    <string name="validation_price_positive">Giá phải lớn hơn 0</string>
+    <string name="validation_price_invalid">Giá không hợp lệ</string>
+    <string name="validation_address_required">Địa chỉ giao hàng là bắt buộc</string>
+    
+    <!-- UI Labels and Text -->
+    <string name="title_edit_profile">Chỉnh sửa hồ sơ</string>
+    <string name="title_profile">Hồ sơ</string>
+    <string name="text_view_past_orders">Xem tất cả đơn hàng trước đây</string>
+    <string name="title_order_history">Lịch sử đơn hàng</string>
+    <string name="text_order_history_empty">Lịch sử đơn hàng sẽ hiển thị ở đây</string>
+    <string name="error_title">Rất tiếc! Đã có lỗi xảy ra</string>
+    <string name="error_message">Đã xảy ra lỗi. Vui lòng thử lại.</string>
+    <string name="text_loading">Đang tải...</string>
+    <string name="text_empty_title">Không tìm thấy mục</string>
+    <string name="text_empty_message">Hiện không có mục nào để hiển thị.</string>
+    <string name="text_food_name_placeholder">Tên món ăn</string>
+    <string name="text_quantity_placeholder">x2</string>
+    <string name="text_order_placeholder">Đơn hàng #12345</string>
+    <string name="text_date_placeholder">15 Tháng 1, 2024</string>
+    <string name="text_customer_placeholder">Khách hàng: abc12345</string>
+    <string name="text_date_time_placeholder">15 Tháng 11, 2025 14:30</string>
+    <string name="text_order_id_placeholder">Đơn hàng #12345678</string>
+    <string name="content_desc_food_image">Hình ảnh món ăn</string>
+    <string name="content_desc_remove_item">Xóa món</string>
+    <string name="content_desc_logo">Logo DeliGo</string>
+    <string name="text_logo_deligo">DeliGo</string>
+    <string name="text_order_id_label">Mã đơn hàng:</string>
+    <string name="text_date_label">Ngày:</string>
+    <string name="text_total_label">Tổng:</string>
+    <string name="hint_complaint_detail">Vui lòng mô tả chi tiết khiếu nại của bạn...</string>
+    <string name="button_plus">+</string>
+    <string name="button_minus">-</string>
+    <string name="hint_search_food">Tìm kiếm món ăn...</string>
+    
+    <!-- Additional UI strings -->
+    <string name="title_order_details">Chi tiết đơn hàng</string>
+    <string name="delivery_address_placeholder">123 Đường Chính, Thành phố, Tỉnh 12345</string>
+    <string name="text_hello_world">Xin chào thế giới!</string>
+    <string name="text_no_complaints_submitted">Bạn chưa gửi khiếu nại nào</string>
+    <string name="emoji_clipboard">📋</string>
+    <string name="rating_placeholder">0/5</string>
+    <string name="content_desc_add_category">Thêm danh mục</string>
+    <string name="title_manage_categories">Quản lý danh mục</string>
+    <string name="title_statistics_report">Báo cáo thống kê</string>
 </resources>

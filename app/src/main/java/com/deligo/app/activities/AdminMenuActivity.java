@@ -188,12 +188,12 @@ public class AdminMenuActivity extends AppCompatActivity
     @Override
     public void onDeleteFood(Food food) {
         new AlertDialog.Builder(this)
-                .setTitle("Delete Food")
-                .setMessage("Are you sure you want to delete " + food.getName() + "?")
-                .setPositiveButton("Delete", (dialog, which) -> {
+                .setTitle(R.string.dialog_delete_food)
+                .setMessage(getString(R.string.dialog_delete_food_message, food.getName()))
+                .setPositiveButton(R.string.delete, (dialog, which) -> {
                     viewModel.deleteFood(food.getFoodId());
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton(R.string.action_cancel, null)
                 .show();
     }
 
@@ -211,51 +211,51 @@ public class AdminMenuActivity extends AppCompatActivity
     @Override
     public void onDeleteCategory(Category category) {
         new AlertDialog.Builder(this)
-                .setTitle("Delete Category")
-                .setMessage("Are you sure you want to delete " + category.getCategoryName() + "?")
-                .setPositiveButton("Delete", (dialog, which) -> {
+                .setTitle(R.string.dialog_delete_category)
+                .setMessage(getString(R.string.dialog_delete_category_message, category.getCategoryName()))
+                .setPositiveButton(R.string.delete, (dialog, which) -> {
                     viewModel.deleteCategory(category.getCategoryId());
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton(R.string.action_cancel, null)
                 .show();
     }
 
     private void showAddCategoryDialog() {
         android.widget.EditText input = new android.widget.EditText(this);
-        input.setHint("Category Name");
+        input.setHint(R.string.hint_category_name);
 
         new AlertDialog.Builder(this)
-                .setTitle("Add Category")
+                .setTitle(R.string.dialog_add_category)
                 .setView(input)
-                .setPositiveButton("Add", (dialog, which) -> {
+                .setPositiveButton(R.string.action_add, (dialog, which) -> {
                     String categoryName = input.getText().toString().trim();
                     if (!categoryName.isEmpty()) {
                         viewModel.addCategory(categoryName);
                     } else {
-                        UIHelper.showErrorToast(this, "Category name cannot be empty");
+                        UIHelper.showErrorToast(this, getString(R.string.toast_category_empty));
                     }
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton(R.string.action_cancel, null)
                 .show();
     }
 
     private void showEditCategoryDialog(Category category) {
         android.widget.EditText input = new android.widget.EditText(this);
         input.setText(category.getCategoryName());
-        input.setHint("Category Name");
+        input.setHint(R.string.hint_category_name);
 
         new AlertDialog.Builder(this)
-                .setTitle("Edit Category")
+                .setTitle(R.string.dialog_edit_category)
                 .setView(input)
-                .setPositiveButton("Save", (dialog, which) -> {
+                .setPositiveButton(R.string.action_save, (dialog, which) -> {
                     String categoryName = input.getText().toString().trim();
                     if (!categoryName.isEmpty()) {
                         viewModel.updateCategory(category.getCategoryId(), categoryName);
                     } else {
-                        UIHelper.showErrorToast(this, "Category name cannot be empty");
+                        UIHelper.showErrorToast(this, getString(R.string.toast_category_empty));
                     }
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton(R.string.action_cancel, null)
                 .show();
     }
 }

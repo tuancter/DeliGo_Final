@@ -89,7 +89,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
         // Validate delivery address
         if (deliveryAddress.isEmpty()) {
-            etDeliveryAddress.setError("Delivery address is required");
+            etDeliveryAddress.setError(getString(R.string.validation_address_required));
             etDeliveryAddress.requestFocus();
             return;
         }
@@ -126,15 +126,15 @@ public class CheckoutActivity extends AppCompatActivity {
 
     private void showOrderConfirmation() {
         new AlertDialog.Builder(this)
-                .setTitle("Order Placed Successfully")
-                .setMessage("Your order has been placed successfully. You can track your order in the Orders section.")
-                .setPositiveButton("View Orders", (dialog, which) -> {
+                .setTitle(R.string.dialog_order_success)
+                .setMessage(R.string.dialog_order_success_message)
+                .setPositiveButton(R.string.button_view_orders, (dialog, which) -> {
                     Intent intent = new Intent(CheckoutActivity.this, OrderHistoryActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();
                 })
-                .setNegativeButton("Continue Shopping", (dialog, which) -> {
+                .setNegativeButton(R.string.button_continue_shopping, (dialog, which) -> {
                     Intent intent = new Intent(CheckoutActivity.this, CustomerMainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);

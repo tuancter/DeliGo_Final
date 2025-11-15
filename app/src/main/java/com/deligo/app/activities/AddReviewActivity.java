@@ -52,7 +52,7 @@ public class AddReviewActivity extends AppCompatActivity {
         // Get current user
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser == null) {
-            Toast.makeText(this, "Please login to submit a review", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_login_required), Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -61,7 +61,7 @@ public class AddReviewActivity extends AppCompatActivity {
         // Get food ID from intent
         foodId = getIntent().getStringExtra("foodId");
         if (foodId == null || foodId.isEmpty()) {
-            Toast.makeText(this, "Invalid food item", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_invalid_item), Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -114,14 +114,14 @@ public class AddReviewActivity extends AppCompatActivity {
 
         reviewViewModel.getReviewSubmitted().observe(this, submitted -> {
             if (submitted != null && submitted) {
-                Toast.makeText(this, "Review submitted successfully!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.toast_review_submitted), Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
 
         reviewViewModel.getErrorMessage().observe(this, error -> {
             if (error != null && !error.isEmpty()) {
-                Toast.makeText(this, "Error: " + error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.error_prefix, error), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -135,7 +135,7 @@ public class AddReviewActivity extends AppCompatActivity {
                 if (food != null) {
                     displayFoodDetails(food);
                 } else {
-                    Toast.makeText(AddReviewActivity.this, "Food not found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddReviewActivity.this, getString(R.string.toast_not_found), Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }
@@ -143,7 +143,7 @@ public class AddReviewActivity extends AppCompatActivity {
             @Override
             public void onError(String message) {
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(AddReviewActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddReviewActivity.this, getString(R.string.error_prefix, message), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -165,7 +165,7 @@ public class AddReviewActivity extends AppCompatActivity {
         // Validate rating
         float rating = ratingBar.getRating();
         if (rating == 0) {
-            Toast.makeText(this, "Please select a rating", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_select_rating), Toast.LENGTH_SHORT).show();
             return;
         }
 

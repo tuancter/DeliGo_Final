@@ -19,7 +19,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:scaleType="centerCrop"
-            android:contentDescription="Food image"
+            android:contentDescription="@string/content_desc_food_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@android:drawable/ic_menu_gallery" />
@@ -60,7 +60,7 @@
             android:layout_height="32dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@android:drawable/ic_menu_delete"
-            android:contentDescription="Remove item"
+            android:contentDescription="@string/content_desc_remove_item"
             android:tint="#F44336"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -85,7 +85,7 @@
                 android:minWidth="0dp"
                 android:minHeight="0dp"
                 android:padding="0dp"
-                android:text="-"
+                android:text="@string/button_minus"
                 android:textSize="18sp"
                 app:cornerRadius="4dp" />
 
@@ -109,7 +109,7 @@
                 android:minWidth="0dp"
                 android:minHeight="0dp"
                 android:padding="0dp"
-                android:text="+"
+                android:text="@string/button_plus"
                 android:textSize="18sp"
                 app:cornerRadius="4dp" />
 

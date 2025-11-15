@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Profile"
+            android:text="@string/title_profile"
             android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="#212121"
@@ -38,7 +38,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Personal Information"
+                    android:text="@string/personal_information"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="16dp" />
@@ -47,7 +47,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Full Name"
+                    android:text="@string/full_name"
                     android:textSize="12sp"
                     android:textColor="@android:color/darker_gray"
                     android:layout_marginBottom="4dp" />
@@ -56,7 +56,7 @@
                     android:id="@+id/fullNameTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="-"
+                    android:text="@string/default_dash"
                     android:textSize="16sp"
                     android:layout_marginBottom="16dp" />
 
@@ -64,7 +64,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Email"
+                    android:text="@string/email"
                     android:textSize="12sp"
                     android:textColor="@android:color/darker_gray"
                     android:layout_marginBottom="4dp" />
@@ -73,7 +73,7 @@
                     android:id="@+id/emailTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="-"
+                    android:text="@string/default_dash"
                     android:textSize="16sp"
                     android:layout_marginBottom="16dp" />
 
@@ -81,7 +81,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Phone"
+                    android:text="@string/phone"
                     android:textSize="12sp"
                     android:textColor="@android:color/darker_gray"
                     android:layout_marginBottom="4dp" />
@@ -90,7 +90,7 @@
                     android:id="@+id/phoneTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="-"
+                    android:text="@string/default_dash"
                     android:textSize="16sp"
                     android:layout_marginBottom="16dp" />
 
@@ -99,7 +99,7 @@
                     android:id="@+id/editProfileButton" style="@style/Widget.DeliGo.Button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Edit Profile"
+                    android:text="@string/edit_profile"
                     android:backgroundTint="?attr/colorPrimary" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -121,7 +121,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Order History"
+                    android:text="@string/order_history"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="8dp" />
@@ -129,7 +129,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="View all your past orders"
+                    android:text="@string/text_view_past_orders"
                     android:textSize="14sp"
                     android:textColor="@android:color/darker_gray"
                     android:layout_marginBottom="16dp" />
@@ -138,7 +138,7 @@
                     android:id="@+id/viewOrderHistoryButton" style="@style/Widget.DeliGo.Button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="View Order History"
+                    android:text="@string/view_order_history"
                     android:backgroundTint="?attr/colorPrimary" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -148,7 +148,7 @@
             android:id="@+id/logoutButton" style="@style/Widget.DeliGo.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Logout"
+            android:text="@string/action_logout"
             android:backgroundTint="@android:color/holo_red_dark" />
 
         <!-- Loading indicator -->

@@ -102,7 +102,7 @@ public class AdminComplaintsActivity extends AppCompatActivity implements AdminC
         // Observe status update
         complaintViewModel.getStatusUpdated().observe(this, statusUpdated -> {
             if (statusUpdated != null && statusUpdated) {
-                Toast.makeText(this, "Complaint status updated", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.toast_complaint_updated), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -159,24 +159,24 @@ public class AdminComplaintsActivity extends AppCompatActivity implements AdminC
     @Override
     public void onResolveClicked(Complaint complaint) {
         new AlertDialog.Builder(this)
-                .setTitle("Resolve Complaint")
-                .setMessage("Are you sure you want to mark this complaint as resolved?")
-                .setPositiveButton("Resolve", (dialog, which) -> {
+                .setTitle(R.string.dialog_resolve_complaint)
+                .setMessage(R.string.dialog_resolve_complaint_message)
+                .setPositiveButton(R.string.resolve, (dialog, which) -> {
                     complaintViewModel.updateComplaintStatus(complaint.getComplaintId(), "resolved");
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton(R.string.action_cancel, null)
                 .show();
     }
 
     @Override
     public void onRejectClicked(Complaint complaint) {
         new AlertDialog.Builder(this)
-                .setTitle("Reject Complaint")
-                .setMessage("Are you sure you want to reject this complaint?")
-                .setPositiveButton("Reject", (dialog, which) -> {
+                .setTitle(R.string.dialog_reject_complaint)
+                .setMessage(R.string.dialog_reject_complaint_message)
+                .setPositiveButton(R.string.reject, (dialog, which) -> {
                     complaintViewModel.updateComplaintStatus(complaint.getComplaintId(), "rejected");
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton(R.string.action_cancel, null)
                 .show();
     }
 }

@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Order History"
+            android:text="@string/title_order_history"
             android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="#212121"
@@ -42,7 +42,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No Orders Yet"
+            android:text="@string/no_orders_yet"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp" />
@@ -50,7 +50,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your order history will appear here"
+            android:text="@string/text_order_history_empty"
             android:textSize="14sp"
             android:textColor="@android:color/darker_gray" />
     </LinearLayout>

@@ -47,7 +47,7 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
         // Get order ID from intent
         orderId = getIntent().getStringExtra("orderId");
         if (orderId == null) {
-            Toast.makeText(this, "Order ID not found", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.error_order_not_found), Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -131,7 +131,7 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
         // Observe action success
         viewModel.getActionSuccess().observe(this, success -> {
             if (success != null && success) {
-                Toast.makeText(this, "Order updated successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.toast_order_updated), Toast.LENGTH_SHORT).show();
                 viewModel.resetActionSuccess();
                 // Reload order details
                 viewModel.loadOrderDetails(orderId);
@@ -143,19 +143,19 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
     }
 
     private void displayOrderInfo(Order order) {
-        tvOrderId.setText("Order ID: #" + order.getOrderId().substring(0, Math.min(8, order.getOrderId().length())));
-        tvCustomerId.setText("Customer ID: " + order.getCustomerId().substring(0, Math.min(8, order.getCustomerId().length())));
+        tvOrderId.setText(getString(R.string.label_order_id, order.getOrderId().substring(0, Math.min(8, order.getOrderId().length()))));
+        tvCustomerId.setText(getString(R.string.label_customer_id, order.getCustomerId().substring(0, Math.min(8, order.getCustomerId().length()))));
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm", Locale.getDefault());
-        tvOrderDate.setText("Date: " + dateFormat.format(new Date(order.getCreatedAt())));
+        tvOrderDate.setText(getString(R.string.label_date, dateFormat.format(new Date(order.getCreatedAt()))));
 
-        tvOrderStatus.setText("Status: " + capitalizeFirst(order.getOrderStatus()));
-        tvPaymentStatus.setText("Payment: " + capitalizeFirst(order.getPaymentStatus()));
-        tvPaymentMethod.setText("Payment Method: " + order.getPaymentMethod());
-        tvDeliveryAddress.setText("Address: " + order.getDeliveryAddress());
+        tvOrderStatus.setText(getString(R.string.label_status, capitalizeFirst(order.getOrderStatus())));
+        tvPaymentStatus.setText(getString(R.string.label_payment, capitalizeFirst(order.getPaymentStatus())));
+        tvPaymentMethod.setText(getString(R.string.label_payment_method, order.getPaymentMethod()));
+        tvDeliveryAddress.setText(getString(R.string.label_address, order.getDeliveryAddress()));
 
         if (order.getNote() != null && !order.getNote().isEmpty()) {
-            tvNote.setText("Note: " + order.getNote());
+            tvNote.setText(getString(R.string.label_note, order.getNote()));
             tvNote.setVisibility(View.VISIBLE);
         } else {
             tvNote.setVisibility(View.GONE);

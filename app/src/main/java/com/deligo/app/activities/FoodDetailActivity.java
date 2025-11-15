@@ -62,7 +62,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         // Get food ID from intent
         foodId = getIntent().getStringExtra("foodId");
         if (foodId == null || foodId.isEmpty()) {
-            UIHelper.showErrorToast(this, "Invalid food item");
+            UIHelper.showErrorToast(this, getString(R.string.toast_invalid_item));
             finish();
             return;
         }
@@ -118,7 +118,7 @@ public class FoodDetailActivity extends AppCompatActivity {
                     currentFood = food;
                     displayFoodDetails(food);
                 } else {
-                    UIHelper.showErrorToast(FoodDetailActivity.this, "Food not found");
+                    UIHelper.showErrorToast(FoodDetailActivity.this, getString(R.string.error_food_not_found));
                     finish();
                 }
             }
@@ -183,13 +183,13 @@ public class FoodDetailActivity extends AppCompatActivity {
                 if (rating != null && rating > 0) {
                     averageRatingTextView.setText(String.format("%.1f ⭐", rating));
                 } else {
-                    averageRatingTextView.setText("No ratings yet");
+                    averageRatingTextView.setText(getString(R.string.label_no_rating));
                 }
             }
 
             @Override
             public void onError(String message) {
-                averageRatingTextView.setText("N/A");
+                averageRatingTextView.setText(getString(R.string.label_rating_na));
             }
         });
     }
@@ -198,13 +198,13 @@ public class FoodDetailActivity extends AppCompatActivity {
         // Check if user is authenticated
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         if (currentUser == null) {
-            UIHelper.showErrorToast(this, "Please login to add items to cart");
+            UIHelper.showErrorToast(this, getString(R.string.toast_login_required));
             return;
         }
 
         // Check if food is loaded
         if (currentFood == null || foodId == null) {
-            UIHelper.showErrorToast(this, "Food information not available");
+            UIHelper.showErrorToast(this, getString(R.string.error_food_info_unavailable));
             return;
         }
 

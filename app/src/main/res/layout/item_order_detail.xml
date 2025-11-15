@@ -10,14 +10,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Food Name"
+        android:text="@string/text_food_name_placeholder"
         android:textSize="14sp" />
 
     <TextView
         android:id="@+id/tvQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="x2"
+        android:text="@string/text_quantity_placeholder"
         android:textSize="14sp"
         android:layout_marginHorizontal="8dp" />
 
@@ -25,7 +25,7 @@
         android:id="@+id/tvPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0đ"
+        android:text="@string/default_zero_vnd"
         android:textSize="14sp"
         android:textStyle="bold" />
 </LinearLayout>

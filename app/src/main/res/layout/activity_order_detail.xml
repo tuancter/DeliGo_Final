@@ -13,7 +13,7 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:title="Order Details"
+        app:title="@string/title_order_details"
         app:titleTextColor="@android:color/white" />
 
     <ScrollView
@@ -43,7 +43,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Order Information"
+                        android:text="@string/order_information"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="12dp" />
@@ -58,7 +58,7 @@
                         <TextView
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
-                            android:text="Order ID:"
+                            android:text="@string/order_id"
                             android:textColor="@android:color/darker_gray" />
 
                         <TextView
@@ -66,7 +66,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="#12345"
+                            android:text="@string/text_order_placeholder"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -80,7 +80,7 @@
                         <TextView
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
-                            android:text="Date:"
+                            android:text="@string/date"
                             android:textColor="@android:color/darker_gray" />
 
                         <TextView
@@ -88,7 +88,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Jan 15, 2024" />
+                            android:text="@string/text_date_placeholder" />
                     </LinearLayout>
 
                     <!-- Order Status -->
@@ -101,7 +101,7 @@
                         <TextView
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
-                            android:text="Status:"
+                            android:text="@string/status"
                             android:textColor="@android:color/darker_gray" />
 
                         <TextView
@@ -109,7 +109,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Pending"
+                            android:text="@string/pending"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -123,7 +123,7 @@
                         <TextView
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
-                            android:text="Payment:"
+                            android:text="@string/payment"
                             android:textColor="@android:color/darker_gray" />
 
                         <TextView
@@ -131,7 +131,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Pending" />
+                            android:text="@string/pending" />
                     </LinearLayout>
 
                     <!-- Payment Method -->
@@ -143,7 +143,7 @@
                         <TextView
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
-                            android:text="Payment Method:"
+                            android:text="@string/payment_method"
                             android:textColor="@android:color/darker_gray" />
 
                         <TextView
@@ -151,7 +151,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Cash on Delivery" />
+                            android:text="@string/cash_on_delivery" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -173,7 +173,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Delivery Address"
+                        android:text="@string/delivery_address"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="8dp" />
@@ -182,7 +182,7 @@
                         android:id="@+id/tvDeliveryAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="123 Main St, City, State 12345" />
+                        android:text="@string/delivery_address_placeholder" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -203,7 +203,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Order Items"
+                        android:text="@string/order_items"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="12dp" />
@@ -230,7 +230,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Total Amount"
+                            android:text="@string/total_amount"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -238,7 +238,7 @@
                             android:id="@+id/tvTotalAmount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="0đ"
+                            android:text="@string/default_zero_vnd"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="@android:color/holo_red_dark" />
@@ -260,7 +260,7 @@
                 android:id="@+id/btnSubmitComplaint" style="@style/Widget.DeliGo.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Submit Complaint"
+                android:text="@string/submit_complaint"
                 android:visibility="gone"
                 android:layout_marginTop="8dp" />
         </LinearLayout>

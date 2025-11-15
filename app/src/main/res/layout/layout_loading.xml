@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="60dp"
-        android:text="Loading..."
+        android:text="@string/text_loading"
         android:textColor="@android:color/darker_gray"
         android:textSize="14sp" />
 

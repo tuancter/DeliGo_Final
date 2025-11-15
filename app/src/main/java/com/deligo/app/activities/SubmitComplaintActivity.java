@@ -50,7 +50,7 @@ public class SubmitComplaintActivity extends AppCompatActivity {
         // Get current user
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser == null) {
-            Toast.makeText(this, "Please login to submit a complaint", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_login_required), Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -59,7 +59,7 @@ public class SubmitComplaintActivity extends AppCompatActivity {
         // Get order ID from intent
         orderId = getIntent().getStringExtra("orderId");
         if (orderId == null || orderId.isEmpty()) {
-            Toast.makeText(this, "Invalid order", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_invalid_item), Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -104,14 +104,14 @@ public class SubmitComplaintActivity extends AppCompatActivity {
 
         complaintViewModel.getComplaintSubmitted().observe(this, submitted -> {
             if (submitted != null && submitted) {
-                Toast.makeText(this, "Complaint submitted successfully!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.toast_complaint_submitted), Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
 
         complaintViewModel.getErrorMessage().observe(this, error -> {
             if (error != null && !error.isEmpty()) {
-                Toast.makeText(this, "Error: " + error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.error_prefix, error), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -125,7 +125,7 @@ public class SubmitComplaintActivity extends AppCompatActivity {
                 if (order != null) {
                     displayOrderDetails(order);
                 } else {
-                    Toast.makeText(SubmitComplaintActivity.this, "Order not found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SubmitComplaintActivity.this, getString(R.string.toast_not_found), Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }
@@ -133,7 +133,7 @@ public class SubmitComplaintActivity extends AppCompatActivity {
             @Override
             public void onError(String message) {
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(SubmitComplaintActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(SubmitComplaintActivity.this, getString(R.string.error_prefix, message), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -152,7 +152,7 @@ public class SubmitComplaintActivity extends AppCompatActivity {
     private void submitComplaint() {
         // Validate content
         if (complaintEditText.getText() == null || complaintEditText.getText().toString().trim().isEmpty()) {
-            Toast.makeText(this, "Please describe your complaint", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_describe_complaint), Toast.LENGTH_SHORT).show();
             return;
         }
 

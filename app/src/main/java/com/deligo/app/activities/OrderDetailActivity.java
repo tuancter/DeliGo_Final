@@ -46,7 +46,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         // Get order ID from intent
         orderId = getIntent().getStringExtra("orderId");
         if (orderId == null) {
-            Toast.makeText(this, "Order ID not found", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.error_order_not_found), Toast.LENGTH_SHORT).show();
             finish();
             return;
         }

@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Oops! Something went wrong"
+        android:text="@string/error_title"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="An error occurred. Please try again."
+        android:text="@string/error_message"
         android:textColor="@android:color/darker_gray"
         android:textSize="14sp" />
 
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Retry"
+        android:text="@string/action_retry"
         android:textColor="@android:color/white"
         android:backgroundTint="@android:color/holo_blue_dark"
         android:paddingStart="32dp"

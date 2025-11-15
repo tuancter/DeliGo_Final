@@ -14,7 +14,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
-        app:title="Manage Categories"
+        app:title="@string/title_manage_categories"
         app:titleTextColor="@android:color/white"
         app:navigationIcon="@android:drawable/ic_menu_close_clear_cancel"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:contentDescription="Add Category"
+        android:contentDescription="@string/content_desc_add_category"
         android:src="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

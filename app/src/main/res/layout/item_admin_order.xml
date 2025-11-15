@@ -29,7 +29,7 @@
                     android:id="@+id/tvOrderId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Order #12345678"
+                    android:text="@string/text_order_id_placeholder"
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -39,7 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Customer: abc12345"
+                    android:text="@string/text_customer_placeholder"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="14sp" />
 
@@ -48,7 +48,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Nov 15, 2025 14:30"
+                    android:text="@string/text_date_time_placeholder"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="14sp" />
 
@@ -64,7 +64,7 @@
                     android:id="@+id/tvOrderStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pending"
+                    android:text="@string/pending"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -73,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="0đ"
+                    android:text="@string/default_zero_vnd"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />

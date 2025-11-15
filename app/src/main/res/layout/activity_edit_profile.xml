@@ -13,7 +13,7 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:title="Edit Profile"
+        app:title="@string/title_edit_profile"
         app:titleTextColor="@android:color/white" />
 
     <ScrollView

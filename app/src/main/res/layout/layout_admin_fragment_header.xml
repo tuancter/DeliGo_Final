@@ -15,7 +15,7 @@
         android:textAppearance="?attr/textAppearanceHeadline6"
         android:textStyle="bold"
         android:textColor="@color/text_primary"
-        android:text="-" />
+        android:text="@string/default_dash" />
 
     <Button
         android:id="@+id/headerBackButton"

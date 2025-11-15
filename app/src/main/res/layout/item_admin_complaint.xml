@@ -18,7 +18,7 @@
             android:id="@+id/userLabelTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Customer:"
+            android:text="@string/customer"
             android:textColor="#757575"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +43,7 @@
             android:id="@+id/statusChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pending"
+            android:text="@string/pending"
             android:textColor="#FFFFFF"
             android:background="#FFC107"
             app:layout_constraintEnd_toEndOf="parent"
@@ -108,7 +108,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="Reject"
+                android:text="@string/reject"
                 android:textColor="#F44336"
                 app:strokeColor="#F44336" />
 
@@ -117,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#4CAF50"
-                android:text="Resolve"
+                android:text="@string/resolve"
                 android:textColor="#FFFFFF" />
 
         </LinearLayout>

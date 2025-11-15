@@ -140,7 +140,7 @@ public class LoginActivity extends AppCompatActivity {
     
     private void navigateToMainScreen(User user) {
         if (user == null) {
-            UIHelper.showErrorToast(this, "User data not found");
+            UIHelper.showErrorToast(this, getString(R.string.toast_user_not_found));
             return;
         }
         

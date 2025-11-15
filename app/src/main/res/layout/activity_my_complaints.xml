@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:text="My Complaints"
+        android:text="@string/my_complaints"
         android:textColor="#212121"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -51,7 +51,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No Complaints"
+            android:text="@string/no_complaints"
             android:textColor="#757575"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="You haven't submitted any complaints yet"
+            android:text="@string/text_no_complaints_submitted"
             android:textColor="#9E9E9E"
             android:textSize="14sp" />
 
