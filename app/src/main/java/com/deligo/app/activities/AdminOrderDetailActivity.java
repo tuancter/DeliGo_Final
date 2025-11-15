@@ -18,14 +18,14 @@ import com.deligo.app.adapters.OrderDetailAdapter;
 import com.deligo.app.models.Order;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.AdminOrderViewModel;
-import com.google.android.material.appbar.MaterialToolbar;
+import androidx.appcompat.widget.Toolbar;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 public class AdminOrderDetailActivity extends AppCompatActivity {
-    private MaterialToolbar toolbar;
+    private Toolbar toolbar;
     private TextView tvOrderId, tvCustomerId, tvOrderDate, tvOrderStatus, tvPaymentStatus;
     private TextView tvPaymentMethod, tvDeliveryAddress, tvNote, tvTotalAmount;
     private RecyclerView rvOrderDetails;

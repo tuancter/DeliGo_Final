@@ -24,7 +24,7 @@
             tools:src="@android:drawable/ic_menu_gallery" />
 
         <!-- Content Card -->
-        <com.google.android.material.card.MaterialCardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/contentCard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -131,9 +131,9 @@
                     app:layout_constraintTop_toBottomOf="@id/foodDescriptionTextView" />
 
                 <!-- Write Review Button -->
-                <com.google.android.material.button.MaterialButton
+                <Button
                     android:id="@+id/writeReviewButton"
-                    style="@style/Widget.Material3.Button.TextButton"
+                    style="@style/Widget.DeliGo.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Write Review"
@@ -169,8 +169,8 @@
                     app:layout_constraintTop_toBottomOf="@id/reviewsLabel" />
 
                 <!-- Add to Cart Button -->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/addToCartButton"
+                <Button
+                    android:id="@+id/addToCartButton" style="@style/Widget.DeliGo.Button"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
@@ -183,7 +183,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+        </androidx.cardview.widget.CardView>
 
         <!-- Loading Progress Bar -->
         <ProgressBar

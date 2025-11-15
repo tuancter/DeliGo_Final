@@ -15,13 +15,13 @@ import com.deligo.app.repositories.OrderRepositoryImpl;
 import com.deligo.app.repositories.ProfileRepositoryImpl;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.ProfileViewModel;
-import com.google.android.material.textfield.TextInputEditText;
+import android.widget.EditText;
 
 public class EditProfileActivity extends AppCompatActivity {
     private ProfileViewModel profileViewModel;
-    private TextInputEditText fullNameEditText;
-    private TextInputEditText phoneEditText;
-    private TextInputEditText emailEditText;
+    private EditText fullNameEditText;
+    private EditText phoneEditText;
+    private EditText emailEditText;
     private Button saveButton;
     private Button cancelButton;
     private ProgressBar progressBar;

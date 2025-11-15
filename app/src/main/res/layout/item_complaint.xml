@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -27,13 +27,13 @@
             tools:text="Order #ORD123456" />
 
         <!-- Status Chip -->
-        <com.google.android.material.chip.Chip
+        <Button
             android:id="@+id/statusChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pending"
             android:textColor="#FFFFFF"
-            app:chipBackgroundColor="#FFC107"
+            android:background="#FFC107"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Pending" />
@@ -68,4 +68,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</com.google.android.material.card.MaterialCardView>
+</androidx.cardview.widget.CardView>

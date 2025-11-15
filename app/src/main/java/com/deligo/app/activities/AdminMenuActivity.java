@@ -20,9 +20,9 @@ import com.deligo.app.models.Food;
 import com.deligo.app.utils.UIHelper;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.AdminMenuViewModel;
-import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.tabs.TabLayout;
+import androidx.appcompat.widget.Toolbar;
+import android.widget.ImageButton;
+import android.widget.RadioGroup;
 
 public class AdminMenuActivity extends AppCompatActivity 
         implements AdminFoodAdapter.OnFoodActionListener, CategoryAdapter.OnCategoryActionListener {
@@ -31,12 +31,12 @@ public class AdminMenuActivity extends AppCompatActivity
     private AdminFoodAdapter foodAdapter;
     private CategoryAdapter categoryAdapter;
     
-    private MaterialToolbar toolbar;
-    private TabLayout tabLayout;
+    private Toolbar toolbar;
+    private RadioGroup tabLayout;
     private RecyclerView foodRecyclerView;
     private RecyclerView categoryRecyclerView;
-    private FloatingActionButton fabAddFood;
-    private FloatingActionButton fabAddCategory;
+    private ImageButton fabAddFood;
+    private ImageButton fabAddCategory;
     private ProgressBar progressBar;
     
     private View foodsContent;
@@ -91,25 +91,16 @@ public class AdminMenuActivity extends AppCompatActivity
     }
 
     private void setupTabLayout() {
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                if (tab.getPosition() == 0) {
-                    // Foods tab
-                    foodsContent.setVisibility(View.VISIBLE);
-                    categoriesContent.setVisibility(View.GONE);
-                } else {
-                    // Categories tab
-                    foodsContent.setVisibility(View.GONE);
-                    categoriesContent.setVisibility(View.VISIBLE);
-                }
+        tabLayout.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.tab_foods) {
+                // Foods tab
+                foodsContent.setVisibility(View.VISIBLE);
+                categoriesContent.setVisibility(View.GONE);
+            } else if (checkedId == R.id.tab_categories) {
+                // Categories tab
+                foodsContent.setVisibility(View.GONE);
+                categoriesContent.setVisibility(View.VISIBLE);
             }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {}
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {}
         });
 
         // Show foods tab by default

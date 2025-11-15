@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.deligo.app.R;
 import com.deligo.app.models.Food;
-import com.google.android.material.button.MaterialButton;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,9 +61,9 @@ public class AdminFoodAdapter extends RecyclerView.Adapter<AdminFoodAdapter.Food
         private TextView foodNameTextView;
         private TextView foodPriceTextView;
         private TextView availabilityTextView;
-        private MaterialButton toggleAvailabilityButton;
-        private MaterialButton editButton;
-        private MaterialButton deleteButton;
+        private Button toggleAvailabilityButton;
+        private Button editButton;
+        private Button deleteButton;
 
         public FoodViewHolder(@NonNull View itemView) {
             super(itemView);

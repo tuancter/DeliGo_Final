@@ -1,21 +1,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.DeliGo" parent="Theme.Material3.DayNight.NoActionBar">
+    <!-- Base application theme for dark mode using AppCompat -->
+    <style name="Base.Theme.DeliGo" parent="Theme.AppCompat.NoActionBar">
         <!-- Primary brand color -->
         <item name="colorPrimary">@color/primary_light</item>
-        <item name="colorPrimaryVariant">@color/primary</item>
-        <item name="colorOnPrimary">@color/black</item>
-        
-        <!-- Secondary brand color -->
-        <item name="colorSecondary">@color/accent</item>
-        <item name="colorSecondaryVariant">@color/accent_dark</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorPrimaryDark">@color/primary</item>
+        <item name="colorAccent">@color/accent</item>
         
         <!-- Background colors for dark mode -->
         <item name="android:colorBackground">#121212</item>
-        <item name="colorSurface">#1E1E1E</item>
-        <item name="colorOnBackground">@color/white</item>
-        <item name="colorOnSurface">@color/white</item>
+        <item name="android:windowBackground">#121212</item>
         
         <!-- Status bar color -->
         <item name="android:statusBarColor">#000000</item>
@@ -24,5 +17,77 @@
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColorSecondary">#B0B0B0</item>
         <item name="android:textColorHint">#757575</item>
+        
+        <!-- Button style -->
+        <item name="buttonStyle">@style/Widget.DeliGo.Button</item>
+    </style>
+
+    <style name="Theme.DeliGo" parent="Base.Theme.DeliGo" />
+    
+    <!-- Button Styles -->
+    <style name="Widget.DeliGo.Button" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/button_primary</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">24dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+    <style name="Widget.DeliGo.Button.Outlined" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:background">@drawable/button_outlined</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">24dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+    <!-- Base Widget Style for compatibility -->
+    <style name="Widget" />
+    
+    <!-- Base Widget Style -->
+    <style name="Widget.DeliGo" />
+    
+    <!-- Card Style -->
+    <style name="Widget.DeliGo.Card">
+        <item name="android:background">@drawable/card_background</item>
+        <item name="android:padding">16dp</item>
+    </style>
+    
+    <!-- Base Text Appearance -->
+    <style name="TextAppearance">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    
+    <!-- Text Styles -->
+    <style name="TextAppearance.DeliGo.Headline">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+    <style name="TextAppearance.DeliGo.Title">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+    <style name="TextAppearance.DeliGo.Body">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    
+    <style name="TextAppearance.DeliGo.Caption">
+        <item name="android:textColor">#B0B0B0</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    
+    <!-- Splash Screen Theme -->
+    <style name="Theme.DeliGo.Splash" parent="Theme.DeliGo">
+        <item name="android:windowBackground">@color/primary</item>
+        <item name="android:statusBarColor">@color/primary</item>
     </style>
 </resources>

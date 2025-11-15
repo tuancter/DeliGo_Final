@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <!-- Toolbar -->
-    <com.google.android.material.appbar.MaterialToolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -22,13 +22,13 @@
         android:padding="8dp"
         android:scrollbars="none">
 
-        <com.google.android.material.chip.ChipGroup
+        <HorizontalScrollView
             android:id="@+id/chipGroupStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:singleSelection="true">
+            >
 
-            <com.google.android.material.chip.Chip
+            <Button
                 android:id="@+id/chipAll"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
@@ -36,42 +36,42 @@
                 android:checked="true"
                 android:text="All" />
 
-            <com.google.android.material.chip.Chip
+            <Button
                 android:id="@+id/chipPending"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pending" />
 
-            <com.google.android.material.chip.Chip
+            <Button
                 android:id="@+id/chipAccepted"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Accepted" />
 
-            <com.google.android.material.chip.Chip
+            <Button
                 android:id="@+id/chipPreparing"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Preparing" />
 
-            <com.google.android.material.chip.Chip
+            <Button
                 android:id="@+id/chipCompleted"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Completed" />
 
-            <com.google.android.material.chip.Chip
+            <Button
                 android:id="@+id/chipCancelled"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cancelled" />
 
-        </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
 
     </HorizontalScrollView>
 

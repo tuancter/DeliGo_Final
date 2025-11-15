@@ -20,14 +20,14 @@ import com.deligo.app.repositories.CartRepositoryImpl;
 import com.deligo.app.utils.UIHelper;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.CartViewModel;
-import com.google.android.material.button.MaterialButton;
+import android.widget.Button;
 
 public class CartActivity extends AppCompatActivity implements CartAdapter.OnCartItemActionListener {
     private CartViewModel cartViewModel;
     private CartAdapter cartAdapter;
     private RecyclerView cartRecyclerView;
     private TextView totalAmountTextView;
-    private MaterialButton checkoutButton;
+    private Button checkoutButton;
     private ProgressBar progressBar;
     private View emptyCartLayout;
 

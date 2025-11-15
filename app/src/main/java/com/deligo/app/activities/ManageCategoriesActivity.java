@@ -17,8 +17,8 @@ import com.deligo.app.adapters.CategoryAdapter;
 import com.deligo.app.models.Category;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.AdminMenuViewModel;
-import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.widget.Toolbar;
+import android.widget.ImageButton;
 
 public class ManageCategoriesActivity extends AppCompatActivity 
         implements CategoryAdapter.OnCategoryActionListener {
@@ -26,9 +26,9 @@ public class ManageCategoriesActivity extends AppCompatActivity
     private AdminMenuViewModel viewModel;
     private CategoryAdapter categoryAdapter;
     
-    private MaterialToolbar toolbar;
+    private Toolbar toolbar;
     private RecyclerView categoryRecyclerView;
-    private FloatingActionButton fabAddCategory;
+    private ImageButton fabAddCategory;
     private ProgressBar progressBar;
     private TextView emptyTextView;
 

@@ -19,8 +19,8 @@ import com.deligo.app.repositories.FoodRepositoryImpl;
 import com.deligo.app.repositories.ReviewRepositoryImpl;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.ReviewViewModel;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textfield.TextInputEditText;
+import android.widget.Button;
+import android.widget.EditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -30,8 +30,8 @@ public class AddReviewActivity extends AppCompatActivity {
     private TextView foodPriceTextView;
     private RatingBar ratingBar;
     private TextView ratingTextView;
-    private TextInputEditText commentEditText;
-    private MaterialButton submitButton;
+    private EditText commentEditText;
+    private Button submitButton;
     private ProgressBar progressBar;
 
     private ReviewViewModel reviewViewModel;

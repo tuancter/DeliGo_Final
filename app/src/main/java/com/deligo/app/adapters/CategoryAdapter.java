@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.deligo.app.R;
 import com.deligo.app.models.Category;
-import com.google.android.material.button.MaterialButton;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,8 +54,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
     class CategoryViewHolder extends RecyclerView.ViewHolder {
         private TextView categoryNameTextView;
-        private MaterialButton editButton;
-        private MaterialButton deleteButton;
+        private Button editButton;
+        private Button deleteButton;
 
         public CategoryViewHolder(@NonNull View itemView) {
             super(itemView);

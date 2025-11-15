@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <!-- Toolbar -->
-    <com.google.android.material.appbar.MaterialToolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -241,7 +241,7 @@
         android:elevation="8dp">
 
         <Button
-            android:id="@+id/btnAccept"
+            android:id="@+id/btnAccept" style="@style/Widget.DeliGo.Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -252,7 +252,7 @@
             android:visibility="gone" />
 
         <Button
-            android:id="@+id/btnPreparing"
+            android:id="@+id/btnPreparing" style="@style/Widget.DeliGo.Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -263,7 +263,7 @@
             android:visibility="gone" />
 
         <Button
-            android:id="@+id/btnComplete"
+            android:id="@+id/btnComplete" style="@style/Widget.DeliGo.Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -274,7 +274,7 @@
             android:visibility="gone" />
 
         <Button
-            android:id="@+id/btnCancel"
+            android:id="@+id/btnCancel" style="@style/Widget.DeliGo.Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

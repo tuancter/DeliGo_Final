@@ -27,54 +27,42 @@
             android:padding="16dp">
 
             <!-- Full Name Input -->
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
+                android:id="@+id/fullNameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:hint="Full Name"
-                app:boxBackgroundMode="outline">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fullNameEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName" />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:inputType="textPersonName"
+                android:padding="16dp"
+                android:background="@drawable/card_background" />
 
             <!-- Phone Input -->
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
+                android:id="@+id/phoneEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:hint="Phone"
-                app:boxBackgroundMode="outline">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/phoneEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="phone" />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:inputType="phone"
+                android:padding="16dp"
+                android:background="@drawable/card_background" />
 
             <!-- Email (Read-only) -->
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
+                android:id="@+id/emailEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:hint="Email"
-                app:boxBackgroundMode="outline">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/emailEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:enabled="false" />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:inputType="textEmailAddress"
+                android:enabled="false"
+                android:padding="16dp"
+                android:background="@drawable/card_background" />
 
             <!-- Save Button -->
             <Button
-                android:id="@+id/saveButton"
+                android:id="@+id/saveButton" style="@style/Widget.DeliGo.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Save Changes"
@@ -84,10 +72,10 @@
             <!-- Cancel Button -->
             <Button
                 android:id="@+id/cancelButton"
+                style="@style/Widget.DeliGo.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cancel"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+                android:text="Cancel" />
 
             <!-- Loading indicator -->
             <ProgressBar

@@ -32,16 +32,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchView">
 
-        <com.google.android.material.chip.ChipGroup
+        <HorizontalScrollView
             android:id="@+id/categoryChipGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            app:singleSelection="true"
-            app:selectionRequired="false">
+            
+            >
 
-            <com.google.android.material.chip.Chip
+            <Button
                 android:id="@+id/chipAll"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
@@ -49,7 +49,7 @@
                 android:text="All"
                 android:checked="true" />
 
-        </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
     </HorizontalScrollView>
 
     <!-- RecyclerView for Food Items -->

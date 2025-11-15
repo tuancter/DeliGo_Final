@@ -8,7 +8,7 @@
     tools:context=".activities.AdminMenuActivity">
 
     <!-- Toolbar -->
-    <com.google.android.material.appbar.MaterialToolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
@@ -21,29 +21,34 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Tab Layout -->
-    <com.google.android.material.tabs.TabLayout
+    <RadioGroup
         android:id="@+id/tabLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:background="@android:color/white"
         android:elevation="2dp"
-        app:tabMode="fixed"
-        app:tabGravity="fill"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
+        <RadioButton
+            android:id="@+id/tab_foods"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Foods" />
+            android:layout_weight="1"
+            android:text="Foods"
+            android:checked="true" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
+        <RadioButton
+            android:id="@+id/tab_categories"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Categories" />
 
-    </com.google.android.material.tabs.TabLayout>
+    </RadioGroup>
 
     <!-- ViewPager2 for tab content -->
     <androidx.viewpager2.widget.ViewPager2
@@ -78,7 +83,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <ImageButton
             android:id="@+id/fabAddFood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -113,7 +118,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <ImageButton
             android:id="@+id/fabAddCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

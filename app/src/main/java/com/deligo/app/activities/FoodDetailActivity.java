@@ -21,7 +21,7 @@ import com.deligo.app.repositories.FoodRepositoryImpl;
 import com.deligo.app.repositories.ReviewRepository;
 import com.deligo.app.repositories.ReviewRepositoryImpl;
 import com.deligo.app.utils.UIHelper;
-import com.google.android.material.button.MaterialButton;
+import android.widget.Button;
 
 import java.util.List;
 
@@ -33,8 +33,8 @@ public class FoodDetailActivity extends AppCompatActivity {
     private TextView averageRatingTextView;
     private RecyclerView reviewsRecyclerView;
     private TextView noReviewsTextView;
-    private MaterialButton addToCartButton;
-    private MaterialButton writeReviewButton;
+    private Button addToCartButton;
+    private Button writeReviewButton;
     private ProgressBar progressBar;
 
     private ReviewAdapter reviewAdapter;

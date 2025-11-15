@@ -17,17 +17,17 @@ import com.deligo.app.models.Order;
 import com.deligo.app.utils.UIHelper;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.AdminOrderViewModel;
-import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipGroup;
+import androidx.appcompat.widget.Toolbar;
+import android.widget.Button;
+import android.widget.HorizontalScrollView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class AdminOrdersActivity extends AppCompatActivity implements AdminOrderAdapter.OnOrderActionListener {
-    private MaterialToolbar toolbar;
-    private ChipGroup chipGroupStatus;
+    private Toolbar toolbar;
+    private HorizontalScrollView chipGroupStatus;
     private RecyclerView rvOrders;
     private ProgressBar progressBar;
     private View layoutEmpty;
@@ -113,20 +113,29 @@ public class AdminOrdersActivity extends AppCompatActivity implements AdminOrder
     }
 
     private void setupFilters() {
-        chipGroupStatus.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == R.id.chipAll) {
-                selectedStatus = "all";
-            } else if (checkedId == R.id.chipPending) {
-                selectedStatus = "pending";
-            } else if (checkedId == R.id.chipAccepted) {
-                selectedStatus = "accepted";
-            } else if (checkedId == R.id.chipPreparing) {
-                selectedStatus = "preparing";
-            } else if (checkedId == R.id.chipCompleted) {
-                selectedStatus = "completed";
-            } else if (checkedId == R.id.chipCancelled) {
-                selectedStatus = "cancelled";
-            }
+        // Setup click listeners for filter buttons
+        findViewById(R.id.chipAll).setOnClickListener(v -> {
+            selectedStatus = "all";
+            filterOrders();
+        });
+        findViewById(R.id.chipPending).setOnClickListener(v -> {
+            selectedStatus = "pending";
+            filterOrders();
+        });
+        findViewById(R.id.chipAccepted).setOnClickListener(v -> {
+            selectedStatus = "accepted";
+            filterOrders();
+        });
+        findViewById(R.id.chipPreparing).setOnClickListener(v -> {
+            selectedStatus = "preparing";
+            filterOrders();
+        });
+        findViewById(R.id.chipCompleted).setOnClickListener(v -> {
+            selectedStatus = "completed";
+            filterOrders();
+        });
+        findViewById(R.id.chipCancelled).setOnClickListener(v -> {
+            selectedStatus = "cancelled";
             filterOrders();
         });
     }

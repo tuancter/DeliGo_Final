@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Order Info Card -->
-        <com.google.android.material.card.MaterialCardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/orderInfoCard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -117,10 +117,10 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+        </androidx.cardview.widget.CardView>
 
         <!-- Complaint Content Section -->
-        <com.google.android.material.card.MaterialCardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/complaintCard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -149,35 +149,15 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <!-- Complaint Input -->
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/complaintInputLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/complaintLabel">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/complaintEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="top|start"
-                        android:hint="Please describe your complaint in detail..."
-                        android:inputType="textMultiLine"
-                        android:lines="6"
-                        android:maxLength="1000"
-                        android:minLines="6" />
-
-                </com.google.android.material.textfield.TextInputLayout>
+                <EditText android:id="@+id/complaintEditText" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Please describe your complaint in detail..." android:padding="16dp" android:background="@drawable/card_background" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+        </androidx.cardview.widget.CardView>
 
         <!-- Submit Button -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/submitButton"
+        <Button
+            android:id="@+id/submitButton" style="@style/Widget.DeliGo.Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"

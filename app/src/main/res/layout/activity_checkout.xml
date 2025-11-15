@@ -29,21 +29,7 @@
             android:textStyle="bold"
             android:layout_marginBottom="8dp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:boxBackgroundMode="outline">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etDeliveryAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter delivery address"
-                android:minLines="3"
-                android:gravity="top|start"
-                android:inputType="textMultiLine" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <EditText android:id="@+id/etDeliveryAddress" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Enter delivery address" android:padding="16dp" android:background="@drawable/card_background" />
 
         <!-- Payment Method Section -->
         <TextView
@@ -92,21 +78,7 @@
             android:textStyle="bold"
             android:layout_marginBottom="8dp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:boxBackgroundMode="outline">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etOrderNote"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Add special instructions"
-                android:minLines="2"
-                android:gravity="top|start"
-                android:inputType="textMultiLine" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <EditText android:id="@+id/etOrderNote" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Add special instructions" android:padding="16dp" android:background="@drawable/card_background" />
 
         <!-- Order Summary Section -->
         <TextView
@@ -193,7 +165,7 @@
 
         <!-- Place Order Button -->
         <Button
-            android:id="@+id/btnPlaceOrder"
+            android:id="@+id/btnPlaceOrder" style="@style/Widget.DeliGo.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Place Order"

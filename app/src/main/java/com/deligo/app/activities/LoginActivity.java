@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,15 +20,13 @@ import com.deligo.app.utils.UIHelper;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.AuthState;
 import com.deligo.app.viewmodels.AuthViewModel;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputEditText;
+import android.widget.Button;
 
 public class LoginActivity extends AppCompatActivity {
     
-    private TextInputEditText etEmail;
-    private TextInputEditText etPassword;
-    private MaterialButton btnLogin;
+    private EditText etEmail;
+    private EditText etPassword;
+    private Button btnLogin;
     private ProgressBar progressBar;
     private TextView tvRegister;
     

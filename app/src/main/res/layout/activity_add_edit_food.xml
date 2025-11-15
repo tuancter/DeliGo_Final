@@ -14,7 +14,7 @@
         android:padding="16dp">
 
         <!-- Toolbar -->
-        <com.google.android.material.appbar.MaterialToolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="0dp"
             android:layout_height="?attr/actionBarSize"
@@ -31,110 +31,81 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Food Name -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/nameInputLayout"
+        <EditText
+            android:id="@+id/nameEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:hint="Food Name"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="16dp"
+            android:background="@drawable/card_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/nameEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:maxLines="1" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
         <!-- Description -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/descriptionInputLayout"
+        <EditText
+            android:id="@+id/descriptionEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="Description"
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:maxLines="5"
+            android:gravity="top"
+            android:padding="16dp"
+            android:background="@drawable/card_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/nameInputLayout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/descriptionEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:minLines="3"
-                android:maxLines="5"
-                android:gravity="top" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@id/nameEditText" />
 
         <!-- Price -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/priceInputLayout"
+        <EditText
+            android:id="@+id/priceEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Price"
-            app:prefixText="$"
+            android:hint="Price ($)"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:padding="16dp"
+            android:background="@drawable/card_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/descriptionInputLayout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/priceEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:maxLines="1" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@id/descriptionEditText" />
 
         <!-- Category Spinner -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/categoryInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        <Spinner
+            android:id="@+id/categorySpinner"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Category"
+            android:padding="16dp"
+            android:background="@drawable/card_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/priceInputLayout">
-
-            <AutoCompleteTextView
-                android:id="@+id/categoryAutoComplete"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@id/priceEditText" />
 
         <!-- Image URL -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/imageUrlInputLayout"
+        <EditText
+            android:id="@+id/imageUrlEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="Image URL"
+            android:inputType="textUri"
+            android:maxLines="2"
+            android:padding="16dp"
+            android:background="@drawable/card_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/categoryInputLayout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/imageUrlEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textUri"
-                android:maxLines="2" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@id/categorySpinner" />
 
         <!-- Available Switch -->
-        <com.google.android.material.switchmaterial.SwitchMaterial
+        <Switch
             android:id="@+id/availableSwitch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -143,11 +114,11 @@
             android:checked="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageUrlInputLayout" />
+            app:layout_constraintTop_toBottomOf="@id/imageUrlEditText" />
 
         <!-- Save Button -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/saveButton"
+        <Button
+            android:id="@+id/saveButton" style="@style/Widget.DeliGo.Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"

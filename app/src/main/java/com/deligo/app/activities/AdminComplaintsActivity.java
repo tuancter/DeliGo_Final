@@ -16,8 +16,8 @@ import com.deligo.app.adapters.AdminComplaintAdapter;
 import com.deligo.app.models.Complaint;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.ComplaintViewModel;
-import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.chip.Chip;
+import androidx.appcompat.widget.Toolbar;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ public class AdminComplaintsActivity extends AppCompatActivity implements AdminC
     private RecyclerView complaintsRecyclerView;
     private ProgressBar progressBar;
     private View emptyStateLayout;
-    private Chip chipAll, chipPending, chipResolved, chipRejected;
+    private Button chipAll, chipPending, chipResolved, chipRejected;
 
     private List<Complaint> allComplaints = new ArrayList<>();
     private String currentFilter = "all";
@@ -58,7 +58,7 @@ public class AdminComplaintsActivity extends AppCompatActivity implements AdminC
     }
 
     private void setupToolbar() {
-        MaterialToolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 

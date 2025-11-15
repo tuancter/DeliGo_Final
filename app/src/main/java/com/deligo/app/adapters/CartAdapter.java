@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.deligo.app.R;
 import com.deligo.app.models.CartItem;
-import com.google.android.material.button.MaterialButton;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,8 +62,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         private final TextView quantityTextView;
         private final TextView itemTotalTextView;
         private final TextView noteTextView;
-        private final MaterialButton decreaseButton;
-        private final MaterialButton increaseButton;
+        private final Button decreaseButton;
+        private final Button increaseButton;
         private final ImageButton removeButton;
 
         public CartViewHolder(@NonNull View itemView) {

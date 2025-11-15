@@ -34,83 +34,67 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="8dp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilFullName"
+        <EditText
+            android:id="@+id/etFullName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Full Name"
+            android:inputType="textPersonName"
+            android:padding="16dp"
+            android:background="@drawable/card_background"
             app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="32dp">
+            android:layout_marginTop="32dp" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etFullName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilEmail"
+        <EditText
+            android:id="@+id/etEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Email"
-            app:layout_constraintTop_toBottomOf="@id/tilFullName"
+            android:inputType="textEmailAddress"
+            android:padding="16dp"
+            android:background="@drawable/card_background"
+            app:layout_constraintTop_toBottomOf="@id/etFullName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilPhone"
+        <EditText
+            android:id="@+id/etPhone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Phone"
-            app:layout_constraintTop_toBottomOf="@id/tilEmail"
+            android:inputType="phone"
+            android:padding="16dp"
+            android:background="@drawable/card_background"
+            app:layout_constraintTop_toBottomOf="@id/etEmail"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etPhone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="phone" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilPassword"
+        <EditText
+            android:id="@+id/etPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Password"
-            app:passwordToggleEnabled="true"
-            app:layout_constraintTop_toBottomOf="@id/tilPhone"
+            android:inputType="textPassword"
+            android:padding="16dp"
+            android:background="@drawable/card_background"
+            app:layout_constraintTop_toBottomOf="@id/etPhone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/btnRegister"
+            style="@style/Widget.DeliGo.Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Register"
             android:textSize="16sp"
             android:padding="16dp"
-            app:layout_constraintTop_toBottomOf="@id/tilPassword"
+            app:layout_constraintTop_toBottomOf="@id/etPassword"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="24dp" />

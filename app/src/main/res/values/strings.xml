@@ -30,12 +30,14 @@
     <string name="nav_profile">Hồ sơ</string>
     <string name="nav_statistics">Thống kê</string>
     <string name="nav_complaints">Khiếu nại</string>
+    <string name="nav_icon_description">Biểu tượng điều hướng</string>
     
     <!-- Status Messages -->
     <string name="status_loading">Đang tải…</string>
     <string name="status_success">Thành công!</string>
     <string name="status_error">Đã xảy ra lỗi</string>
     <string name="status_empty">Không có dữ liệu</string>
+    <string name="no_orders_found">Không tìm thấy đơn hàng</string>
     
     <!-- Order Status -->
     <string name="order_status_pending">Chờ xử lý</string>
@@ -65,4 +67,6 @@
     <string name="confirm_delete">Bạn có chắc muốn xóa?</string>
     <string name="confirm_logout">Bạn có chắc muốn đăng xuất?</string>
     <string name="confirm_cancel_order">Bạn có chắc muốn hủy đơn hàng?</string>
+    <string name="edit">Sửa</string>
+    <string name="delete">Xoá</string>
 </resources>

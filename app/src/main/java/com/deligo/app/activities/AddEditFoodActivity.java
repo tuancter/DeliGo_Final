@@ -2,12 +2,18 @@ package com.deligo.app.activities;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Switch;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.deligo.app.R;
@@ -15,10 +21,6 @@ import com.deligo.app.models.Category;
 import com.deligo.app.models.Food;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.AdminMenuViewModel;
-import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.switchmaterial.SwitchMaterial;
-import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,14 +30,14 @@ import java.util.Map;
 public class AddEditFoodActivity extends AppCompatActivity {
     private AdminMenuViewModel viewModel;
     
-    private MaterialToolbar toolbar;
-    private TextInputEditText nameEditText;
-    private TextInputEditText descriptionEditText;
-    private TextInputEditText priceEditText;
-    private AutoCompleteTextView categoryAutoComplete;
-    private TextInputEditText imageUrlEditText;
-    private SwitchMaterial availableSwitch;
-    private MaterialButton saveButton;
+    private Toolbar toolbar;
+    private EditText nameEditText;
+    private EditText descriptionEditText;
+    private EditText priceEditText;
+    private Spinner categorySpinner;
+    private EditText imageUrlEditText;
+    private Switch availableSwitch;
+    private Button saveButton;
     private ProgressBar progressBar;
     
     private List<Category> categories = new ArrayList<>();
@@ -61,7 +63,7 @@ public class AddEditFoodActivity extends AppCompatActivity {
         nameEditText = findViewById(R.id.nameEditText);
         descriptionEditText = findViewById(R.id.descriptionEditText);
         priceEditText = findViewById(R.id.priceEditText);
-        categoryAutoComplete = findViewById(R.id.categoryAutoComplete);
+        categorySpinner = findViewById(R.id.categorySpinner);
         imageUrlEditText = findViewById(R.id.imageUrlEditText);
         availableSwitch = findViewById(R.id.availableSwitch);
         saveButton = findViewById(R.id.saveButton);
@@ -114,9 +116,9 @@ public class AddEditFoodActivity extends AppCompatActivity {
                 // If in edit mode, set the selected category
                 if (isEditMode) {
                     String categoryId = getIntent().getStringExtra("foodCategoryId");
-                    for (Category category : categories) {
-                        if (category.getCategoryId().equals(categoryId)) {
-                            categoryAutoComplete.setText(category.getCategoryName(), false);
+                    for (int i = 0; i < categories.size(); i++) {
+                        if (categories.get(i).getCategoryId().equals(categoryId)) {
+                            categorySpinner.setSelection(i);
                             break;
                         }
                     }
@@ -154,10 +156,11 @@ public class AddEditFoodActivity extends AppCompatActivity {
         
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
-                android.R.layout.simple_dropdown_item_1line,
+                android.R.layout.simple_spinner_item,
                 categoryNames
         );
-        categoryAutoComplete.setAdapter(adapter);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categorySpinner.setAdapter(adapter);
     }
 
     private void saveFood() {
@@ -165,7 +168,7 @@ public class AddEditFoodActivity extends AppCompatActivity {
         String name = nameEditText.getText().toString().trim();
         String description = descriptionEditText.getText().toString().trim();
         String priceStr = priceEditText.getText().toString().trim();
-        String categoryName = categoryAutoComplete.getText().toString().trim();
+        String categoryName = categorySpinner.getSelectedItem() != null ? categorySpinner.getSelectedItem().toString() : "";
         String imageUrl = imageUrlEditText.getText().toString().trim();
         boolean isAvailable = availableSwitch.isChecked();
 

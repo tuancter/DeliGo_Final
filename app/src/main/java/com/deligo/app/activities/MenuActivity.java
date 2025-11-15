@@ -22,8 +22,8 @@ import com.deligo.app.repositories.FoodRepositoryImpl;
 import com.deligo.app.utils.UIHelper;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.MenuViewModel;
-import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipGroup;
+import android.widget.Button;
+import android.widget.HorizontalScrollView;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class MenuActivity extends AppCompatActivity implements FoodAdapter.OnFoo
     private FoodAdapter foodAdapter;
     private RecyclerView foodRecyclerView;
     private SearchView searchView;
-    private ChipGroup categoryChipGroup;
+    private HorizontalScrollView categoryChipGroup;
     private ProgressBar progressBar;
     private TextView emptyTextView;
 
@@ -118,23 +118,16 @@ public class MenuActivity extends AppCompatActivity implements FoodAdapter.OnFoo
     }
 
     private void setupCategoryChips(List<Category> categories) {
-        // Keep the "All" chip
-        Chip chipAll = categoryChipGroup.findViewById(R.id.chipAll);
-        chipAll.setOnClickListener(v -> {
-            menuViewModel.filterByCategory(null);
-        });
-
-        // Add category chips
-        for (Category category : categories) {
-            Chip chip = new Chip(this);
-            chip.setText(category.getCategoryName());
-            chip.setCheckable(true);
-            chip.setClickable(true);
-            chip.setOnClickListener(v -> {
-                menuViewModel.filterByCategory(category.getCategoryId());
+        // Keep the "All" button
+        Button chipAll = categoryChipGroup.findViewById(R.id.chipAll);
+        if (chipAll != null) {
+            chipAll.setOnClickListener(v -> {
+                menuViewModel.filterByCategory(null);
             });
-            categoryChipGroup.addView(chip);
         }
+
+        // Note: Dynamic category buttons are not supported with HorizontalScrollView
+        // Categories should be predefined in XML or use a different approach
     }
 
     @Override

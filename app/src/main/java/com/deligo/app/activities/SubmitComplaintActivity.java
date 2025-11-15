@@ -15,8 +15,8 @@ import com.deligo.app.repositories.OrderRepository;
 import com.deligo.app.repositories.OrderRepositoryImpl;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.ComplaintViewModel;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textfield.TextInputEditText;
+import android.widget.Button;
+import android.widget.EditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -28,8 +28,8 @@ public class SubmitComplaintActivity extends AppCompatActivity {
     private TextView orderIdTextView;
     private TextView orderDateTextView;
     private TextView orderTotalTextView;
-    private TextInputEditText complaintEditText;
-    private MaterialButton submitButton;
+    private EditText complaintEditText;
+    private Button submitButton;
     private ProgressBar progressBar;
 
     private ComplaintViewModel complaintViewModel;

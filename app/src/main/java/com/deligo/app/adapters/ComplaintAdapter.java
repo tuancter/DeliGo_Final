@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.deligo.app.R;
 import com.deligo.app.models.Complaint;
-import com.google.android.material.chip.Chip;
+import android.widget.Button;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -50,7 +50,7 @@ public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.Comp
         private TextView orderIdTextView;
         private TextView dateTextView;
         private TextView contentTextView;
-        private Chip statusChip;
+        private Button statusChip;
 
         public ComplaintViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -75,7 +75,7 @@ public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.Comp
             // Status
             String status = capitalizeFirst(complaint.getStatus());
             statusChip.setText(status);
-            statusChip.setChipBackgroundColorResource(getStatusColorResource(complaint.getStatus()));
+            statusChip.setBackgroundColor(getStatusColor(complaint.getStatus()));
         }
 
         private String capitalizeFirst(String text) {
@@ -85,16 +85,16 @@ public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.Comp
             return text.substring(0, 1).toUpperCase() + text.substring(1);
         }
 
-        private int getStatusColorResource(String status) {
+        private int getStatusColor(String status) {
             switch (status.toLowerCase()) {
                 case "pending":
-                    return android.R.color.holo_orange_light;
+                    return Color.parseColor("#FFA726");
                 case "resolved":
-                    return android.R.color.holo_green_light;
+                    return Color.parseColor("#66BB6A");
                 case "rejected":
-                    return android.R.color.holo_red_light;
+                    return Color.parseColor("#EF5350");
                 default:
-                    return android.R.color.darker_gray;
+                    return Color.parseColor("#9E9E9E");
             }
         }
     }

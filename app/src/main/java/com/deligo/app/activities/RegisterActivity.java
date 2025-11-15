@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,16 +20,14 @@ import com.deligo.app.utils.UIHelper;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.AuthState;
 import com.deligo.app.viewmodels.AuthViewModel;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textfield.TextInputEditText;
 
 public class RegisterActivity extends AppCompatActivity {
     
-    private TextInputEditText etFullName;
-    private TextInputEditText etEmail;
-    private TextInputEditText etPhone;
-    private TextInputEditText etPassword;
-    private MaterialButton btnRegister;
+    private EditText etFullName;
+    private EditText etEmail;
+    private EditText etPhone;
+    private EditText etPassword;
+    private Button btnRegister;
     private ProgressBar progressBar;
     private TextView tvLogin;
     
