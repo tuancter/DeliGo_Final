@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Complaint Management"
+        app:title="@string/complaints"
         app:titleTextColor="#FFFFFF" />
 
 
@@ -45,27 +45,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="All" />
+                android:text="@string/all" />
 
             <Button
                 android:id="@+id/chipPending"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="Pending" />
+                android:text="@string/pending" />
 
             <Button
                 android:id="@+id/chipResolved"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="Resolved" />
+                android:text="@string/resolved" />
 
             <Button
                 android:id="@+id/chipRejected"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rejected" />
+                android:text="@string/rejected" />
 
         </LinearLayout>
 
@@ -122,7 +122,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="No complaints found"
+            android:text="@string/no_complaints_found"
             android:textColor="#757575"
             android:textSize="16sp" />
 

@@ -12,7 +12,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
-        app:title="Order Management"
+        app:title="@string/order_management"
         app:titleTextColor="@android:color/white" />
 
     <!-- Filter Chips -->
@@ -33,41 +33,41 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="All" />
+                android:text="@string/all" />
 
             <Button
                 android:id="@+id/chipPending"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="Pending" />
+                android:text="@string/pending" />
 
             <Button
                 android:id="@+id/chipAccepted"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="Accepted" />
+                android:text="@string/accepted" />
 
             <Button
                 android:id="@+id/chipPreparing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="Preparing" />
+                android:text="@string/preparing" />
 
             <Button
                 android:id="@+id/chipCompleted"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="Completed" />
+                android:text="@string/completed" />
 
             <Button
                 android:id="@+id/chipCancelled"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cancelled" />
+                android:text="@string/cancelled" />
 
         </LinearLayout>
 
@@ -107,7 +107,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No orders found"
+                android:text="@string/no_orders_found"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="16sp" />
 

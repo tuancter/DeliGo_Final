@@ -8,8 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
         <!-- Toolbar -->
         <androidx.appcompat.widget.Toolbar
@@ -38,7 +37,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Period"
+                    android:text="@string/period"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="8dp" />
@@ -54,7 +53,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Today"
+                        android:text="@string/today"
                         android:checked="true" />
 
                     <RadioButton
@@ -62,14 +61,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="This Week" />
+                        android:text="@string/this_week" />
 
                     <RadioButton
                         android:id="@+id/radioThisMonth"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="This Month" />
+                        android:text="@string/this_month" />
                 </RadioGroup>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -87,12 +86,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:layout_marginHorizontal="14dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Revenue"
+                    android:text="@string/total_revenue"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp" />
 
@@ -100,7 +100,7 @@
                     android:id="@+id/tvTotalRevenue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0đ"
+                    android:text="@string/default_zero_vnd"
                     android:textColor="#FFFFFF"
                     android:textSize="32sp"
                     android:textStyle="bold"
@@ -121,12 +121,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:layout_marginHorizontal="14dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Orders"
+                    android:text="@string/total_orders"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp" />
 
@@ -134,7 +135,7 @@
                     android:id="@+id/tvOrderCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="@string/default_zero"
                     android:textColor="#FFFFFF"
                     android:textSize="32sp"
                     android:textStyle="bold"
@@ -154,12 +155,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:layout_marginHorizontal="14dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Orders by Status"
+                    android:text="@string/orders_by_status"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="12dp" />
@@ -185,12 +187,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:layout_marginHorizontal="14dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Top Selling Foods"
+                    android:text="@string/top_selling_foods"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="12dp" />
@@ -205,7 +208,7 @@
                     android:id="@+id/tvNoTopFoods"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="No data available"
+                    android:text="@string/no_data_available"
                     android:textAlignment="center"
                     android:padding="16dp"
                     android:visibility="gone" />

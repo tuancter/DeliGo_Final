@@ -77,4 +77,157 @@
     <string name="confirm_cancel_order">Bạn có chắc muốn hủy đơn hàng?</string>
     <string name="edit">Sửa</string>
     <string name="delete">Xoá</string>
+    
+    <!-- Food Management -->
+    <string name="add_food">Thêm món ăn</string>
+    <string name="edit_food">Sửa món ăn</string>
+    <string name="food_name">Tên món ăn</string>
+    <string name="description">Mô tả</string>
+    <string name="price_vnd">Giá (VND)</string>
+    <string name="image_url">URL hình ảnh</string>
+    <string name="available">Còn hàng</string>
+    <string name="add_category">Thêm danh mục</string>
+    
+    <!-- Order Management -->
+    <string name="order_management">Quản lý đơn hàng</string>
+    <string name="all">Tất cả</string>
+    <string name="pending">Chờ xử lý</string>
+    <string name="accepted">Đã chấp nhận</string>
+    <string name="preparing">Đang chuẩn bị</string>
+    <string name="completed">Hoàn thành</string>
+    <string name="cancelled">Đã hủy</string>
+    
+    <!-- Menu Management -->
+    <string name="menu_management">Quản lý thực đơn</string>
+    <string name="foods">Món ăn</string>
+    <string name="categories">Danh mục</string>
+    <string name="add_food_description">Thêm món ăn</string>
+    <string name="add_category_description">Thêm danh mục</string>
+    
+    <!-- Complaint Management -->
+    <string name="complaints">Khiếu nại</string>
+    <string name="resolved">Đã giải quyết</string>
+    <string name="rejected">Đã từ chối</string>
+    <string name="no_complaints_found">Không tìm thấy khiếu nại</string>
+    <string name="customer">Khách hàng</string>
+    <string name="reject">Từ chối</string>
+    <string name="resolve">Giải quyết</string>
+    
+    <!-- Reviews -->
+    <string name="write_a_review">Viết đánh giá</string>
+    <string name="your_rating">Đánh giá của bạn</string>
+    <string name="your_comment_optional">Nhận xét của bạn (Tùy chọn)</string>
+    <string name="share_your_experience">Chia sẻ trải nghiệm của bạn...</string>
+    <string name="submit_review">Gửi đánh giá</string>
+    <string name="rating">Đánh giá:</string>
+    <string name="reviews">Đánh giá</string>
+    <string name="write_review">Viết đánh giá</string>
+    <string name="no_reviews_yet">Chưa có đánh giá</string>
+    
+    <!-- Order Details -->
+    <string name="order_information">Thông tin đơn hàng</string>
+    <string name="order_id">Mã đơn hàng:</string>
+    <string name="customer_id">Mã khách hàng:</string>
+    <string name="date">Ngày:</string>
+    <string name="status">Trạng thái:</string>
+    <string name="payment">Thanh toán:</string>
+    <string name="payment_method">Phương thức thanh toán:</string>
+    <string name="delivery_information">Thông tin giao hàng</string>
+    <string name="address">Địa chỉ:</string>
+    <string name="note">Ghi chú:</string>
+    <string name="order_items">Món đã đặt</string>
+    <string name="total_amount">Tổng tiền:</string>
+    <string name="accept_order">Chấp nhận đơn hàng</string>
+    <string name="start_preparing">Bắt đầu chuẩn bị</string>
+    <string name="mark_complete">Đánh dấu hoàn thành</string>
+    <string name="cancel_order">Hủy đơn hàng</string>
+    
+    <!-- Cart -->
+    <string name="shopping_cart">Giỏ hàng</string>
+    <string name="proceed_to_checkout">Tiến hành thanh toán</string>
+    <string name="your_cart_is_empty">Giỏ hàng trống</string>
+    <string name="add_items_to_get_started">Thêm món để bắt đầu</string>
+    
+    <!-- Statistics -->
+    <string name="period">Khoảng thời gian</string>
+    <string name="today">Hôm nay</string>
+    <string name="this_week">Tuần này</string>
+    <string name="this_month">Tháng này</string>
+    <string name="total_revenue">Tổng doanh thu</string>
+    <string name="total_orders">Tổng đơn hàng</string>
+    <string name="orders_by_status">Đơn hàng theo trạng thái</string>
+    <string name="top_selling_foods">Món ăn bán chạy</string>
+    <string name="no_data_available">Không có dữ liệu</string>
+    
+    <!-- Complaints -->
+    <string name="my_complaints">Khiếu nại của tôi</string>
+    <string name="no_complaints">Không có khiếu nại</string>
+    <string name="no_complaints_submitted">Bạn chưa gửi khiếu nại nào</string>
+    <string name="submit_complaint">Gửi khiếu nại</string>
+    <string name="describe_your_issue">Mô tả vấn đề của bạn</string>
+    <string name="complaint_placeholder">Vui lòng mô tả chi tiết khiếu nại của bạn...</string>
+    
+    <!-- Profile -->
+    <string name="personal_information">Thông tin cá nhân</string>
+    <string name="full_name">Họ và tên</string>
+    <string name="email">Email</string>
+    <string name="phone">Số điện thoại</string>
+    <string name="edit_profile">Sửa hồ sơ</string>
+    <string name="order_history">Lịch sử đơn hàng</string>
+    <string name="view_all_orders">Xem tất cả đơn hàng trước đây</string>
+    <string name="view_order_history">Xem lịch sử đơn hàng</string>
+    <string name="no_orders_yet">Chưa có đơn hàng</string>
+    <string name="order_history_message">Lịch sử đơn hàng sẽ hiển thị ở đây</string>
+    <string name="save_changes">Lưu thay đổi</string>
+    
+    <!-- Checkout -->
+    <string name="checkout">Thanh toán</string>
+    <string name="delivery_address">Địa chỉ giao hàng</string>
+    <string name="enter_delivery_address">Nhập địa chỉ giao hàng</string>
+    <string name="cash_on_delivery">Thanh toán khi nhận hàng</string>
+    <string name="credit_debit_card">Thẻ tín dụng/Ghi nợ</string>
+    <string name="e_wallet">Ví điện tử</string>
+    <string name="order_note_optional">Ghi chú đơn hàng (Tùy chọn)</string>
+    <string name="add_special_instructions">Thêm hướng dẫn đặc biệt</string>
+    <string name="order_summary">Tóm tắt đơn hàng</string>
+    <string name="items">Món</string>
+    <string name="place_order">Đặt hàng</string>
+    
+    <!-- Food Detail -->
+    <string name="back">← Quay lại</string>
+    <string name="add_to_cart">Thêm vào giỏ</string>
+    
+    <!-- Menu -->
+    <string name="no_food_items_available">Không có món ăn</string>
+    
+    <!-- Login & Register -->
+    <string name="welcome_back">Chào mừng trở lại!</string>
+    <string name="password">Mật khẩu</string>
+    <string name="login">Đăng nhập</string>
+    <string name="dont_have_account">Chưa có tài khoản? Đăng ký</string>
+    <string name="create_account">Tạo tài khoản</string>
+    <string name="join_deligo">Tham gia DeliGo hôm nay</string>
+    <string name="register">Đăng ký</string>
+    <string name="already_have_account">Đã có tài khoản? Đăng nhập</string>
+    
+    <!-- Item Labels -->
+    <string name="toggle">Bật/Tắt</string>
+    <string name="sold">Đã bán</string>
+    <string name="accept">Chấp nhận</string>
+    <string name="complete">Hoàn thành</string>
+    <string name="cancel">Hủy</string>
+    
+    <!-- Categories -->
+    <string name="no_categories_available">Không có danh mục</string>
+    
+    <!-- Admin -->
+    <string name="admin_statistics">Thống kê quản trị</string>
+    <string name="admin_menu">Thực đơn quản trị</string>
+    <string name="admin_complaints">Khiếu nại quản trị</string>
+    <string name="admin_orders">Đơn hàng quản trị</string>
+    
+    <!-- Default values -->
+    <string name="default_dash">-</string>
+    <string name="default_zero">0</string>
+    <string name="default_zero_vnd">0đ</string>
 </resources>

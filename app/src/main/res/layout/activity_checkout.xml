@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Checkout"
+            android:text="@string/checkout"
             android:textSize="24sp"
             android:textStyle="bold"
             android:layout_marginBottom="24dp" />
@@ -24,18 +24,18 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Delivery Address"
+            android:text="@string/delivery_address"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp" />
 
-        <EditText android:id="@+id/etDeliveryAddress" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Enter delivery address" android:padding="16dp" android:background="@drawable/card_background" />
+        <EditText android:id="@+id/etDeliveryAddress" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/enter_delivery_address" android:padding="16dp" android:background="@drawable/card_background" />
 
         <!-- Payment Method Section -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Payment Method"
+            android:text="@string/payment_method"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp" />
@@ -50,7 +50,7 @@
                 android:id="@+id/rbCash"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cash on Delivery"
+                android:text="@string/cash_on_delivery"
                 android:checked="true"
                 android:padding="12dp" />
 
@@ -58,14 +58,14 @@
                 android:id="@+id/rbCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Credit/Debit Card"
+                android:text="@string/credit_debit_card"
                 android:padding="12dp" />
 
             <RadioButton
                 android:id="@+id/rbEWallet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="E-Wallet"
+                android:text="@string/e_wallet"
                 android:padding="12dp" />
         </RadioGroup>
 
@@ -73,18 +73,18 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Order Note (Optional)"
+            android:text="@string/order_note_optional"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp" />
 
-        <EditText android:id="@+id/etOrderNote" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Add special instructions" android:padding="16dp" android:background="@drawable/card_background" />
+        <EditText android:id="@+id/etOrderNote" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/add_special_instructions" android:padding="16dp" android:background="@drawable/card_background" />
 
         <!-- Order Summary Section -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Order Summary"
+            android:text="@string/order_summary"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp" />
@@ -112,14 +112,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Items"
+                        android:text="@string/items"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tvItemCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
+                        android:text="@string/default_zero"
                         android:textSize="14sp" />
                 </LinearLayout>
 
@@ -138,7 +138,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Total Amount"
+                        android:text="@string/total_amount"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -146,7 +146,7 @@
                         android:id="@+id/tvTotalAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0đ"
+                        android:text="@string/default_zero_vnd"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="@android:color/holo_red_dark" />
@@ -168,7 +168,7 @@
             android:id="@+id/btnPlaceOrder" style="@style/Widget.DeliGo.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Place Order"
+            android:text="@string/place_order"
             android:textSize="16sp"
             android:padding="16dp"
             android:layout_marginTop="8dp" />

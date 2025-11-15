@@ -17,7 +17,7 @@
             android:id="@+id/titleTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Write a Review"
+            android:text="@string/write_a_review"
             android:textColor="#212121"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -107,7 +107,7 @@
                     android:id="@+id/ratingLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Your Rating"
+                    android:text="@string/your_rating"
                     android:textColor="#212121"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -166,7 +166,7 @@
                     android:id="@+id/commentLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Your Comment (Optional)"
+                    android:text="@string/your_comment_optional"
                     android:textColor="#212121"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -174,7 +174,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <!-- Comment Input -->
-                <EditText android:id="@+id/commentEditText" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Share your experience..." android:padding="16dp" android:background="@drawable/card_background" />
+                <EditText android:id="@+id/commentEditText" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/share_your_experience" android:padding="16dp" android:background="@drawable/card_background" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -186,7 +186,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Submit Review"
+            android:text="@string/submit_review"
             android:textSize="16sp"
             app:cornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"

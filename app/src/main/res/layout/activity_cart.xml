@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Shopping Cart"
+        app:title="@string/shopping_cart"
         app:titleTextColor="@android:color/white" />
 
     <!-- RecyclerView for Cart Items -->
@@ -64,7 +64,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Total Amount:"
+                    android:text="@string/total_amount"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="#212121" />
@@ -73,7 +73,7 @@
                     android:id="@+id/totalAmountTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0đ"
+                    android:text="@string/default_zero_vnd"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="?attr/colorPrimary"
@@ -86,7 +86,7 @@
                 android:id="@+id/checkoutButton" style="@style/Widget.DeliGo.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Proceed to Checkout"
+                android:text="@string/proceed_to_checkout"
                 android:textSize="16sp"
                 app:cornerRadius="8dp" />
 
@@ -121,7 +121,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your cart is empty"
+            android:text="@string/your_cart_is_empty"
             android:textSize="18sp"
             android:textColor="#757575"
             android:layout_marginBottom="8dp" />
@@ -129,7 +129,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add items to get started"
+            android:text="@string/add_items_to_get_started"
             android:textSize="14sp"
             android:textColor="#9E9E9E" />
 

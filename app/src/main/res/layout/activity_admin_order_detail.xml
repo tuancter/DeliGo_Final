@@ -43,7 +43,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Order Information"
+                        android:text="@string/order_information"
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -59,7 +59,7 @@
                         android:id="@+id/tvOrderId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Order ID: #12345678"
+                        android:text="@string/order_id"
                         android:textSize="14sp" />
 
                     <TextView
@@ -67,7 +67,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Customer ID: abc12345"
+                        android:text="@string/customer_id"
                         android:textSize="14sp" />
 
                     <TextView
@@ -75,7 +75,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Date: Nov 15, 2025 14:30"
+                        android:text="@string/date"
                         android:textSize="14sp" />
 
                     <TextView
@@ -83,7 +83,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Status: Pending"
+                        android:text="@string/status"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -92,7 +92,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Payment: Pending"
+                        android:text="@string/payment"
                         android:textSize="14sp" />
 
                     <TextView
@@ -100,7 +100,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Payment Method: Cash"
+                        android:text="@string/payment_method"
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -124,7 +124,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Delivery Information"
+                        android:text="@string/delivery_information"
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -140,7 +140,7 @@
                         android:id="@+id/tvDeliveryAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Address: 123 Main St, City"
+                        android:text="@string/address"
                         android:textSize="14sp" />
 
                     <TextView
@@ -148,7 +148,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Note: Please ring the doorbell"
+                        android:text="@string/note"
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -172,7 +172,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Order Items"
+                        android:text="@string/order_items"
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -206,7 +206,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Total Amount:"
+                            android:text="@string/total_amount"
                             android:textColor="@android:color/black"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -215,7 +215,7 @@
                             android:id="@+id/tvTotalAmount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="0đ"
+                            android:text="@string/default_zero_vnd"
                             android:textColor="@android:color/black"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -247,7 +247,7 @@
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
             android:backgroundTint="#4CAF50"
-            android:text="Accept Order"
+            android:text="@string/accept_order"
             android:textColor="@android:color/white"
             android:visibility="gone" />
 
@@ -258,7 +258,7 @@
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
             android:backgroundTint="#2196F3"
-            android:text="Start Preparing"
+            android:text="@string/start_preparing"
             android:textColor="@android:color/white"
             android:visibility="gone" />
 
@@ -269,7 +269,7 @@
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
             android:backgroundTint="#4CAF50"
-            android:text="Mark Complete"
+            android:text="@string/mark_complete"
             android:textColor="@android:color/white"
             android:visibility="gone" />
 
@@ -279,7 +279,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#F44336"
-            android:text="Cancel Order"
+            android:text="@string/cancel_order"
             android:textColor="@android:color/white"
             android:visibility="gone" />
 

@@ -20,9 +20,13 @@ import com.deligo.app.repositories.FoodRepository;
 import com.deligo.app.repositories.FoodRepositoryImpl;
 import com.deligo.app.repositories.ReviewRepository;
 import com.deligo.app.repositories.ReviewRepositoryImpl;
+import com.deligo.app.repositories.CartRepository;
+import com.deligo.app.repositories.CartRepositoryImpl;
 import com.deligo.app.utils.CurrencyUtils;
 import com.deligo.app.utils.UIHelper;
 import android.widget.Button;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
@@ -35,12 +39,14 @@ public class FoodDetailActivity extends AppCompatActivity {
     private RecyclerView reviewsRecyclerView;
     private TextView noReviewsTextView;
     private Button addToCartButton;
-    private Button writeReviewButton;
+    private Button backButton;
     private ProgressBar progressBar;
 
     private ReviewAdapter reviewAdapter;
     private FoodRepository foodRepository;
     private ReviewRepository reviewRepository;
+    private CartRepository cartRepository;
+    private FirebaseAuth firebaseAuth;
     private String foodId;
     private Food currentFood;
 
@@ -85,13 +91,15 @@ public class FoodDetailActivity extends AppCompatActivity {
         reviewsRecyclerView = findViewById(R.id.reviewsRecyclerView);
         noReviewsTextView = findViewById(R.id.noReviewsTextView);
         addToCartButton = findViewById(R.id.addToCartButton);
-        writeReviewButton = findViewById(R.id.writeReviewButton);
+        backButton = findViewById(R.id.backButton);
         progressBar = findViewById(R.id.progressBar);
     }
 
     private void setupRepositories() {
         foodRepository = new FoodRepositoryImpl();
         reviewRepository = new ReviewRepositoryImpl();
+        cartRepository = new CartRepositoryImpl();
+        firebaseAuth = FirebaseAuth.getInstance();
     }
 
     private void setupRecyclerView() {
@@ -139,20 +147,10 @@ public class FoodDetailActivity extends AppCompatActivity {
                 .into(foodImageView);
 
         // Setup add to cart button
-        addToCartButton.setOnClickListener(v -> {
-            // TODO: Implement add to cart functionality in future task
-            UIHelper.showSuccessToast(this, "Add to cart functionality coming soon");
-        });
+        addToCartButton.setOnClickListener(v -> addToCart());
 
-        // Setup write review button
-        writeReviewButton.setOnClickListener(v -> openAddReviewActivity());
-    }
-
-    // Method to open AddReviewActivity
-    private void openAddReviewActivity() {
-        android.content.Intent intent = new android.content.Intent(this, AddReviewActivity.class);
-        intent.putExtra("foodId", foodId);
-        startActivity(intent);
+        // Setup back button
+        backButton.setOnClickListener(v -> finish());
     }
 
     private void loadReviews() {
@@ -192,6 +190,48 @@ public class FoodDetailActivity extends AppCompatActivity {
             @Override
             public void onError(String message) {
                 averageRatingTextView.setText("N/A");
+            }
+        });
+    }
+
+    private void addToCart() {
+        // Check if user is authenticated
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        if (currentUser == null) {
+            UIHelper.showErrorToast(this, "Please login to add items to cart");
+            return;
+        }
+
+        // Check if food is loaded
+        if (currentFood == null || foodId == null) {
+            UIHelper.showErrorToast(this, "Food information not available");
+            return;
+        }
+
+        // Show loading
+        UIHelper.showLoading(progressBar, true);
+        addToCartButton.setEnabled(false);
+
+        String userId = currentUser.getUid();
+        int quantity = 1; // Default quantity
+        String note = ""; // No note by default
+
+        cartRepository.addToCart(userId, foodId, quantity, note, new CartRepository.ActionCallback() {
+            @Override
+            public void onSuccess() {
+                UIHelper.showLoading(progressBar, false);
+                addToCartButton.setEnabled(true);
+                UIHelper.showSuccessSnackbar(findViewById(android.R.id.content), 
+                    "Added " + currentFood.getName() + " to cart");
+            }
+
+            @Override
+            public void onError(String message) {
+                UIHelper.showLoading(progressBar, false);
+                addToCartButton.setEnabled(true);
+                String friendlyMessage = UIHelper.getFirestoreErrorMessage(message);
+                UIHelper.showErrorSnackbar(findViewById(android.R.id.content), 
+                    friendlyMessage, v -> addToCart());
             }
         });
     }

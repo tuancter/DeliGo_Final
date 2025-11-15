@@ -1,5 +1,7 @@
 package com.deligo.app.viewmodels;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -68,26 +70,36 @@ public class StatisticsViewModel extends ViewModel {
             @Override
             public void onError(String message) {
                 errorMessage.setValue("Failed to load revenue: " + message);
+
+                // 🔥 Log full error + index URL
+                Log.e("FIRESTORE_INDEX", "Revenue error: " + message);
+                String url = extractIndexUrl(message);
+                if (url != null) {
+                    Log.e("FIRESTORE_INDEX", "👉 CREATE INDEX HERE:\n" + url);
+                }
             }
         });
 
-        // Load orders by status (also gives us order count)
+        // Load orders by status
         statisticsRepository.getOrderCountByStatus(startDate, endDate, new StatisticsRepository.DataCallback<Map<String, Integer>>() {
             @Override
             public void onSuccess(Map<String, Integer> data) {
                 ordersByStatus.setValue(data);
-                
-                // Calculate total order count
+
                 int total = 0;
-                for (Integer count : data.values()) {
-                    total += count;
-                }
+                for (Integer count : data.values()) total += count;
                 orderCount.setValue(total);
             }
 
             @Override
             public void onError(String message) {
                 errorMessage.setValue("Failed to load order statistics: " + message);
+
+                Log.e("FIRESTORE_INDEX", "Order status error: " + message);
+                String url = extractIndexUrl(message);
+                if (url != null) {
+                    Log.e("FIRESTORE_INDEX", "👉 CREATE INDEX HERE:\n" + url);
+                }
             }
         });
 
@@ -103,9 +115,16 @@ public class StatisticsViewModel extends ViewModel {
             public void onError(String message) {
                 errorMessage.setValue("Failed to load top selling foods: " + message);
                 isLoading.setValue(false);
+
+                Log.e("FIRESTORE_INDEX", "Top food error: " + message);
+                String url = extractIndexUrl(message);
+                if (url != null) {
+                    Log.e("FIRESTORE_INDEX", "👉 CREATE INDEX HERE:\n" + url);
+                }
             }
         });
     }
+
 
     private long[] calculateDateRange(StatisticsPeriod period) {
         Calendar calendar = Calendar.getInstance();
@@ -153,4 +172,16 @@ public class StatisticsViewModel extends ViewModel {
     public enum StatisticsPeriod {
         TODAY, THIS_WEEK, THIS_MONTH
     }
+    private String extractIndexUrl(String message) {
+        if (message == null) return null;
+
+        int start = message.indexOf("https://");
+        if (start == -1) return null;
+
+        int end = message.indexOf(" ", start);
+        if (end == -1) end = message.length();
+
+        return message.substring(start, end).trim();
+    }
+
 }
