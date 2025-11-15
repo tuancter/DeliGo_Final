@@ -1,5 +1,7 @@
 package com.deligo.app.repositories;
 
+import android.util.Log;
+
 import com.deligo.app.models.Food;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FoodRepositoryImpl implements FoodRepository {
+    private static final String TAG = "FoodRepositoryImpl";
     private final FirebaseFirestore firestore;
 
     public FoodRepositoryImpl() {
@@ -87,18 +90,25 @@ public class FoodRepositoryImpl implements FoodRepository {
 
     @Override
     public void getAvailableFoods(DataCallback<List<Food>> callback) {
+        Log.d(TAG, "getAvailableFoods: Starting to fetch foods from Firestore");
         firestore.collection("foods")
                 .whereEqualTo("isAvailable", true)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     List<Food> foods = new ArrayList<>();
+                    Log.d(TAG, "getAvailableFoods: Query successful, documents count: " + queryDocumentSnapshots.size());
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         Food food = document.toObject(Food.class);
                         food.setFoodId(document.getId());
                         foods.add(food);
+                        Log.d(TAG, "getAvailableFoods: Food loaded - " + food.getName() + " ($" + food.getPrice() + ")");
                     }
+                    Log.d(TAG, "getAvailableFoods: Total foods loaded: " + foods.size());
                     callback.onSuccess(foods);
                 })
-                .addOnFailureListener(e -> callback.onError(e.getMessage()));
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "getAvailableFoods: Failed to fetch foods", e);
+                    callback.onError(e.getMessage());
+                });
     }
 }

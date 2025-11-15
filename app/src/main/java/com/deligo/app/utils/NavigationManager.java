@@ -64,6 +64,10 @@ public class NavigationManager {
             return; // Already showing this fragment
         }
 
+        if (!isStateSafe()) {
+            return; // Skip transaction if state is not safe
+        }
+
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         
         // Add fade animation for smooth transitions
@@ -93,7 +97,7 @@ public class NavigationManager {
         }
 
         // Commit transaction
-        transaction.commitAllowingStateLoss();
+        transaction.commit();
         
         // Update navigation stack
         updateNavigationStack(position);
@@ -156,6 +160,10 @@ public class NavigationManager {
             return;
         }
 
+        if (!isStateSafe()) {
+            return; // Skip transaction if state is not safe
+        }
+
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         
         // Add fade animation
@@ -178,7 +186,7 @@ public class NavigationManager {
             transaction.show(targetFragment);
         }
 
-        transaction.commitAllowingStateLoss();
+        transaction.commit();
         currentPosition = position;
     }
 
