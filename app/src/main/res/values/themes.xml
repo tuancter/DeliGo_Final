@@ -10,8 +10,9 @@
         <item name="android:colorBackground">@color/background</item>
         <item name="android:windowBackground">@color/background</item>
         
-        <!-- Status bar color -->
-        <item name="android:statusBarColor">@color/primary_dark</item>
+        <!-- Status bar color - White with dark icons for modern look -->
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         
         <!-- Text colors -->
         <item name="android:textColorPrimary">@color/text_primary</item>

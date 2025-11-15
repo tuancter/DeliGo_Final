@@ -2,20 +2,20 @@
     <!-- Base application theme for dark mode using AppCompat -->
     <style name="Base.Theme.DeliGo" parent="Theme.AppCompat.NoActionBar">
         <!-- Primary brand color -->
-        <item name="colorPrimary">@color/primary_light</item>
-        <item name="colorPrimaryDark">@color/primary</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
         
         <!-- Background colors for dark mode -->
-        <item name="android:colorBackground">#121212</item>
-        <item name="android:windowBackground">#121212</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="android:windowBackground">@color/background</item>
         
-        <!-- Status bar color -->
-        <item name="android:statusBarColor">#000000</item>
+        <!-- Status bar color - Match background for seamless look -->
+        <item name="android:statusBarColor">@color/background</item>
         
         <!-- Text colors -->
-        <item name="android:textColorPrimary">@color/white</item>
-        <item name="android:textColorSecondary">#B0B0B0</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
         <item name="android:textColorHint">@color/text_hint</item>
         
         <!-- Button style -->

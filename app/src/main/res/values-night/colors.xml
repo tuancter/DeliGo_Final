@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="text_hint">#9AA0A6</color>
-    <color name="disabled_surface">#2A2A2A</color>
-    <color name="disabled_on_surface">#A0A5AD</color>
-    <color name="outlined_button_text_color">#FFFFFF</color>
+    <!-- Dark Theme Overrides -->
+    
+    <!-- DeliGo Brand Colors - Lighter for Dark Mode -->
+    <color name="primary">#FF8F63</color>
+    <color name="primary_dark">#FF6B35</color>
+    <color name="primary_light">#FFB085</color>
+    <color name="accent">#FFD180</color>
+    <color name="accent_dark">#FFAB40</color>
+    
+    <!-- Background Colors - Warm Dark Tone -->
+    <color name="background">#1C1C1E</color>
+    <color name="background_light">#2C2C2E</color>
+    <color name="surface">#2C2C2E</color>
+    <color name="surface_variant">#3A3A3C</color>
+    
+    <!-- Text Colors - High Contrast for Dark Mode -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#AEAEB2</color>
+    <color name="text_hint">#8E8E93</color>
+    <color name="on_primary">#1A1A1A</color>
+    <color name="outlined_button_text_color">#FF8F63</color>
+    <color name="disabled_surface">#3A3A3C</color>
+    <color name="disabled_on_surface">#8E8E93</color>
+    
+    <!-- Navigation Colors -->
+    <color name="nav_selected">#FF8F63</color>
+    <color name="nav_unselected">#8E8E93</color>
+    <color name="ripple_color">#1AFF8F63</color>
+    <color name="shadow_color">#40000000</color>
+    
+    <!-- Additional UI Colors -->
+    <color name="divider">#3A3A3C</color>
+    <color name="card_background">#2C2C2E</color>
+    <color name="overlay">#CC000000</color>
 </resources>

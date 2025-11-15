@@ -60,7 +60,7 @@ public class AdminComplaintsActivity extends AppCompatActivity implements AdminC
     private void setupToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        
+        toolbar.setNavigationOnClickListener(v -> finish());
         // Back to Dashboard button
         findViewById(R.id.btnBackToDashboard).setOnClickListener(v -> finish());
     }

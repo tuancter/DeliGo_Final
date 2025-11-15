@@ -134,7 +134,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:textSize="12sp"
+            android:textSize="13sp"
             android:textColor="#9E9E9E"
             android:textStyle="italic"
             android:visibility="gone"

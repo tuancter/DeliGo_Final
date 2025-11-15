@@ -31,7 +31,7 @@ public class AdminFoodRepositoryImpl implements AdminFoodRepository {
         updates.put("description", food.getDescription());
         updates.put("price", food.getPrice());
         updates.put("imageUrl", food.getImageUrl());
-        updates.put("isAvailable", food.isAvailable());
+        updates.put("available", food.isAvailable());
 
         firestore.collection("foods")
                 .document(foodId)
@@ -42,9 +42,9 @@ public class AdminFoodRepositoryImpl implements AdminFoodRepository {
 
     @Override
     public void deleteFood(String foodId, ActionCallback callback) {
-        // Set isAvailable to false instead of deleting
+        // Set available to false instead of deleting
         Map<String, Object> updates = new HashMap<>();
-        updates.put("isAvailable", false);
+        updates.put("available", false);
 
         firestore.collection("foods")
                 .document(foodId)
@@ -56,7 +56,7 @@ public class AdminFoodRepositoryImpl implements AdminFoodRepository {
     @Override
     public void toggleFoodAvailability(String foodId, boolean isAvailable, ActionCallback callback) {
         Map<String, Object> updates = new HashMap<>();
-        updates.put("isAvailable", isAvailable);
+        updates.put("available", isAvailable);
 
         firestore.collection("foods")
                 .document(foodId)

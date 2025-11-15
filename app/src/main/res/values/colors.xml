@@ -3,44 +3,50 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     
-    <!-- DeliGo Brand Colors -->
+    <!-- DeliGo Brand Colors - Warm Orange for Food App -->
     <color name="primary">#FF6B35</color>
-    <color name="primary_dark">#E85A2A</color>
-    <color name="primary_light">#FF8C5F</color>
-    <color name="accent">#FFC107</color>
-    <color name="accent_dark">#FFA000</color>
+    <color name="primary_dark">#E85D2D</color>
+    <color name="primary_light">#FF8F63</color>
+    <color name="accent">#FFB74D</color>
+    <color name="accent_dark">#FFA726</color>
     
-    <!-- Background Colors -->
+    <!-- Background Colors - Clean & Fresh -->
     <color name="background">#FFFFFF</color>
-    <color name="background_light">#F5F5F5</color>
+    <color name="background_light">#FAFAFA</color>
     <color name="surface">#FFFFFF</color>
+    <color name="surface_variant">#FFF5F0</color>
     
-    <!-- Text Colors -->
-    <color name="text_primary">#212121</color>
-    <color name="text_secondary">#757575</color>
-    <color name="text_hint">#767676</color>
-    <color name="on_primary">#201813</color>
-    <color name="outlined_button_text_color">#212121</color>
-    <color name="disabled_surface">#EDEDED</color>
-    <color name="disabled_on_surface">#6B6B6B</color>
+    <!-- Text Colors - Better Readability -->
+    <color name="text_primary">#1A1A1A</color>
+    <color name="text_secondary">#666666</color>
+    <color name="text_hint">#999999</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="outlined_button_text_color">#FF6B35</color>
+    <color name="disabled_surface">#F0F0F0</color>
+    <color name="disabled_on_surface">#AAAAAA</color>
     
-    <!-- Status Colors -->
-    <color name="success">#4CAF50</color>
-    <color name="error">#F44336</color>
-    <color name="warning">#FF9800</color>
-    <color name="info">#2196F3</color>
+    <!-- Status Colors - Food Delivery Themed -->
+    <color name="success">#34A853</color>
+    <color name="error">#EA4335</color>
+    <color name="warning">#FBBC04</color>
+    <color name="info">#4285F4</color>
     
     <!-- Order Status Colors -->
-    <color name="status_pending">#FFC107</color>
-    <color name="status_accepted">#2196F3</color>
-    <color name="status_preparing">#FF9800</color>
-    <color name="status_completed">#4CAF50</color>
-    <color name="status_cancelled">#F44336</color>
+    <color name="status_pending">#FBBC04</color>
+    <color name="status_accepted">#4285F4</color>
+    <color name="status_preparing">#FF6B35</color>
+    <color name="status_completed">#34A853</color>
+    <color name="status_cancelled">#EA4335</color>
     
     <!-- Navigation Colors -->
     <color name="nav_selected">#FF6B35</color>
-    <color name="nav_unselected">#757575</color>
+    <color name="nav_unselected">#9E9E9E</color>
     <color name="primary_light_transparent">#1AFF6B35</color>
-    <color name="ripple_color">#1A000000</color>
+    <color name="ripple_color">#1AFF6B35</color>
     <color name="shadow_color">#1A000000</color>
+    
+    <!-- Additional UI Colors -->
+    <color name="divider">#E0E0E0</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="overlay">#80000000</color>
 </resources>

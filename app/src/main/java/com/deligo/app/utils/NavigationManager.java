@@ -70,10 +70,10 @@ public class NavigationManager {
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         
-        // Add fade animation for smooth transitions
+        // Add fast fade animation for smooth transitions
         transaction.setCustomAnimations(
-            android.R.anim.fade_in,
-            android.R.anim.fade_out
+            com.deligo.app.R.anim.fade_in_fast,
+            com.deligo.app.R.anim.fade_out_fast
         );
 
         // Hide current fragment if exists
@@ -166,10 +166,10 @@ public class NavigationManager {
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         
-        // Add fade animation
+        // Add fast fade animation
         transaction.setCustomAnimations(
-            android.R.anim.fade_in,
-            android.R.anim.fade_out
+            com.deligo.app.R.anim.fade_in_fast,
+            com.deligo.app.R.anim.fade_out_fast
         );
 
         // Hide current fragment

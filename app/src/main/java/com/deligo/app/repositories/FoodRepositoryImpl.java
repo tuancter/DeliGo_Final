@@ -92,7 +92,7 @@ public class FoodRepositoryImpl implements FoodRepository {
     public void getAvailableFoods(DataCallback<List<Food>> callback) {
         Log.d(TAG, "getAvailableFoods: Starting to fetch foods from Firestore");
         firestore.collection("foods")
-                .whereEqualTo("isAvailable", true)
+                .whereEqualTo("available", true)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     List<Food> foods = new ArrayList<>();
@@ -101,7 +101,7 @@ public class FoodRepositoryImpl implements FoodRepository {
                         Food food = document.toObject(Food.class);
                         food.setFoodId(document.getId());
                         foods.add(food);
-                        Log.d(TAG, "getAvailableFoods: Food loaded - " + food.getName() + " ($" + food.getPrice() + ")");
+                        Log.d(TAG, "getAvailableFoods: Food loaded - " + food.getName() + " ($" + food.getPrice() + "), isAvailable=" + food.isAvailable());
                     }
                     Log.d(TAG, "getAvailableFoods: Total foods loaded: " + foods.size());
                     callback.onSuccess(foods);
