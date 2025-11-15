@@ -63,9 +63,6 @@ public class AdminOrdersActivity extends AppCompatActivity implements AdminOrder
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         toolbar.setNavigationOnClickListener(v -> finish());
-        
-        // Back to Dashboard button
-        findViewById(R.id.btnBackToDashboard).setOnClickListener(v -> finish());
     }
 
     private void setupRecyclerView() {

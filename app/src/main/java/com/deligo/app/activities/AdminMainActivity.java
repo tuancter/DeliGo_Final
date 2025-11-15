@@ -32,7 +32,7 @@ public class AdminMainActivity extends AppCompatActivity {
         menuButton.setOnClickListener(v -> openScreen(AdminMenuActivity.class));
         statisticsButton.setOnClickListener(v -> openScreen(AdminStatisticsActivity.class));
         complaintsButton.setOnClickListener(v -> openScreen(AdminComplaintsActivity.class));
-        accountButton.setOnClickListener(v -> openScreen(AdminAccountActivity.class));
+        accountButton.setOnClickListener(v -> openScreen(ProfileActivity.class));
     }
 
     private void openScreen(Class<?> targetActivity) {

@@ -29,6 +29,7 @@ public class AdminComplaintsActivity extends AppCompatActivity implements AdminC
     private RecyclerView complaintsRecyclerView;
     private ProgressBar progressBar;
     private View emptyStateLayout;
+    private Toolbar toolbar;
     private Button chipAll, chipPending, chipResolved, chipRejected;
 
     private List<Complaint> allComplaints = new ArrayList<>();
@@ -55,14 +56,15 @@ public class AdminComplaintsActivity extends AppCompatActivity implements AdminC
         chipPending = findViewById(R.id.chipPending);
         chipResolved = findViewById(R.id.chipResolved);
         chipRejected = findViewById(R.id.chipRejected);
+        toolbar = findViewById(R.id.toolbar);
     }
 
     private void setupToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         toolbar.setNavigationOnClickListener(v -> finish());
-        // Back to Dashboard button
-        findViewById(R.id.btnBackToDashboard).setOnClickListener(v -> finish());
     }
 
     private void setupRecyclerView() {

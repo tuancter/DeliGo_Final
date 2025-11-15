@@ -11,14 +11,15 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Back to Dashboard Button -->
-        <Button
-            android:id="@+id/btnBackToDashboard"
+        <!-- Toolbar -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="@string/admin_back_to_dashboard"
-            android:textAllCaps="false" />
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            app:title="Báo cáo thống kê"
+            app:titleTextColor="@android:color/white" />
 
         <!-- Period Selector -->
         <androidx.cardview.widget.CardView

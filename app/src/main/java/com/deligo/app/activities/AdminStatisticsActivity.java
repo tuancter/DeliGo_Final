@@ -7,6 +7,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -29,7 +30,7 @@ public class AdminStatisticsActivity extends AppCompatActivity {
     private RecyclerView rvTopFoods;
     private TextView tvNoTopFoods;
     private ProgressBar progressBar;
-
+    private Toolbar toolbar;
     private StatisticsViewModel statisticsViewModel;
     private FoodSalesAdapter foodSalesAdapter;
 
@@ -39,6 +40,7 @@ public class AdminStatisticsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_statistics);
 
         initViews();
+        setupToolbar();
         setupViewModel();
         setupRecyclerView();
         setupListeners();
@@ -55,9 +57,15 @@ public class AdminStatisticsActivity extends AppCompatActivity {
         rvTopFoods = findViewById(R.id.rvTopFoods);
         tvNoTopFoods = findViewById(R.id.tvNoTopFoods);
         progressBar = findViewById(R.id.progressBar);
-        
-        // Back to Dashboard button
-        findViewById(R.id.btnBackToDashboard).setOnClickListener(v -> finish());
+        toolbar = findViewById(R.id.toolbar);
+    }
+
+    private void setupToolbar(){
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+        toolbar.setNavigationOnClickListener(v -> finish());
     }
 
     private void setupViewModel() {

@@ -91,9 +91,6 @@
         <activity
             android:name=".activities.AdminComplaintsActivity"
             android:exported="false" />
-        <activity
-            android:name=".activities.AdminAccountActivity"
-            android:exported="false" />
     </application>
 
 </manifest>

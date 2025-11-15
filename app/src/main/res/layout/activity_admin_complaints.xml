@@ -20,19 +20,6 @@
         app:title="Complaint Management"
         app:titleTextColor="#FFFFFF" />
 
-    <!-- Back to Dashboard Button -->
-    <Button
-        android:id="@+id/btnBackToDashboard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/admin_back_to_dashboard"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <!-- Filter Chips -->
     <HorizontalScrollView
@@ -45,7 +32,7 @@
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnBackToDashboard">
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <LinearLayout
             android:id="@+id/filterChipGroup"

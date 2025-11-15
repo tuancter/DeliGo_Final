@@ -48,6 +48,7 @@ public class AdminMenuActivity extends AppCompatActivity
         setContentView(R.layout.activity_admin_menu);
 
         initViews();
+        setupToolbar();
         setupViewModel();
         setupRecyclerViews();
         setupTabLayout();
@@ -71,9 +72,14 @@ public class AdminMenuActivity extends AppCompatActivity
         categoriesContent = findViewById(R.id.categoriesContent);
 
         setSupportActionBar(toolbar);
-        
-        // Back to Dashboard button
-        findViewById(R.id.btnBackToDashboard).setOnClickListener(v -> finish());
+    }
+
+    private void setupToolbar() {
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+        toolbar.setNavigationOnClickListener(v -> finish());
     }
 
     private void setupViewModel() {
