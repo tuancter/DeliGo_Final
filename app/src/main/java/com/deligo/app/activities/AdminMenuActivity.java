@@ -71,6 +71,9 @@ public class AdminMenuActivity extends AppCompatActivity
         categoriesContent = findViewById(R.id.categoriesContent);
 
         setSupportActionBar(toolbar);
+        
+        // Back to Dashboard button
+        findViewById(R.id.btnBackToDashboard).setOnClickListener(v -> finish());
     }
 
     private void setupViewModel() {

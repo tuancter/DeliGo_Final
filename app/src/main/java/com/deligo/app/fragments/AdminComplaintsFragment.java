@@ -1,5 +1,6 @@
 package com.deligo.app.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.deligo.app.R;
+import com.deligo.app.activities.AdminMainActivity;
 
 /**
  * Placeholder fragment for Admin Complaints functionality
@@ -31,10 +33,30 @@ public class AdminComplaintsFragment extends Fragment {
     }
 
     private void initViews(View view) {
+        setupHeader(view);
         progressBar = view.findViewById(R.id.progressBar);
         tvPlaceholder = view.findViewById(R.id.tvPlaceholder);
         
         // For now, show placeholder
         tvPlaceholder.setText("Admin Complaints - Coming Soon\n\nThis feature manages customer feedback and complaints.");
+    }
+
+    private void setupHeader(View view) {
+        TextView headerTitle = view.findViewById(R.id.headerTitle);
+        if (headerTitle != null) {
+            headerTitle.setText(R.string.nav_complaints);
+        }
+        View backButton = view.findViewById(R.id.headerBackButton);
+        if (backButton != null) {
+            backButton.setOnClickListener(v -> {
+                if (!isAdded()) {
+                    return;
+                }
+                Intent intent = new Intent(requireContext(), AdminMainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                requireActivity().finish();
+            });
+        }
     }
 }

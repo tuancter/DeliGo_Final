@@ -1,4 +1,4 @@
-<resources>
+﻿<resources>
     <string name="app_name">DeliGo</string>
     <string name="app_tagline">Đặt đồ ăn nhanh chóng, tiện lợi</string>
     <string name="app_description">Ứng dụng đặt đồ ăn trực tuyến cho nhà hàng của bạn</string>
@@ -32,6 +32,14 @@
     <string name="nav_complaints">Khiếu nại</string>
     <string name="nav_icon_description">Biểu tượng điều hướng</string>
     
+    <string name="admin_account_title">Quản lý tài khoản</string>
+    <string name="admin_account_description">Cập nhật hồ sơ quản trị và thực hiện đăng xuất khi cần thiết.</string>
+    <string name="admin_manage_profile_title">Quản lý hồ sơ</string>
+    <string name="admin_manage_profile_description">Xem và chỉnh sửa thông tin cá nhân của bạn.</string>
+    <string name="admin_logout_description">Đăng xuất khỏi tài khoản quản trị hiện tại.</string>
+    <string name="admin_dashboard_title">Bảng điều khiển quản trị</string>
+    <string name="admin_dashboard_subtitle">Chọn một chức năng bên dưới để tiếp tục</string>
+    <string name="admin_back_to_dashboard">Quay lại bảng điều khiển</string>
     <!-- Status Messages -->
     <string name="status_loading">Đang tải…</string>
     <string name="status_success">Thành công!</string>

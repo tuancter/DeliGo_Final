@@ -20,6 +20,20 @@
         app:title="Complaint Management"
         app:titleTextColor="#FFFFFF" />
 
+    <!-- Back to Dashboard Button -->
+    <Button
+        android:id="@+id/btnBackToDashboard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/admin_back_to_dashboard"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
     <!-- Filter Chips -->
     <HorizontalScrollView
         android:id="@+id/filterScrollView"
@@ -31,45 +45,42 @@
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:layout_constraintTop_toBottomOf="@id/btnBackToDashboard">
 
-        <HorizontalScrollView
+        <LinearLayout
             android:id="@+id/filterChipGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:selectionRequired="true"
-            >
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/chipAll"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
+                android:layout_marginEnd="8dp"
                 android:text="All" />
 
             <Button
                 android:id="@+id/chipPending"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:text="Pending" />
 
             <Button
                 android:id="@+id/chipResolved"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:text="Resolved" />
 
             <Button
                 android:id="@+id/chipRejected"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rejected" />
 
-        </HorizontalScrollView>
+        </LinearLayout>
 
     </HorizontalScrollView>
 

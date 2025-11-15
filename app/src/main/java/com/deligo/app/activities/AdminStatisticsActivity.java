@@ -55,6 +55,9 @@ public class AdminStatisticsActivity extends AppCompatActivity {
         rvTopFoods = findViewById(R.id.rvTopFoods);
         tvNoTopFoods = findViewById(R.id.tvNoTopFoods);
         progressBar = findViewById(R.id.progressBar);
+        
+        // Back to Dashboard button
+        findViewById(R.id.btnBackToDashboard).setOnClickListener(v -> finish());
     }
 
     private void setupViewModel() {

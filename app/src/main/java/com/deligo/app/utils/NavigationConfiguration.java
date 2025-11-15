@@ -71,6 +71,11 @@ public class NavigationConfiguration {
                 android.R.drawable.ic_menu_report_image,
                 context.getString(R.string.nav_complaints)
         ));
+        items.add(new NavigationItem(
+                R.id.nav_profile,
+                R.drawable.ic_profile,
+                context.getString(R.string.nav_profile)
+        ));
         return items;
     }
 }

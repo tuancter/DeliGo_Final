@@ -19,7 +19,7 @@ import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.AdminOrderViewModel;
 import androidx.appcompat.widget.Toolbar;
 import android.widget.Button;
-import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 
 public class AdminOrdersActivity extends AppCompatActivity implements AdminOrderAdapter.OnOrderActionListener {
     private Toolbar toolbar;
-    private HorizontalScrollView chipGroupStatus;
+    private LinearLayout chipGroupStatus;
     private RecyclerView rvOrders;
     private ProgressBar progressBar;
     private View layoutEmpty;
@@ -63,6 +63,9 @@ public class AdminOrdersActivity extends AppCompatActivity implements AdminOrder
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         toolbar.setNavigationOnClickListener(v -> finish());
+        
+        // Back to Dashboard button
+        findViewById(R.id.btnBackToDashboard).setOnClickListener(v -> finish());
     }
 
     private void setupRecyclerView() {

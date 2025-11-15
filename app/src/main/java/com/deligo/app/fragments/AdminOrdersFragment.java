@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.deligo.app.R;
+import com.deligo.app.activities.AdminMainActivity;
 import com.deligo.app.activities.AdminOrderDetailActivity;
 import com.deligo.app.adapters.AdminOrderAdapter;
 import com.deligo.app.models.Order;
@@ -47,6 +49,7 @@ public class AdminOrdersFragment extends Fragment implements AdminOrderAdapter.O
     }
 
     private void initViews(View view) {
+        setupHeader(view);
         rvOrders = view.findViewById(R.id.rvOrders);
         progressBar = view.findViewById(R.id.progressBar);
         layoutEmpty = view.findViewById(R.id.layoutEmpty);
@@ -137,5 +140,26 @@ public class AdminOrdersFragment extends Fragment implements AdminOrderAdapter.O
     @Override
     public void onUpdateStatus(Order order, String newStatus) {
         viewModel.updateOrderStatus(order.getOrderId(), newStatus);
+    }
+
+    private void setupHeader(View view) {
+        TextView headerTitle = view.findViewById(R.id.headerTitle);
+        if (headerTitle != null) {
+            headerTitle.setText(R.string.nav_orders);
+        }
+        View backButton = view.findViewById(R.id.headerBackButton);
+        if (backButton != null) {
+            backButton.setOnClickListener(v -> navigateBackToDashboard());
+        }
+    }
+
+    private void navigateBackToDashboard() {
+        if (!isAdded()) {
+            return;
+        }
+        Intent intent = new Intent(requireContext(), AdminMainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        requireActivity().finish();
     }
 }

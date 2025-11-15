@@ -15,6 +15,17 @@
         app:title="Order Management"
         app:titleTextColor="@android:color/white" />
 
+    <!-- Back to Dashboard Button -->
+    <Button
+        android:id="@+id/btnBackToDashboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/admin_back_to_dashboard"
+        android:textAllCaps="false" />
+
     <!-- Filter Chips -->
     <HorizontalScrollView
         android:layout_width="match_parent"
@@ -22,56 +33,54 @@
         android:padding="8dp"
         android:scrollbars="none">
 
-        <HorizontalScrollView
+        <LinearLayout
             android:id="@+id/chipGroupStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            >
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/chipAll"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
+                android:layout_marginEnd="8dp"
                 android:text="All" />
 
             <Button
                 android:id="@+id/chipPending"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:text="Pending" />
 
             <Button
                 android:id="@+id/chipAccepted"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:text="Accepted" />
 
             <Button
                 android:id="@+id/chipPreparing"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:text="Preparing" />
 
             <Button
                 android:id="@+id/chipCompleted"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:text="Completed" />
 
             <Button
                 android:id="@+id/chipCancelled"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cancelled" />
 
-        </HorizontalScrollView>
+        </LinearLayout>
 
     </HorizontalScrollView>
 
