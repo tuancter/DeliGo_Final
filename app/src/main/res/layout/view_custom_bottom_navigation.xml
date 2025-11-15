@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/customBottomNavigation"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:orientation="horizontal"
+    android:background="@drawable/bottom_nav_background"
+    android:elevation="8dp"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp">
+    
+    <!-- Navigation items will be added programmatically -->
+    
+</LinearLayout>

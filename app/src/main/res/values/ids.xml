@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Navigation Item IDs -->
+    <item name="nav_home" type="id" />
+    <item name="nav_cart" type="id" />
+    <item name="nav_orders" type="id" />
+    <item name="nav_profile" type="id" />
+    <item name="nav_menu" type="id" />
+    <item name="nav_statistics" type="id" />
+    <item name="nav_complaints" type="id" />
+</resources>
