@@ -208,6 +208,13 @@ public class FoodDetailActivity extends AppCompatActivity {
             return;
         }
 
+        // Check if food is available
+        if (!currentFood.isAvailable()) {
+            UIHelper.showErrorSnackbar(findViewById(android.R.id.content), 
+                getString(R.string.error_item_out_of_stock));
+            return;
+        }
+
         // Show loading
         UIHelper.showLoading(progressBar, true);
         addToCartButton.setEnabled(false);

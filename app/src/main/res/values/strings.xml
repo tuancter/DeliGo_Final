@@ -64,6 +64,7 @@
     <string name="error_authentication">Lỗi xác thực</string>
     <string name="error_invalid_input">Dữ liệu không hợp lệ</string>
     <string name="error_unknown">Lỗi không xác định</string>
+    <string name="error_item_out_of_stock">Món này hiện đã hết hàng</string>
     
     <!-- Validation Messages -->
     <string name="validation_required">Trường này là bắt buộc</string>

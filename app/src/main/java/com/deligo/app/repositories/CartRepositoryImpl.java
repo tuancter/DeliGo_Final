@@ -109,6 +109,12 @@ public class CartRepositoryImpl implements CartRepository {
                                 foodRepository.getFoodById(foodId, new FoodRepository.DataCallback<Food>() {
                                     @Override
                                     public void onSuccess(Food food) {
+                                        // Check if food is available
+                                        if (!food.isAvailable()) {
+                                            callback.onError("Item is currently out of stock");
+                                            return;
+                                        }
+                                        
                                         // Create new cart item
                                         Map<String, Object> cartItemData = new HashMap<>();
                                         cartItemData.put("foodId", foodId);
