@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="text_hint">#9AA0A6</color>
+    <color name="disabled_surface">#2A2A2A</color>
+    <color name="disabled_on_surface">#A0A5AD</color>
+    <color name="outlined_button_text_color">#FFFFFF</color>
+</resources>
