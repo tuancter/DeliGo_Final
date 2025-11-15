@@ -17,6 +17,7 @@ import com.deligo.app.R;
 import com.deligo.app.adapters.CartAdapter;
 import com.deligo.app.models.CartItem;
 import com.deligo.app.repositories.CartRepositoryImpl;
+import com.deligo.app.utils.CurrencyUtils;
 import com.deligo.app.utils.UIHelper;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.CartViewModel;
@@ -101,7 +102,7 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.OnCar
 
         cartViewModel.getCartTotal().observe(this, total -> {
             if (total != null) {
-                totalAmountTextView.setText(String.format("$%.2f", total));
+                totalAmountTextView.setText(CurrencyUtils.formatVND(total));
             }
         });
 

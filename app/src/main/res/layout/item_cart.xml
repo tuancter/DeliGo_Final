@@ -51,7 +51,7 @@
             android:textColor="#757575"
             app:layout_constraintStart_toStartOf="@id/foodNameTextView"
             app:layout_constraintTop_toBottomOf="@id/foodNameTextView"
-            tools:text="$12.99" />
+            tools:text="50.000đ" />
 
         <!-- Remove Button -->
         <ImageButton
@@ -126,7 +126,7 @@
             app:layout_constraintBottom_toBottomOf="@id/quantityLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/quantityLayout"
-            tools:text="$25.98" />
+            tools:text="100.000đ" />
 
         <!-- Note (if exists) -->
         <TextView

@@ -19,6 +19,7 @@ import com.deligo.app.R;
 import com.deligo.app.adapters.OrderDetailAdapter;
 import com.deligo.app.repositories.CartRepositoryImpl;
 import com.deligo.app.repositories.OrderRepositoryImpl;
+import com.deligo.app.utils.CurrencyUtils;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.OrderViewModel;
 
@@ -129,7 +130,7 @@ public class OrderDetailActivity extends AppCompatActivity {
                 tvDeliveryAddress.setText(order.getDeliveryAddress());
 
                 // Total Amount
-                tvTotalAmount.setText(String.format("$%.2f", order.getTotalAmount()));
+                tvTotalAmount.setText(CurrencyUtils.formatVND(order.getTotalAmount()));
 
                 // Show complaint button only for completed orders
                 if ("completed".equalsIgnoreCase(order.getOrderStatus())) {

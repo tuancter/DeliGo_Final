@@ -1,5 +1,6 @@
 package com.deligo.app.adapters;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +13,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.deligo.app.R;
 import com.deligo.app.models.Food;
+import com.deligo.app.repositories.ReviewRepository;
+import com.deligo.app.repositories.ReviewRepositoryImpl;
+import com.deligo.app.utils.CurrencyUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder> {
     private List<Food> foodList = new ArrayList<>();
     private OnFoodClickListener listener;
+    private ReviewRepository reviewRepository;
 
     public interface OnFoodClickListener {
         void onFoodClick(Food food);
@@ -26,6 +32,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
     public FoodAdapter(OnFoodClickListener listener) {
         this.listener = listener;
+        this.reviewRepository = new ReviewRepositoryImpl();
     }
 
     public void setFoodList(List<Food> foodList) {
@@ -56,17 +63,50 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         private final ImageView foodImageView;
         private final TextView foodNameTextView;
         private final TextView foodPriceTextView;
+        private final TextView foodRatingTextView;
+        private final TextView availabilityTextView;
 
         public FoodViewHolder(@NonNull View itemView) {
             super(itemView);
             foodImageView = itemView.findViewById(R.id.foodImageView);
             foodNameTextView = itemView.findViewById(R.id.foodNameTextView);
             foodPriceTextView = itemView.findViewById(R.id.foodPriceTextView);
+            foodRatingTextView = itemView.findViewById(R.id.foodRatingTextView);
+            availabilityTextView = itemView.findViewById(R.id.availabilityTextView);
         }
 
         public void bind(Food food) {
             foodNameTextView.setText(food.getName());
-            foodPriceTextView.setText(String.format("$%.2f", food.getPrice()));
+            foodPriceTextView.setText(CurrencyUtils.formatVND(food.getPrice()));
+
+            // Set availability status
+            if (food.isAvailable()) {
+                availabilityTextView.setText("Đang bán");
+                availabilityTextView.setTextColor(Color.WHITE);
+                availabilityTextView.setBackgroundColor(Color.parseColor("#4CAF50"));
+            } else {
+                availabilityTextView.setText("Hết hàng");
+                availabilityTextView.setTextColor(Color.WHITE);
+                availabilityTextView.setBackgroundColor(Color.parseColor("#9E9E9E"));
+            }
+
+            // Load average rating
+            reviewRepository.getAverageRating(food.getFoodId(), new ReviewRepository.DataCallback<Double>() {
+                @Override
+                public void onSuccess(Double rating) {
+                    if (rating != null && rating > 0) {
+                        foodRatingTextView.setVisibility(View.VISIBLE);
+                        foodRatingTextView.setText(String.format(Locale.US, "★ %.1f", rating));
+                    } else {
+                        foodRatingTextView.setVisibility(View.GONE);
+                    }
+                }
+
+                @Override
+                public void onError(String message) {
+                    foodRatingTextView.setVisibility(View.GONE);
+                }
+            });
 
             // Load image using Glide
             Glide.with(itemView.getContext())

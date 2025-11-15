@@ -92,7 +92,7 @@ public class FoodRepositoryImpl implements FoodRepository {
     public void getAvailableFoods(DataCallback<List<Food>> callback) {
         Log.d(TAG, "getAvailableFoods: Starting to fetch foods from Firestore");
         firestore.collection("foods")
-                .whereEqualTo("available", true)
+//                .whereEqualTo("available", true) Chỗ này tạm bỏ đi vì muốn lấy hết danh sách thực đơn
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     List<Food> foods = new ArrayList<>();

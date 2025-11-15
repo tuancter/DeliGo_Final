@@ -20,6 +20,7 @@ import com.deligo.app.repositories.FoodRepository;
 import com.deligo.app.repositories.FoodRepositoryImpl;
 import com.deligo.app.repositories.ReviewRepository;
 import com.deligo.app.repositories.ReviewRepositoryImpl;
+import com.deligo.app.utils.CurrencyUtils;
 import com.deligo.app.utils.UIHelper;
 import android.widget.Button;
 
@@ -126,7 +127,7 @@ public class FoodDetailActivity extends AppCompatActivity {
 
     private void displayFoodDetails(Food food) {
         foodNameTextView.setText(food.getName());
-        foodPriceTextView.setText(String.format("$%.2f", food.getPrice()));
+        foodPriceTextView.setText(CurrencyUtils.formatVND(food.getPrice()));
         foodDescriptionTextView.setText(food.getDescription());
 
         // Load image using Glide

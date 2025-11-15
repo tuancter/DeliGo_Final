@@ -13,6 +13,7 @@ import com.deligo.app.R;
 import com.deligo.app.models.Order;
 import com.deligo.app.repositories.OrderRepository;
 import com.deligo.app.repositories.OrderRepositoryImpl;
+import com.deligo.app.utils.CurrencyUtils;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.ComplaintViewModel;
 import android.widget.Button;
@@ -145,7 +146,7 @@ public class SubmitComplaintActivity extends AppCompatActivity {
         String dateStr = dateFormat.format(new Date(order.getCreatedAt()));
         orderDateTextView.setText(dateStr);
         
-        orderTotalTextView.setText(String.format("$%.2f", order.getTotalAmount()));
+        orderTotalTextView.setText(CurrencyUtils.formatVND(order.getTotalAmount()));
     }
 
     private void submitComplaint() {

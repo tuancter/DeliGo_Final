@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.deligo.app.R;
 import com.deligo.app.models.Food;
+import com.deligo.app.utils.CurrencyUtils;
 import android.widget.Button;
 
 import java.util.ArrayList;
@@ -78,7 +79,7 @@ public class AdminFoodAdapter extends RecyclerView.Adapter<AdminFoodAdapter.Food
 
         public void bind(Food food) {
             foodNameTextView.setText(food.getName());
-            foodPriceTextView.setText(String.format(Locale.getDefault(), "$%.2f", food.getPrice()));
+            foodPriceTextView.setText(CurrencyUtils.formatVND(food.getPrice()));
 
             // Load image with Glide
             if (food.getImageUrl() != null && !food.getImageUrl().isEmpty()) {

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.deligo.app.R;
 import com.deligo.app.adapters.OrderDetailAdapter;
 import com.deligo.app.models.Order;
+import com.deligo.app.utils.CurrencyUtils;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.AdminOrderViewModel;
 import androidx.appcompat.widget.Toolbar;
@@ -160,7 +161,7 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
             tvNote.setVisibility(View.GONE);
         }
 
-        tvTotalAmount.setText(String.format("$%.2f", order.getTotalAmount()));
+        tvTotalAmount.setText(CurrencyUtils.formatVND(order.getTotalAmount()));
     }
 
     private void configureButtons(Order order) {

@@ -19,6 +19,7 @@ import com.deligo.app.R;
 import com.deligo.app.models.CartItem;
 import com.deligo.app.repositories.CartRepositoryImpl;
 import com.deligo.app.repositories.OrderRepositoryImpl;
+import com.deligo.app.utils.CurrencyUtils;
 import com.deligo.app.utils.UIHelper;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.OrderViewModel;
@@ -75,7 +76,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
         // Display order summary
         tvItemCount.setText(String.valueOf(cartItems.size()));
-        tvTotalAmount.setText(String.format("$%.2f", totalAmount));
+        tvTotalAmount.setText(CurrencyUtils.formatVND(totalAmount));
     }
 
     private void setupListeners() {

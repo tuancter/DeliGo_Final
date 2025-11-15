@@ -17,6 +17,7 @@ import com.deligo.app.models.Food;
 import com.deligo.app.repositories.FoodRepository;
 import com.deligo.app.repositories.FoodRepositoryImpl;
 import com.deligo.app.repositories.ReviewRepositoryImpl;
+import com.deligo.app.utils.CurrencyUtils;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.ReviewViewModel;
 import android.widget.Button;
@@ -149,7 +150,7 @@ public class AddReviewActivity extends AppCompatActivity {
 
     private void displayFoodDetails(Food food) {
         foodNameTextView.setText(food.getName());
-        foodPriceTextView.setText(String.format("$%.2f", food.getPrice()));
+        foodPriceTextView.setText(CurrencyUtils.formatVND(food.getPrice()));
 
         // Load image using Glide
         Glide.with(this)

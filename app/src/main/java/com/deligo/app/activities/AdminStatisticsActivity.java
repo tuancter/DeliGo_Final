@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.deligo.app.R;
 import com.deligo.app.adapters.FoodSalesAdapter;
+import com.deligo.app.utils.CurrencyUtils;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.StatisticsViewModel;
 
@@ -75,7 +76,7 @@ public class AdminStatisticsActivity extends AppCompatActivity {
         // Observe total revenue
         statisticsViewModel.getTotalRevenue().observe(this, revenue -> {
             if (revenue != null) {
-                tvTotalRevenue.setText(String.format(Locale.getDefault(), "$%.2f", revenue));
+                tvTotalRevenue.setText(CurrencyUtils.formatVND(revenue));
             }
         });
 

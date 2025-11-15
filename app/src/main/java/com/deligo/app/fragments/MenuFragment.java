@@ -1,19 +1,21 @@
 package com.deligo.app.fragments;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -40,9 +42,10 @@ public class MenuFragment extends Fragment implements FoodAdapter.OnFoodClickLis
     private FoodAdapter foodAdapter;
     private RecyclerView foodRecyclerView;
     private SearchView searchView;
-    private HorizontalScrollView categoryChipGroup;
+    private LinearLayout categoryChipGroup;
     private ProgressBar progressBar;
     private TextView emptyTextView;
+    private String selectedCategoryId = null;
 
     @Nullable
     @Override
@@ -134,12 +137,78 @@ public class MenuFragment extends Fragment implements FoodAdapter.OnFoodClickLis
     }
 
     private void setupCategoryChips(List<Category> categories) {
-        // Keep the "All" button
-        Button chipAll = categoryChipGroup.findViewById(R.id.chipAll);
-        if (chipAll != null) {
-            chipAll.setOnClickListener(v -> {
-                menuViewModel.filterByCategory(null);
-            });
+        if (categoryChipGroup == null || categories == null) {
+            return;
+        }
+
+        categoryChipGroup.removeAllViews();
+
+        // Add "All" button
+        Button allButton = createCategoryButton("Tất cả", null, true);
+        categoryChipGroup.addView(allButton);
+
+        // Add category buttons
+        for (Category category : categories) {
+            Button categoryButton = createCategoryButton(category.getCategoryName(), category.getCategoryId(), false);
+            categoryChipGroup.addView(categoryButton);
+        }
+    }
+
+    private Button createCategoryButton(String name, String categoryId, boolean isSelected) {
+        Button button = new Button(getContext());
+        
+        // Set layout params
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        params.setMargins(0, 0, 16, 0);
+        button.setLayoutParams(params);
+        
+        // Set text
+        button.setText(name);
+        button.setTextSize(14);
+        button.setPadding(32, 16, 32, 16);
+        
+        // Set style based on selection
+        updateButtonStyle(button, isSelected);
+        
+        // Set click listener
+        button.setOnClickListener(v -> {
+            selectedCategoryId = categoryId;
+            menuViewModel.filterByCategory(categoryId);
+            updateAllCategoryButtons();
+        });
+        
+        return button;
+    }
+
+    private void updateButtonStyle(Button button, boolean isSelected) {
+        if (isSelected) {
+            button.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.primary));
+            button.setTextColor(Color.WHITE);
+        } else {
+            button.setBackgroundColor(Color.parseColor("#F0F0F0"));
+            button.setTextColor(Color.parseColor("#666666"));
+        }
+    }
+
+    private void updateAllCategoryButtons() {
+        for (int i = 0; i < categoryChipGroup.getChildCount(); i++) {
+            View child = categoryChipGroup.getChildAt(i);
+            if (child instanceof Button) {
+                Button button = (Button) child;
+                boolean isSelected;
+                
+                if (i == 0) {
+                    // "All" button
+                    isSelected = (selectedCategoryId == null);
+                } else {
+                    isSelected = false;
+                }
+                
+                updateButtonStyle(button, isSelected);
+            }
         }
     }
 

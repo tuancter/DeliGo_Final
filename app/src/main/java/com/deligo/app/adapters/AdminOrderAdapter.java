@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.deligo.app.R;
 import com.deligo.app.models.Order;
+import com.deligo.app.utils.CurrencyUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -98,7 +99,7 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.Ad
             tvOrderStatus.setTextColor(getStatusColor(order.getOrderStatus()));
 
             // Total Amount
-            tvTotalAmount.setText(String.format("$%.2f", order.getTotalAmount()));
+            tvTotalAmount.setText(CurrencyUtils.formatVND(order.getTotalAmount()));
 
             // Configure buttons based on current status
             configureButtons(order);

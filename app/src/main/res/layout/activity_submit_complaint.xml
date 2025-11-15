@@ -113,7 +113,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/orderTotalLabel"
                     app:layout_constraintTop_toTopOf="@id/orderTotalLabel"
-                    tools:text="$45.99" />
+                    tools:text="150.000đ" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

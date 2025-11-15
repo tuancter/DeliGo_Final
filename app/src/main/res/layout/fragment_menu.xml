@@ -31,22 +31,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchView">
 
-        <HorizontalScrollView
+        <LinearLayout
             android:id="@+id/categoryChipGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:paddingStart="16dp"
-            android:paddingEnd="16dp">
+            android:paddingEnd="16dp" />
 
-            <Button
-                android:id="@+id/chipAll"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="All"
-                android:checked="true" />
-
-        </HorizontalScrollView>
     </HorizontalScrollView>
 
     <!-- RecyclerView for Food Items -->

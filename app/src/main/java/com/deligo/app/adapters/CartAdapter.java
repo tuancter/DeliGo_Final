@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.deligo.app.R;
 import com.deligo.app.models.CartItem;
+import com.deligo.app.utils.CurrencyUtils;
 import android.widget.Button;
 
 import java.util.ArrayList;
@@ -96,9 +97,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             }
 
             // Set prices
-            unitPriceTextView.setText(String.format("$%.2f", cartItem.getPrice()));
+            unitPriceTextView.setText(CurrencyUtils.formatVND(cartItem.getPrice()));
             double itemTotal = cartItem.getPrice() * cartItem.getQuantity();
-            itemTotalTextView.setText(String.format("$%.2f", itemTotal));
+            itemTotalTextView.setText(CurrencyUtils.formatVND(itemTotal));
 
             // Set quantity
             quantityTextView.setText(String.valueOf(cartItem.getQuantity()));

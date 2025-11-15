@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.deligo.app.R;
 import com.deligo.app.models.OrderDetail;
+import com.deligo.app.utils.CurrencyUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +65,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
 
             // Price (unit price * quantity)
             double totalPrice = orderDetail.getUnitPrice() * orderDetail.getQuantity();
-            tvPrice.setText(String.format("$%.2f", totalPrice));
+            tvPrice.setText(CurrencyUtils.formatVND(totalPrice));
         }
     }
 }
