@@ -38,9 +38,6 @@
             android:name=".activities.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MenuActivity"
-            android:exported="false" />
-        <activity
             android:name=".activities.FoodDetailActivity"
             android:exported="false" />
         <activity

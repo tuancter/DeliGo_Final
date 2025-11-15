@@ -135,7 +135,7 @@ public class CheckoutActivity extends AppCompatActivity {
                     finish();
                 })
                 .setNegativeButton("Continue Shopping", (dialog, which) -> {
-                    Intent intent = new Intent(CheckoutActivity.this, MenuActivity.class);
+                    Intent intent = new Intent(CheckoutActivity.this, CustomerMainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();
