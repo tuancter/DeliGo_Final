@@ -21,6 +21,7 @@
     <color name="text_secondary">#666666</color>
     <color name="text_hint">#999999</color>
     <color name="on_primary">#FFFFFF</color>
+<!--    <color name="button_primary_text">#FFFFFF</color>-->
     <color name="outlined_button_text_color">#FF6B35</color>
     <color name="disabled_surface">#F0F0F0</color>
     <color name="disabled_on_surface">#AAAAAA</color>
@@ -49,4 +50,5 @@
     <color name="divider">#E0E0E0</color>
     <color name="card_background">#FFFFFF</color>
     <color name="overlay">#80000000</color>
+    <color name="design_default_color_primary">#FFB74D</color>
 </resources>

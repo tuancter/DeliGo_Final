@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.deligo.app.R;
+import com.deligo.app.utils.GlideUtils;
 import com.deligo.app.models.User;
 import com.deligo.app.repositories.AuthRepository;
 import com.deligo.app.repositories.AuthRepositoryImpl;
@@ -16,8 +18,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class SplashActivity extends AppCompatActivity {
 
     private static final int SPLASH_DELAY = 2000; // 2 seconds
+    private static final String BACKGROUND_IMAGE_URL = "https://i.pinimg.com/1200x/79/ad/10/79ad107a6a007e50dbfa9b39b9cf624d.jpg"; // TODO: Add background image URL
     private AuthRepository authRepository;
     private FirebaseFirestore firestore;
+    private ImageView backgroundImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +30,30 @@ public class SplashActivity extends AppCompatActivity {
 
         authRepository = new AuthRepositoryImpl();
         firestore = FirebaseFirestore.getInstance();
+        
+        // Initialize and load background image
+        backgroundImage = findViewById(R.id.backgroundImage);
+        loadBackgroundImage();
 
         // Delay for splash screen effect
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             checkAuthenticationAndRoute();
         }, SPLASH_DELAY);
+    }
+    
+    private void loadBackgroundImage() {
+        try {
+            if (BACKGROUND_IMAGE_URL != null && !BACKGROUND_IMAGE_URL.isEmpty()) {
+                GlideUtils.loadImage(this, BACKGROUND_IMAGE_URL, backgroundImage, R.color.design_default_color_primary);
+            } else {
+                // Set default background color if URL is empty
+                backgroundImage.setBackgroundResource(R.color.design_default_color_primary);
+            }
+        } catch (Exception e) {
+            // Handle any exception during image loading
+            e.printStackTrace();
+            backgroundImage.setBackgroundResource(R.color.design_default_color_primary);
+        }
     }
 
     private void checkAuthenticationAndRoute() {

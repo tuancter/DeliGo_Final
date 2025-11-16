@@ -155,21 +155,27 @@ public class CartRepositoryImpl implements CartRepository {
     public void updateCartItem(String cartItemId, int quantity, ActionCallback callback) {
         // Find the cart item by searching all carts
         firestore.collectionGroup("cartItems")
-                .whereEqualTo("__name__", cartItemId)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
-                    if (!queryDocumentSnapshots.isEmpty()) {
-                        DocumentReference cartItemRef = queryDocumentSnapshots.getDocuments().get(0).getReference();
-                        
-                        cartItemRef.update("quantity", quantity)
-                                .addOnSuccessListener(aVoid -> {
-                                    // Update cart timestamp
-                                    String cartId = cartItemRef.getParent().getParent().getId();
-                                    updateCartTimestamp(cartId);
-                                    callback.onSuccess();
-                                })
-                                .addOnFailureListener(e -> callback.onError(e.getMessage()));
-                    } else {
+                    boolean found = false;
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        if (document.getId().equals(cartItemId)) {
+                            found = true;
+                            DocumentReference cartItemRef = document.getReference();
+                            
+                            cartItemRef.update("quantity", quantity)
+                                    .addOnSuccessListener(aVoid -> {
+                                        // Update cart timestamp
+                                        String cartId = cartItemRef.getParent().getParent().getId();
+                                        updateCartTimestamp(cartId);
+                                        callback.onSuccess();
+                                    })
+                                    .addOnFailureListener(e -> callback.onError(e.getMessage()));
+                            break;
+                        }
+                    }
+                    
+                    if (!found) {
                         callback.onError("Cart item not found");
                     }
                 })

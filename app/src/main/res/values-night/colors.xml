@@ -34,4 +34,5 @@
     <color name="divider">#3A3A3C</color>
     <color name="card_background">#2C2C2E</color>
     <color name="overlay">#CC000000</color>
+    <color name="design_default_color_primary">#FFB74D</color>
 </resources>
