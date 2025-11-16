@@ -18,7 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class SplashActivity extends AppCompatActivity {
 
     private static final int SPLASH_DELAY = 2000; // 2 seconds
-    private static final String BACKGROUND_IMAGE_URL = "https://i.pinimg.com/1200x/79/ad/10/79ad107a6a007e50dbfa9b39b9cf624d.jpg"; // TODO: Add background image URL
+    private static final String BACKGROUND_IMAGE_URL = "https://i.pinimg.com/736x/c7/a7/55/c7a7554051337e29db3500ffc29282c4.jpg"; // TODO: Add background image URL
     private AuthRepository authRepository;
     private FirebaseFirestore firestore;
     private ImageView backgroundImage;

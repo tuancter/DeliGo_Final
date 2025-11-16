@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
@@ -115,11 +114,9 @@ public class CustomBottomNavigation extends LinearLayout {
             View itemView = inflater.inflate(R.layout.item_navigation, this, false);
             
             ImageView icon = itemView.findViewById(R.id.navIcon);
-            TextView label = itemView.findViewById(R.id.navLabel);
 
-            // Set icon and label
+            // Set icon
             icon.setImageResource(item.getIconResId());
-            label.setText(item.getTitle());
 
             // Set click listener
             itemView.setOnClickListener(v -> onItemClicked(position));
@@ -169,9 +166,17 @@ public class CustomBottomNavigation extends LinearLayout {
             boolean isSelected = (i == selectedPosition);
             item.setSelected(isSelected);
             
-            // Setting selected state on the view will automatically apply
-            // the color selectors defined in nav_icon_color.xml and nav_text_color.xml
-            itemView.setSelected(isSelected);
+            // Set selected state on iconContainer for circular background
+            View iconContainer = itemView.findViewById(R.id.iconContainer);
+            if (iconContainer != null) {
+                iconContainer.setSelected(isSelected);
+            }
+            
+            // Set selected state on icon for color change
+            ImageView icon = itemView.findViewById(R.id.navIcon);
+            if (icon != null) {
+                icon.setSelected(isSelected);
+            }
         }
     }
 

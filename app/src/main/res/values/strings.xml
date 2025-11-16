@@ -363,4 +363,5 @@
     <string name="content_desc_add_category">Thêm danh mục</string>
     <string name="title_manage_categories">Quản lý danh mục</string>
     <string name="title_statistics_report">Báo cáo thống kê</string>
+    <string name="background_image">Hình nền</string>
 </resources>

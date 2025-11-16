@@ -5,25 +5,25 @@
     android:layout_weight="1"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/navigation_item_background"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
     
-    <ImageView
-        android:id="@+id/navIcon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:scaleType="fitCenter"
-        android:contentDescription="@string/nav_icon_description" />
-    
-    <TextView
-        android:id="@+id/navLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:textSize="11sp"
-        android:textColor="@color/nav_text_color"
-        android:maxLines="1"
-        android:ellipsize="end" />
+    <!-- Icon container with circular background -->
+    <FrameLayout
+        android:id="@+id/iconContainer"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:background="@drawable/nav_icon_background">
+        
+        <ImageView
+            android:id="@+id/navIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/nav_icon_description" />
+    </FrameLayout>
     
 </LinearLayout>

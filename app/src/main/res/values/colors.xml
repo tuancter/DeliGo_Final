@@ -40,7 +40,7 @@
     <color name="status_cancelled">#EA4335</color>
     
     <!-- Navigation Colors -->
-    <color name="nav_selected">#FF6B35</color>
+    <color name="nav_selected">#D3A28E</color>
     <color name="nav_unselected">#9E9E9E</color>
     <color name="primary_light_transparent">#1AFF6B35</color>
     <color name="ripple_color">#1AFF6B35</color>

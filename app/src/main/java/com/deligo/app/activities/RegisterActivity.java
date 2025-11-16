@@ -10,12 +10,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.widget.ImageView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.deligo.app.R;
 import com.deligo.app.models.User;
 import com.deligo.app.repositories.AuthRepositoryImpl;
+import com.deligo.app.utils.GlideUtils;
 import com.deligo.app.utils.UIHelper;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.AuthState;
@@ -23,15 +26,20 @@ import com.deligo.app.viewmodels.AuthViewModel;
 
 public class RegisterActivity extends AppCompatActivity {
     
+    private ImageView ivBackground;
     private EditText etFullName;
     private EditText etEmail;
     private EditText etPhone;
     private EditText etPassword;
+    private EditText etConfirmPassword;
     private Button btnRegister;
     private ProgressBar progressBar;
     private TextView tvLogin;
     
     private AuthViewModel authViewModel;
+    
+    // Background image URL - để trống tạm thời
+    private static final String BACKGROUND_IMAGE_URL = "https://i.pinimg.com/736x/c7/a7/55/c7a7554051337e29db3500ffc29282c4.jpg";
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +53,24 @@ public class RegisterActivity extends AppCompatActivity {
     }
     
     private void initViews() {
+        ivBackground = findViewById(R.id.ivBackground);
         etFullName = findViewById(R.id.etFullName);
         etEmail = findViewById(R.id.etEmail);
         etPhone = findViewById(R.id.etPhone);
         etPassword = findViewById(R.id.etPassword);
+        etConfirmPassword = findViewById(R.id.etConfirmPassword);
         btnRegister = findViewById(R.id.btnRegister);
         progressBar = findViewById(R.id.progressBar);
         tvLogin = findViewById(R.id.tvLogin);
+        
+        // Load background image
+        loadBackgroundImage();
+    }
+    
+    private void loadBackgroundImage() {
+        if (BACKGROUND_IMAGE_URL != null && !BACKGROUND_IMAGE_URL.isEmpty()) {
+            GlideUtils.loadImage(this, BACKGROUND_IMAGE_URL, ivBackground);
+        }
     }
     
     private void initViewModel() {
@@ -119,6 +138,20 @@ public class RegisterActivity extends AppCompatActivity {
         if (password.length() < 6) {
             etPassword.setError("Password must be at least 6 characters");
             etPassword.requestFocus();
+            return;
+        }
+        
+        String confirmPassword = etConfirmPassword.getText() != null ? etConfirmPassword.getText().toString().trim() : "";
+        
+        if (TextUtils.isEmpty(confirmPassword)) {
+            etConfirmPassword.setError(getString(R.string.validation_confirm_password_required));
+            etConfirmPassword.requestFocus();
+            return;
+        }
+        
+        if (!password.equals(confirmPassword)) {
+            etConfirmPassword.setError(getString(R.string.validation_password_mismatch));
+            etConfirmPassword.requestFocus();
             return;
         }
         

@@ -23,22 +23,22 @@ public class NavigationConfiguration {
         List<NavigationItem> items = new ArrayList<>();
         items.add(new NavigationItem(
                 R.id.nav_home,
-                android.R.drawable.ic_menu_search,
-                context.getString(R.string.nav_home)
+                R.drawable.restaurant,
+                context.getString(R.string.nav_menu)
         ));
         items.add(new NavigationItem(
                 R.id.nav_cart,
-                android.R.drawable.ic_menu_add,
+                R.drawable.cart,
                 context.getString(R.string.nav_cart)
         ));
         items.add(new NavigationItem(
                 R.id.nav_orders,
-                android.R.drawable.ic_menu_recent_history,
+                R.drawable.order,
                 context.getString(R.string.nav_orders)
         ));
         items.add(new NavigationItem(
                 R.id.nav_profile,
-                android.R.drawable.ic_menu_myplaces,
+                R.drawable.profile,
                 context.getString(R.string.nav_profile)
         ));
         return items;
@@ -53,12 +53,12 @@ public class NavigationConfiguration {
         List<NavigationItem> items = new ArrayList<>();
         items.add(new NavigationItem(
                 R.id.nav_orders,
-                android.R.drawable.ic_menu_recent_history,
+                R.drawable.order,
                 context.getString(R.string.nav_orders)
         ));
         items.add(new NavigationItem(
                 R.id.nav_menu,
-                android.R.drawable.ic_menu_edit,
+                R.drawable.menu,
                 context.getString(R.string.nav_menu)
         ));
         items.add(new NavigationItem(
@@ -73,7 +73,7 @@ public class NavigationConfiguration {
         ));
         items.add(new NavigationItem(
                 R.id.nav_profile,
-                R.drawable.ic_profile,
+                R.drawable.profile,
                 context.getString(R.string.nav_profile)
         ));
         return items;
