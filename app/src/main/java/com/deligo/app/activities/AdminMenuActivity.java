@@ -187,7 +187,7 @@ public class AdminMenuActivity extends AppCompatActivity
 
     @Override
     public void onDeleteFood(Food food) {
-        new AlertDialog.Builder(this)
+        new AlertDialog.Builder(this, R.style.Theme_DeliGo_Dialog_Alert)
                 .setTitle(R.string.dialog_delete_food)
                 .setMessage(getString(R.string.dialog_delete_food_message, food.getName()))
                 .setPositiveButton(R.string.delete, (dialog, which) -> {
@@ -210,7 +210,7 @@ public class AdminMenuActivity extends AppCompatActivity
 
     @Override
     public void onDeleteCategory(Category category) {
-        new AlertDialog.Builder(this)
+        new AlertDialog.Builder(this, R.style.Theme_DeliGo_Dialog_Alert)
                 .setTitle(R.string.dialog_delete_category)
                 .setMessage(getString(R.string.dialog_delete_category_message, category.getCategoryName()))
                 .setPositiveButton(R.string.delete, (dialog, which) -> {
@@ -224,7 +224,7 @@ public class AdminMenuActivity extends AppCompatActivity
         android.widget.EditText input = new android.widget.EditText(this);
         input.setHint(R.string.hint_category_name);
 
-        new AlertDialog.Builder(this)
+        new AlertDialog.Builder(this, R.style.Theme_DeliGo_Dialog_Alert)
                 .setTitle(R.string.dialog_add_category)
                 .setView(input)
                 .setPositiveButton(R.string.action_add, (dialog, which) -> {
@@ -244,7 +244,7 @@ public class AdminMenuActivity extends AppCompatActivity
         input.setText(category.getCategoryName());
         input.setHint(R.string.hint_category_name);
 
-        new AlertDialog.Builder(this)
+        new AlertDialog.Builder(this, R.style.Theme_DeliGo_Dialog_Alert)
                 .setTitle(R.string.dialog_edit_category)
                 .setView(input)
                 .setPositiveButton(R.string.action_save, (dialog, which) -> {

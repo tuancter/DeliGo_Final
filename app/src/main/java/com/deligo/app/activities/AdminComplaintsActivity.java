@@ -158,7 +158,7 @@ public class AdminComplaintsActivity extends AppCompatActivity implements AdminC
 
     @Override
     public void onResolveClicked(Complaint complaint) {
-        new AlertDialog.Builder(this)
+        new AlertDialog.Builder(this, R.style.Theme_DeliGo_Dialog_Alert)
                 .setTitle(R.string.dialog_resolve_complaint)
                 .setMessage(R.string.dialog_resolve_complaint_message)
                 .setPositiveButton(R.string.resolve, (dialog, which) -> {
@@ -170,7 +170,7 @@ public class AdminComplaintsActivity extends AppCompatActivity implements AdminC
 
     @Override
     public void onRejectClicked(Complaint complaint) {
-        new AlertDialog.Builder(this)
+        new AlertDialog.Builder(this, R.style.Theme_DeliGo_Dialog_Alert)
                 .setTitle(R.string.dialog_reject_complaint)
                 .setMessage(R.string.dialog_reject_complaint_message)
                 .setPositiveButton(R.string.reject, (dialog, which) -> {
