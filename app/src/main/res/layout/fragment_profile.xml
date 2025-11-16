@@ -101,6 +101,15 @@
                     android:layout_height="wrap_content"
                     android:text="@string/edit_profile"
                     android:backgroundTint="?attr/colorPrimary" />
+
+                <!-- Change Password Button -->
+                <Button
+                    android:id="@+id/changePasswordButton" style="@style/Widget.DeliGo.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/change_password"
+                    android:backgroundTint="?attr/colorPrimary" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

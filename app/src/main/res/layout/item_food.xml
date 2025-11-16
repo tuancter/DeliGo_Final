@@ -10,7 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="250dp"
         android:padding="8dp">
 
         <!-- Food Image -->
@@ -55,7 +55,7 @@
             android:textStyle="bold"
             android:background="@drawable/status_background"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/foodNameTextView"
+            app:layout_constraintBottom_toTopOf="@+id/foodPriceTextView"
             tools:text="Đang bán" />
 
         <!-- Food Price -->

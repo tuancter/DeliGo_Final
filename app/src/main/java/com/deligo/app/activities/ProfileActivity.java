@@ -26,6 +26,7 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView emailTextView;
     private TextView phoneTextView;
     private Button editProfileButton;
+    private Button changePasswordButton;
     private Button viewOrderHistoryButton;
     private Button logoutButton;
     private ProgressBar progressBar;
@@ -50,6 +51,7 @@ public class ProfileActivity extends AppCompatActivity {
         emailTextView = findViewById(R.id.emailTextView);
         phoneTextView = findViewById(R.id.phoneTextView);
         editProfileButton = findViewById(R.id.editProfileButton);
+        changePasswordButton = findViewById(R.id.changePasswordButton);
         viewOrderHistoryButton = findViewById(R.id.viewOrderHistoryButton);
         logoutButton = findViewById(R.id.logoutButton);
         progressBar = findViewById(R.id.progressBar);
@@ -73,6 +75,11 @@ public class ProfileActivity extends AppCompatActivity {
     private void setupClickListeners() {
         editProfileButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, EditProfileActivity.class);
+            startActivity(intent);
+        });
+
+        changePasswordButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ChangePasswordActivity.class);
             startActivity(intent);
         });
 

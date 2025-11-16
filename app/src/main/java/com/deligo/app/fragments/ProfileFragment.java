@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.deligo.app.R;
+import com.deligo.app.activities.ChangePasswordActivity;
 import com.deligo.app.activities.EditProfileActivity;
 import com.deligo.app.activities.LoginActivity;
 import com.deligo.app.activities.OrderHistoryActivity;
@@ -33,6 +34,7 @@ public class ProfileFragment extends Fragment {
     private TextView emailTextView;
     private TextView phoneTextView;
     private Button editProfileButton;
+    private Button changePasswordButton;
     private Button viewOrderHistoryButton;
     private Button logoutButton;
     private ProgressBar progressBar;
@@ -58,6 +60,7 @@ public class ProfileFragment extends Fragment {
         emailTextView = view.findViewById(R.id.emailTextView);
         phoneTextView = view.findViewById(R.id.phoneTextView);
         editProfileButton = view.findViewById(R.id.editProfileButton);
+        changePasswordButton = view.findViewById(R.id.changePasswordButton);
         viewOrderHistoryButton = view.findViewById(R.id.viewOrderHistoryButton);
         logoutButton = view.findViewById(R.id.logoutButton);
         progressBar = view.findViewById(R.id.progressBar);
@@ -71,6 +74,11 @@ public class ProfileFragment extends Fragment {
     private void setupClickListeners() {
         editProfileButton.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+            startActivity(intent);
+        });
+
+        changePasswordButton.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), ChangePasswordActivity.class);
             startActivity(intent);
         });
 

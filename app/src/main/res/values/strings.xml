@@ -195,6 +195,18 @@
     <string name="no_orders_yet">Chưa có đơn hàng</string>
     <string name="order_history_message">Lịch sử đơn hàng sẽ hiển thị ở đây</string>
     <string name="save_changes">Lưu thay đổi</string>
+    <string name="change_password">Đổi mật khẩu</string>
+    <string name="current_password">Mật khẩu hiện tại</string>
+    <string name="new_password">Mật khẩu mới</string>
+    <string name="confirm_password">Xác nhận mật khẩu</string>
+    <string name="title_change_password">Đổi mật khẩu</string>
+    <string name="validation_current_password_required">Mật khẩu hiện tại là bắt buộc</string>
+    <string name="validation_new_password_required">Mật khẩu mới là bắt buộc</string>
+    <string name="validation_confirm_password_required">Xác nhận mật khẩu là bắt buộc</string>
+    <string name="validation_password_mismatch">Mật khẩu xác nhận không khớp</string>
+    <string name="validation_current_password_incorrect">Mật khẩu hiện tại không đúng</string>
+    <string name="toast_password_changed">Đổi mật khẩu thành công</string>
+    <string name="error_password_change_failed">Đổi mật khẩu thất bại</string>
     
     <!-- Checkout -->
     <string name="checkout">Thanh toán</string>
