@@ -231,7 +231,7 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
 
         btnCancel.setOnClickListener(v -> {
             if (currentOrder != null) {
-                new androidx.appcompat.app.AlertDialog.Builder(this)
+                new androidx.appcompat.app.AlertDialog.Builder(this, R.style.Theme_DeliGo_Dialog_Alert)
                         .setTitle(getString(R.string.confirm_cancel_order))
                         .setMessage(getString(R.string.confirm_cancel_order_message))
                         .setPositiveButton(getString(R.string.action_confirm), (dialog, which) -> {
@@ -260,7 +260,7 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
     }
 
     private void showPaymentConfirmationDialog(String paymentStatus, String message) {
-        new androidx.appcompat.app.AlertDialog.Builder(this)
+        new androidx.appcompat.app.AlertDialog.Builder(this, R.style.Theme_DeliGo_Dialog_Alert)
                 .setTitle(getString(R.string.confirm_payment_update))
                 .setMessage(message)
                 .setPositiveButton(getString(R.string.action_confirm), (dialog, which) -> {
