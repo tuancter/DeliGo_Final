@@ -152,20 +152,36 @@ public class AdminOrderViewModel extends ViewModel {
                     return;
                 }
 
-                // Update status
-                orderRepository.updateOrderStatus(orderId, newStatus, new OrderRepository.ActionCallback() {
-                    @Override
-                    public void onSuccess() {
-                        actionSuccess.setValue(true);
-                        isLoading.setValue(false);
-                    }
+                // Update status - if cancelling, also update payment status to cancelled
+                if ("cancelled".equals(newStatus)) {
+                    orderRepository.updateOrderAndPaymentStatus(orderId, newStatus, "cancelled", new OrderRepository.ActionCallback() {
+                        @Override
+                        public void onSuccess() {
+                            actionSuccess.setValue(true);
+                            isLoading.setValue(false);
+                        }
 
-                    @Override
-                    public void onError(String message) {
-                        errorMessage.setValue(message);
-                        isLoading.setValue(false);
-                    }
-                });
+                        @Override
+                        public void onError(String message) {
+                            errorMessage.setValue(message);
+                            isLoading.setValue(false);
+                        }
+                    });
+                } else {
+                    orderRepository.updateOrderStatus(orderId, newStatus, new OrderRepository.ActionCallback() {
+                        @Override
+                        public void onSuccess() {
+                            actionSuccess.setValue(true);
+                            isLoading.setValue(false);
+                        }
+
+                        @Override
+                        public void onError(String message) {
+                            errorMessage.setValue(message);
+                            isLoading.setValue(false);
+                        }
+                    });
+                }
             }
 
             @Override
@@ -199,6 +215,24 @@ public class AdminOrderViewModel extends ViewModel {
                         isLoading.setValue(false);
                     }
                 });
+            }
+
+            @Override
+            public void onError(String message) {
+                errorMessage.setValue(message);
+                isLoading.setValue(false);
+            }
+        });
+    }
+
+    public void updatePaymentStatus(String orderId, String newPaymentStatus) {
+        isLoading.setValue(true);
+
+        orderRepository.updatePaymentStatus(orderId, newPaymentStatus, new OrderRepository.ActionCallback() {
+            @Override
+            public void onSuccess() {
+                actionSuccess.setValue(true);
+                isLoading.setValue(false);
             }
 
             @Override

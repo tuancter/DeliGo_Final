@@ -154,6 +154,19 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     @Override
+    public void updateOrderAndPaymentStatus(String orderId, String orderStatus, String paymentStatus, ActionCallback callback) {
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("orderStatus", orderStatus);
+        updates.put("paymentStatus", paymentStatus);
+
+        firestore.collection("orders")
+                .document(orderId)
+                .update(updates)
+                .addOnSuccessListener(aVoid -> callback.onSuccess())
+                .addOnFailureListener(e -> callback.onError(e.getMessage()));
+    }
+
+    @Override
     public void getOrderDetails(String orderId, DataCallback<List<OrderDetail>> callback) {
         firestore.collection("orders")
                 .document(orderId)

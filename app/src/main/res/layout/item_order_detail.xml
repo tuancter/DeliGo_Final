@@ -1,31 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="8dp">
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="1dp">
 
-    <TextView
-        android:id="@+id/tvFoodName"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/text_food_name_placeholder"
-        android:textSize="14sp" />
+        android:orientation="vertical"
+        android:padding="12dp">
 
-    <TextView
-        android:id="@+id/tvQuantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_quantity_placeholder"
-        android:textSize="14sp"
-        android:layout_marginHorizontal="8dp" />
+        <!-- Item Info Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-    <TextView
-        android:id="@+id/tvPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/default_zero_vnd"
-        android:textSize="14sp"
-        android:textStyle="bold" />
-</LinearLayout>
+            <!-- Item Name and Quantity -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvFoodName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_food_name_placeholder"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/tvQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_quantity_placeholder"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/darker_gray"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <!-- Item Price -->
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/default_zero_vnd"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/holo_red_dark"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <!-- Rating Button (visible only for completed orders) -->
+        <Button
+            android:id="@+id/btnRateItem"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rate_item"
+            android:textColor="?attr/colorPrimary"
+            android:visibility="gone"
+            android:layout_marginTop="8dp"
+            android:drawableStart="@android:drawable/btn_star_big_off"
+            android:drawablePadding="4dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="8dp" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

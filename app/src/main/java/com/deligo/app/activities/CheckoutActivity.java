@@ -125,7 +125,7 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     private void showOrderConfirmation() {
-        new AlertDialog.Builder(this)
+        new AlertDialog.Builder(this, R.style.Theme_DeliGo_Dialog_Alert)
                 .setTitle(R.string.dialog_order_success)
                 .setMessage(R.string.dialog_order_success_message)
                 .setPositiveButton(R.string.button_view_orders, (dialog, which) -> {

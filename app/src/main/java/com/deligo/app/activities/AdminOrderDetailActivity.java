@@ -30,8 +30,9 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
     private TextView tvOrderId, tvCustomerId, tvOrderDate, tvOrderStatus, tvPaymentStatus;
     private TextView tvPaymentMethod, tvDeliveryAddress, tvNote, tvTotalAmount;
     private RecyclerView rvOrderDetails;
-    private LinearLayout layoutButtons;
+    private LinearLayout layoutButtons, layoutPaymentButtons;
     private Button btnAccept, btnPreparing, btnComplete, btnCancel;
+    private Button btnPaymentCompleted, btnPaymentFailed;
     private ProgressBar progressBar;
 
     private AdminOrderViewModel viewModel;
@@ -57,6 +58,7 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
         setupRecyclerView();
         setupViewModel();
         setupButtons();
+        setupPaymentButtons();
     }
 
     private void initViews() {
@@ -72,10 +74,13 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
         tvTotalAmount = findViewById(R.id.tvTotalAmount);
         rvOrderDetails = findViewById(R.id.rvOrderDetails);
         layoutButtons = findViewById(R.id.layoutButtons);
+        layoutPaymentButtons = findViewById(R.id.layoutPaymentButtons);
         btnAccept = findViewById(R.id.btnAccept);
         btnPreparing = findViewById(R.id.btnPreparing);
         btnComplete = findViewById(R.id.btnComplete);
         btnCancel = findViewById(R.id.btnCancel);
+        btnPaymentCompleted = findViewById(R.id.btnPaymentCompleted);
+        btnPaymentFailed = findViewById(R.id.btnPaymentFailed);
         progressBar = findViewById(R.id.progressBar);
     }
 
@@ -162,6 +167,13 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
         }
 
         tvTotalAmount.setText(CurrencyUtils.formatVND(order.getTotalAmount()));
+        
+        // Show payment buttons only if payment status is pending
+        if ("pending".equalsIgnoreCase(order.getPaymentStatus())) {
+            layoutPaymentButtons.setVisibility(View.VISIBLE);
+        } else {
+            layoutPaymentButtons.setVisibility(View.GONE);
+        }
     }
 
     private void configureButtons(Order order) {
@@ -219,9 +231,43 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
 
         btnCancel.setOnClickListener(v -> {
             if (currentOrder != null) {
-                viewModel.updateOrderStatus(currentOrder.getOrderId(), "cancelled");
+                new androidx.appcompat.app.AlertDialog.Builder(this)
+                        .setTitle(getString(R.string.confirm_cancel_order))
+                        .setMessage(getString(R.string.confirm_cancel_order_message))
+                        .setPositiveButton(getString(R.string.action_confirm), (dialog, which) -> {
+                            // Update order status to cancelled and payment status to failed
+                            viewModel.updateOrderStatus(currentOrder.getOrderId(), "cancelled");
+                            viewModel.updatePaymentStatus(currentOrder.getOrderId(), "cancelled");
+                        })
+                        .setNegativeButton(getString(R.string.action_cancel), null)
+                        .show();
             }
         });
+    }
+
+    private void setupPaymentButtons() {
+        btnPaymentCompleted.setOnClickListener(v -> {
+            if (currentOrder != null) {
+                showPaymentConfirmationDialog("completed", getString(R.string.confirm_payment_completed));
+            }
+        });
+
+        btnPaymentFailed.setOnClickListener(v -> {
+            if (currentOrder != null) {
+                showPaymentConfirmationDialog("cancelled", getString(R.string.confirm_payment_failed));
+            }
+        });
+    }
+
+    private void showPaymentConfirmationDialog(String paymentStatus, String message) {
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle(getString(R.string.confirm_payment_update))
+                .setMessage(message)
+                .setPositiveButton(getString(R.string.action_confirm), (dialog, which) -> {
+                    viewModel.updatePaymentStatus(currentOrder.getOrderId(), paymentStatus);
+                })
+                .setNegativeButton(getString(R.string.action_cancel), null)
+                .show();
     }
 
     private String capitalizeFirst(String text) {

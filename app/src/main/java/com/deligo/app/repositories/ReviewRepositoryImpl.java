@@ -17,9 +17,10 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     }
 
     @Override
-    public void addReview(String userId, String foodId, int rating, String comment, ActionCallback callback) {
+    public void addReview(String userId, String userName, String foodId, int rating, String comment, ActionCallback callback) {
         Map<String, Object> reviewData = new HashMap<>();
         reviewData.put("userId", userId);
+        reviewData.put("userName", userName);
         reviewData.put("foodId", foodId);
         reviewData.put("rating", rating);
         reviewData.put("comment", comment);

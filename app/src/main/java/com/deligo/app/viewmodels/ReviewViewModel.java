@@ -94,10 +94,10 @@ public class ReviewViewModel extends ViewModel {
         });
     }
 
-    public void submitReview(String userId, String foodId, int rating, String comment) {
+    public void submitReview(String userId, String userName, String foodId, int rating, String comment) {
         isLoading.setValue(true);
         reviewSubmitted.setValue(false);
-        reviewRepository.addReview(userId, foodId, rating, comment, new ReviewRepository.ActionCallback() {
+        reviewRepository.addReview(userId, userName, foodId, rating, comment, new ReviewRepository.ActionCallback() {
             @Override
             public void onSuccess() {
                 isLoading.setValue(false);

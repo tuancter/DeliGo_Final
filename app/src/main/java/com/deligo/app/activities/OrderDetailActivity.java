@@ -31,6 +31,7 @@ public class OrderDetailActivity extends AppCompatActivity {
     private TextView tvOrderId, tvOrderDate, tvOrderStatus, tvPaymentStatus, tvPaymentMethod;
     private TextView tvDeliveryAddress, tvTotalAmount;
     private RecyclerView orderItemsRecyclerView;
+    private Button btnReviewProducts;
     private Button btnSubmitComplaint;
     private ProgressBar progressBar;
 
@@ -71,6 +72,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         tvDeliveryAddress = findViewById(R.id.tvDeliveryAddress);
         tvTotalAmount = findViewById(R.id.tvTotalAmount);
         orderItemsRecyclerView = findViewById(R.id.orderItemsRecyclerView);
+        btnReviewProducts = findViewById(R.id.btnReviewProducts);
         btnSubmitComplaint = findViewById(R.id.btnSubmitComplaint);
         progressBar = findViewById(R.id.progressBar);
     }
@@ -97,6 +99,12 @@ public class OrderDetailActivity extends AppCompatActivity {
     }
 
     private void setupListeners() {
+        btnReviewProducts.setOnClickListener(v -> {
+            Intent intent = new Intent(OrderDetailActivity.this, ReviewFoodActivity.class);
+            intent.putExtra("orderId", orderId);
+            startActivity(intent);
+        });
+
         btnSubmitComplaint.setOnClickListener(v -> {
             Intent intent = new Intent(OrderDetailActivity.this, SubmitComplaintActivity.class);
             intent.putExtra("orderId", orderId);
@@ -132,10 +140,12 @@ public class OrderDetailActivity extends AppCompatActivity {
                 // Total Amount
                 tvTotalAmount.setText(CurrencyUtils.formatVND(order.getTotalAmount()));
 
-                // Show complaint button only for completed orders
+                // Show review and complaint buttons only for completed orders
                 if ("completed".equalsIgnoreCase(order.getOrderStatus())) {
+                    btnReviewProducts.setVisibility(View.VISIBLE);
                     btnSubmitComplaint.setVisibility(View.VISIBLE);
                 } else {
+                    btnReviewProducts.setVisibility(View.GONE);
                     btnSubmitComplaint.setVisibility(View.GONE);
                 }
             }

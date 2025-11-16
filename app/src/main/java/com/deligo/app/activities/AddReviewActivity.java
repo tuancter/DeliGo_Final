@@ -14,8 +14,11 @@ import androidx.lifecycle.ViewModelProvider;
 import com.bumptech.glide.Glide;
 import com.deligo.app.R;
 import com.deligo.app.models.Food;
+import com.deligo.app.models.User;
 import com.deligo.app.repositories.FoodRepository;
 import com.deligo.app.repositories.FoodRepositoryImpl;
+import com.deligo.app.repositories.ProfileRepository;
+import com.deligo.app.repositories.ProfileRepositoryImpl;
 import com.deligo.app.repositories.ReviewRepositoryImpl;
 import com.deligo.app.utils.CurrencyUtils;
 import com.deligo.app.utils.ViewModelFactory;
@@ -37,8 +40,10 @@ public class AddReviewActivity extends AppCompatActivity {
 
     private ReviewViewModel reviewViewModel;
     private FoodRepository foodRepository;
+    private ProfileRepository profileRepository;
     private String foodId;
     private String userId;
+    private String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +71,43 @@ public class AddReviewActivity extends AppCompatActivity {
             return;
         }
 
+        loadUserProfile();
         loadFoodDetails();
         setupListeners();
         observeViewModel();
+    }
+
+    private void loadUserProfile() {
+        progressBar.setVisibility(View.VISIBLE);
+        profileRepository.getUserProfile(userId, new ProfileRepository.DataCallback<User>() {
+            @Override
+            public void onSuccess(User user) {
+                progressBar.setVisibility(View.GONE);
+                if (user != null && user.getFullName() != null && !user.getFullName().isEmpty()) {
+                    userName = user.getFullName();
+                } else {
+                    // Fallback to email if fullName is not available
+                    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                    if (currentUser != null && currentUser.getEmail() != null) {
+                        userName = currentUser.getEmail();
+                    } else {
+                        userName = "Anonymous";
+                    }
+                }
+            }
+
+            @Override
+            public void onError(String message) {
+                progressBar.setVisibility(View.GONE);
+                // Fallback to email on error
+                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                if (currentUser != null && currentUser.getEmail() != null) {
+                    userName = currentUser.getEmail();
+                } else {
+                    userName = "Anonymous";
+                }
+            }
+        });
     }
 
     private void initViews() {
@@ -89,6 +128,7 @@ public class AddReviewActivity extends AppCompatActivity {
 
     private void setupRepositories() {
         foodRepository = new FoodRepositoryImpl();
+        profileRepository = new ProfileRepositoryImpl();
     }
 
     private void setupListeners() {
@@ -176,6 +216,6 @@ public class AddReviewActivity extends AppCompatActivity {
         }
 
         // Submit review
-        reviewViewModel.submitReview(userId, foodId, (int) rating, comment);
+        reviewViewModel.submitReview(userId, userName, foodId, (int) rating, comment);
     }
 }

@@ -255,6 +255,15 @@
                 android:visibility="gone"
                 android:layout_marginBottom="16dp" />
 
+            <!-- Review Products Button (only for completed orders) -->
+            <Button
+                android:id="@+id/btnReviewProducts" style="@style/Widget.DeliGo.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/review_products"
+                android:visibility="gone"
+                android:layout_marginTop="8dp" />
+
             <!-- Submit Complaint Button (only for completed orders) -->
             <Button
                 android:id="@+id/btnSubmitComplaint" style="@style/Widget.DeliGo.Button"

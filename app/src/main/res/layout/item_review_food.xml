@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <!-- Food Image -->
+        <ImageView
+            android:id="@+id/ivFoodImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:contentDescription="@string/content_desc_food_image"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@android:drawable/ic_menu_gallery" />
+
+        <!-- Food Name -->
+        <TextView
+            android:id="@+id/tvFoodName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="#212121"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/btnReview"
+            app:layout_constraintStart_toEndOf="@id/ivFoodImage"
+            app:layout_constraintTop_toTopOf="@id/ivFoodImage"
+            tools:text="Delicious Food Name" />
+
+        <!-- Food Price -->
+        <TextView
+            android:id="@+id/tvFoodPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="#FF5722"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@id/btnReview"
+            app:layout_constraintStart_toEndOf="@id/ivFoodImage"
+            app:layout_constraintTop_toBottomOf="@id/tvFoodName"
+            tools:text="50.000đ" />
+
+        <!-- Quantity -->
+        <TextView
+            android:id="@+id/tvQuantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="#757575"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@id/btnReview"
+            app:layout_constraintStart_toEndOf="@id/ivFoodImage"
+            app:layout_constraintTop_toBottomOf="@id/tvFoodPrice"
+            tools:text="Số lượng: 2" />
+
+        <!-- Review Button -->
+        <Button
+            android:id="@+id/btnReview"
+            style="@style/Widget.DeliGo.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:text="@string/review"
+            android:textSize="12sp"
+            app:cornerRadius="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

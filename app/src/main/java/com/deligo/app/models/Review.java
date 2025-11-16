@@ -3,6 +3,7 @@ package com.deligo.app.models;
 public class Review {
     private String reviewId;
     private String userId;
+    private String userName;
     private String foodId;
     private int rating;
     private String comment;
@@ -13,9 +14,10 @@ public class Review {
     public Review() {
     }
 
-    public Review(String reviewId, String userId, String foodId, int rating, String comment, long createdAt) {
+    public Review(String reviewId, String userId, String userName, String foodId, int rating, String comment, long createdAt) {
         this.reviewId = reviewId;
         this.userId = userId;
+        this.userName = userName;
         this.foodId = foodId;
         this.rating = rating;
         this.comment = comment;
@@ -37,6 +39,14 @@ public class Review {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getFoodId() {

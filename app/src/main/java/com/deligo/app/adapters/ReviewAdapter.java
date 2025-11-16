@@ -54,12 +54,14 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         }
 
         public void bind(Review review) {
-            // Display user name if available, otherwise show "Anonymous"
-            if (review.getUser() != null && review.getUser().getFullName() != null) {
-                userNameTextView.setText(review.getUser().getFullName());
-            } else {
-                userNameTextView.setText("Anonymous");
+            // Display user name with priority: userName field > User object > "Anonymous"
+            String displayName = "Anonymous";
+            if (review.getUserName() != null && !review.getUserName().isEmpty()) {
+                displayName = review.getUserName();
+            } else if (review.getUser() != null && review.getUser().getFullName() != null) {
+                displayName = review.getUser().getFullName();
             }
+            userNameTextView.setText(displayName);
 
             ratingTextView.setText(review.getRating() + " ⭐");
 

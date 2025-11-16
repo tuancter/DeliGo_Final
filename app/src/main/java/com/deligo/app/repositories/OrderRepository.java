@@ -20,6 +20,8 @@ public interface OrderRepository {
 
     void updatePaymentStatus(String orderId, String status, ActionCallback callback);
 
+    void updateOrderAndPaymentStatus(String orderId, String orderStatus, String paymentStatus, ActionCallback callback);
+
     void getOrderDetails(String orderId, DataCallback<List<OrderDetail>> callback);
 
     interface DataCallback<T> {

@@ -52,6 +52,8 @@
         <activity
             android:name=".activities.OrderDetailActivity"
             android:exported="false" />
+        <activity android:name=".activities.ReviewFoodActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.ProfileActivity"
             android:exported="false" />

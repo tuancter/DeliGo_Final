@@ -58,6 +58,12 @@
     <string name="payment_pending">Chờ thanh toán</string>
     <string name="payment_completed">Đã thanh toán</string>
     <string name="payment_failed">Thanh toán thất bại</string>
+    <string name="mark_payment_pending">Chưa thanh toán</string>
+    <string name="mark_payment_completed">Đã thanh toán</string>
+    <string name="confirm_payment_update">Xác nhận cập nhật thanh toán</string>
+    <string name="confirm_payment_completed">Bạn có chắc muốn đánh dấu đơn hàng này là đã thanh toán?</string>
+    <string name="confirm_payment_pending">Bạn có chắc muốn đánh dấu đơn hàng này là chưa thanh toán?</string>
+    <string name="confirm_payment_failed">Bạn có chắc muốn đánh dấu thanh toán này là thất bại?</string>
     
     <!-- Error Messages -->
     <string name="error_network">Lỗi kết nối mạng</string>
@@ -76,6 +82,7 @@
     <string name="confirm_delete">Bạn có chắc muốn xóa?</string>
     <string name="confirm_logout">Bạn có chắc muốn đăng xuất?</string>
     <string name="confirm_cancel_order">Bạn có chắc muốn hủy đơn hàng?</string>
+    <string name="confirm_cancel_order_message">Hủy đơn hàng sẽ đồng thời đánh dấu thanh toán là thất bại.</string>
     <string name="edit">Sửa</string>
     <string name="delete">Xoá</string>
     
@@ -120,27 +127,29 @@
     <string name="your_comment_optional">Nhận xét của bạn (Tùy chọn)</string>
     <string name="share_your_experience">Chia sẻ trải nghiệm của bạn...</string>
     <string name="submit_review">Gửi đánh giá</string>
-    <string name="rating">Đánh giá:</string>
+    <string name="rating">Đánh giá: </string>
     <string name="reviews">Đánh giá</string>
     <string name="write_review">Viết đánh giá</string>
     <string name="no_reviews_yet">Chưa có đánh giá</string>
+    <string name="rate_item">⭐ Đánh giá món này</string>
     
     <!-- Order Details -->
     <string name="order_information">Thông tin đơn hàng</string>
-    <string name="order_id">Mã đơn hàng:</string>
-    <string name="customer_id">Mã khách hàng:</string>
-    <string name="date">Ngày:</string>
-    <string name="status">Trạng thái:</string>
-    <string name="payment">Thanh toán:</string>
-    <string name="payment_method">Phương thức thanh toán:</string>
+    <string name="order_id">Mã đơn hàng: </string>
+    <string name="customer_id">Mã khách hàng: </string>
+    <string name="date">Ngày: </string>
+    <string name="status">Trạng thái: </string>
+    <string name="payment">Thanh toán: </string>
+    <string name="payment_method">Phương thức thanh toán: </string>
     <string name="delivery_information">Thông tin giao hàng</string>
-    <string name="address">Địa chỉ:</string>
-    <string name="note">Ghi chú:</string>
+    <string name="address">Địa chỉ: </string>
+    <string name="note">Ghi chú: </string>
     <string name="order_items">Món đã đặt</string>
-    <string name="total_amount">Tổng tiền:</string>
+    <string name="total_amount">Tổng tiền: </string>
     <string name="accept_order">Chấp nhận đơn hàng</string>
     <string name="start_preparing">Bắt đầu chuẩn bị</string>
-    <string name="mark_complete">Đánh dấu hoàn thành</string>
+    <string name="mark_complete">Đã hoàn thành</string>
+    <string name="button_cancelled">✕</string>
     <string name="cancel_order">Hủy đơn hàng</string>
     
     <!-- Cart -->
@@ -167,6 +176,12 @@
     <string name="submit_complaint">Gửi khiếu nại</string>
     <string name="describe_your_issue">Mô tả vấn đề của bạn</string>
     <string name="complaint_placeholder">Vui lòng mô tả chi tiết khiếu nại của bạn...</string>
+    <string name="review_products">Đánh giá sản phẩm</string>
+    <string name="title_review_products">Đánh giá sản phẩm</string>
+    <string name="select_product_to_review">Chọn món ăn để đánh giá:</string>
+    <string name="no_products_to_review">Không có sản phẩm để đánh giá</string>
+    <string name="review">Đánh giá</string>
+    <string name="quantity_format">Số lượng: %d</string>
     
     <!-- Profile -->
     <string name="personal_information">Thông tin cá nhân</string>
@@ -318,9 +333,9 @@
     <string name="content_desc_remove_item">Xóa món</string>
     <string name="content_desc_logo">Logo DeliGo</string>
     <string name="text_logo_deligo">DeliGo</string>
-    <string name="text_order_id_label">Mã đơn hàng:</string>
-    <string name="text_date_label">Ngày:</string>
-    <string name="text_total_label">Tổng:</string>
+    <string name="text_order_id_label">Mã đơn hàng: </string>
+    <string name="text_date_label">Ngày: </string>
+    <string name="text_total_label">Tổng: </string>
     <string name="hint_complaint_detail">Vui lòng mô tả chi tiết khiếu nại của bạn...</string>
     <string name="button_plus">+</string>
     <string name="button_minus">-</string>
