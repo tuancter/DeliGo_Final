@@ -10,15 +10,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import android.widget.ImageView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.deligo.app.R;
 import com.deligo.app.models.User;
 import com.deligo.app.repositories.AuthRepositoryImpl;
-import com.deligo.app.utils.GlideUtils;
 import com.deligo.app.utils.UIHelper;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.AuthState;
@@ -27,7 +24,6 @@ import android.widget.Button;
 
 public class LoginActivity extends AppCompatActivity {
     
-    private ImageView ivBackground;
     private EditText etEmail;
     private EditText etPassword;
     private Button btnLogin;
@@ -35,9 +31,6 @@ public class LoginActivity extends AppCompatActivity {
     private TextView tvRegister;
     
     private AuthViewModel authViewModel;
-    
-    // Background image URL - để trống tạm thời
-    private static final String BACKGROUND_IMAGE_URL = "https://i.pinimg.com/736x/c7/a7/55/c7a7554051337e29db3500ffc29282c4.jpg";
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,21 +44,11 @@ public class LoginActivity extends AppCompatActivity {
     }
     
     private void initViews() {
-        ivBackground = findViewById(R.id.ivBackground);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
         progressBar = findViewById(R.id.progressBar);
         tvRegister = findViewById(R.id.tvRegister);
-        
-        // Load background image
-        loadBackgroundImage();
-    }
-    
-    private void loadBackgroundImage() {
-        if (BACKGROUND_IMAGE_URL != null && !BACKGROUND_IMAGE_URL.isEmpty()) {
-            GlideUtils.loadImage(this, BACKGROUND_IMAGE_URL, ivBackground);
-        }
     }
     
     private void initViewModel() {
