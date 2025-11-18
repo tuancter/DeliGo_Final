@@ -5,6 +5,7 @@ public class User {
     private String fullName;
     private String email;
     private String phone;
+    private String address;
     private String role;
     private String status;
     private long createdAt;
@@ -13,11 +14,12 @@ public class User {
     public User() {
     }
 
-    public User(String userId, String fullName, String email, String phone, String role, String status, long createdAt) {
+    public User(String userId, String fullName, String email, String phone, String address, String role, String status, long createdAt) {
         this.userId = userId;
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
+        this.address = address;
         this.role = role;
         this.status = status;
         this.createdAt = createdAt;
@@ -54,6 +56,14 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getRole() {

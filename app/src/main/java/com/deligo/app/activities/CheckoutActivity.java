@@ -19,10 +19,13 @@ import com.deligo.app.R;
 import com.deligo.app.models.CartItem;
 import com.deligo.app.repositories.CartRepositoryImpl;
 import com.deligo.app.repositories.OrderRepositoryImpl;
+import com.deligo.app.repositories.ProfileRepositoryImpl;
 import com.deligo.app.utils.CurrencyUtils;
 import com.deligo.app.utils.UIHelper;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.OrderViewModel;
+import com.deligo.app.viewmodels.ProfileViewModel;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +33,12 @@ import java.util.List;
 public class CheckoutActivity extends AppCompatActivity {
     private EditText etDeliveryAddress, etOrderNote;
     private RadioGroup rgPaymentMethod;
-    private TextView tvItemCount, tvTotalAmount;
+    private TextView tvItemCount, tvTotalAmount, tvNewAddress;
     private Button btnPlaceOrder;
     private ProgressBar progressBar;
 
     private OrderViewModel orderViewModel;
+    private ProfileViewModel profileViewModel;
     private List<CartItem> cartItems;
     private double totalAmount;
 
@@ -56,6 +60,7 @@ public class CheckoutActivity extends AppCompatActivity {
         rgPaymentMethod = findViewById(R.id.rgPaymentMethod);
         tvItemCount = findViewById(R.id.tvItemCount);
         tvTotalAmount = findViewById(R.id.tvTotalAmount);
+        tvNewAddress = findViewById(R.id.tvNewAddress);
         btnPlaceOrder = findViewById(R.id.btnPlaceOrder);
         progressBar = findViewById(R.id.progressBar);
     }
@@ -63,6 +68,10 @@ public class CheckoutActivity extends AppCompatActivity {
     private void initViewModel() {
         ViewModelFactory factory = new ViewModelFactory();
         orderViewModel = new ViewModelProvider(this, factory).get(OrderViewModel.class);
+        profileViewModel = new ViewModelProvider(this, factory).get(ProfileViewModel.class);
+        
+        // Load user profile to get default address
+        profileViewModel.loadProfile();
     }
 
     private void getCartData() {
@@ -81,6 +90,11 @@ public class CheckoutActivity extends AppCompatActivity {
 
     private void setupListeners() {
         btnPlaceOrder.setOnClickListener(v -> placeOrder());
+        
+        tvNewAddress.setOnClickListener(v -> {
+            etDeliveryAddress.setText("");
+            etDeliveryAddress.requestFocus();
+        });
     }
 
     private void placeOrder() {
@@ -104,6 +118,16 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     private void observeViewModel() {
+        // Observe profile to get default address
+        profileViewModel.getUserProfile().observe(this, user -> {
+            if (user != null && user.getAddress() != null && !user.getAddress().isEmpty()) {
+                // Only set default address if field is empty
+                if (etDeliveryAddress.getText().toString().trim().isEmpty()) {
+                    etDeliveryAddress.setText(user.getAddress());
+                }
+            }
+        });
+        
         orderViewModel.getIsLoading().observe(this, isLoading -> {
             UIHelper.showLoading(progressBar, isLoading);
             UIHelper.setButtonEnabled(btnPlaceOrder, !isLoading);

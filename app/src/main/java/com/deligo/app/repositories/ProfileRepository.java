@@ -4,7 +4,7 @@ import com.deligo.app.models.User;
 
 public interface ProfileRepository {
     void getUserProfile(String userId, DataCallback<User> callback);
-    void updateProfile(String userId, String fullName, String phone, ActionCallback callback);
+    void updateProfile(String userId, String fullName, String phone, String address, ActionCallback callback);
     
     interface DataCallback<T> {
         void onSuccess(T data);

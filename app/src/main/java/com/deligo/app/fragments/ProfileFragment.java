@@ -33,6 +33,7 @@ public class ProfileFragment extends Fragment {
     private TextView fullNameTextView;
     private TextView emailTextView;
     private TextView phoneTextView;
+    private TextView addressTextView;
     private Button editProfileButton;
     private Button changePasswordButton;
     private Button viewOrderHistoryButton;
@@ -59,6 +60,7 @@ public class ProfileFragment extends Fragment {
         fullNameTextView = view.findViewById(R.id.fullNameTextView);
         emailTextView = view.findViewById(R.id.emailTextView);
         phoneTextView = view.findViewById(R.id.phoneTextView);
+        addressTextView = view.findViewById(R.id.addressTextView);
         editProfileButton = view.findViewById(R.id.editProfileButton);
         changePasswordButton = view.findViewById(R.id.changePasswordButton);
         viewOrderHistoryButton = view.findViewById(R.id.viewOrderHistoryButton);
@@ -104,6 +106,7 @@ public class ProfileFragment extends Fragment {
                 fullNameTextView.setText(user.getFullName());
                 emailTextView.setText(user.getEmail());
                 phoneTextView.setText(user.getPhone());
+                addressTextView.setText(user.getAddress() != null ? user.getAddress() : "-");
             }
         });
 

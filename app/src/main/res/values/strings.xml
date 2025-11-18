@@ -188,6 +188,7 @@
     <string name="full_name">Họ và tên</string>
     <string name="email">Email</string>
     <string name="phone">Số điện thoại</string>
+    <string name="address_label">Địa chỉ</string>
     <string name="edit_profile">Sửa hồ sơ</string>
     <string name="order_history">Lịch sử đơn hàng</string>
     <string name="view_all_orders">Xem tất cả đơn hàng trước đây</string>
@@ -212,6 +213,7 @@
     <string name="checkout">Thanh toán</string>
     <string name="delivery_address">Địa chỉ giao hàng</string>
     <string name="enter_delivery_address">Nhập địa chỉ giao hàng</string>
+    <string name="new_address">Địa chỉ mới</string>
     <string name="cash_on_delivery">Thanh toán khi nhận hàng</string>
     <string name="credit_debit_card">Thẻ tín dụng/Ghi nợ</string>
     <string name="e_wallet">Ví điện tử</string>

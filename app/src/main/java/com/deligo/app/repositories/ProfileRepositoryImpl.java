@@ -34,10 +34,11 @@ public class ProfileRepositoryImpl implements ProfileRepository {
     }
     
     @Override
-    public void updateProfile(String userId, String fullName, String phone, ActionCallback callback) {
+    public void updateProfile(String userId, String fullName, String phone, String address, ActionCallback callback) {
         Map<String, Object> updates = new HashMap<>();
         updates.put("fullName", fullName);
         updates.put("phone", phone);
+        updates.put("address", address);
         
         firestore.collection("users").document(userId)
             .update(updates)

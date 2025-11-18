@@ -94,6 +94,23 @@
                     android:textSize="16sp"
                     android:layout_marginBottom="16dp" />
 
+                <!-- Address -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/address_label"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/darker_gray"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/addressTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_dash"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="16dp" />
+
                 <!-- Edit Button -->
                 <Button
                     android:id="@+id/editProfileButton" style="@style/Widget.DeliGo.Button"

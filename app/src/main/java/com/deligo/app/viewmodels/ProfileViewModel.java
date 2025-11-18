@@ -72,7 +72,7 @@ public class ProfileViewModel extends ViewModel {
         });
     }
 
-    public void updateProfile(String fullName, String phone) {
+    public void updateProfile(String fullName, String phone, String address) {
         String userId = firebaseAuth.getCurrentUser() != null ? firebaseAuth.getCurrentUser().getUid() : null;
         if (userId == null) {
             errorMessage.setValue("User not authenticated");
@@ -80,7 +80,7 @@ public class ProfileViewModel extends ViewModel {
         }
 
         isLoading.setValue(true);
-        profileRepository.updateProfile(userId, fullName, phone, new ProfileRepository.ActionCallback() {
+        profileRepository.updateProfile(userId, fullName, phone, address, new ProfileRepository.ActionCallback() {
             @Override
             public void onSuccess() {
                 profileUpdated.setValue(true);

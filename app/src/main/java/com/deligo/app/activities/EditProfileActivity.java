@@ -22,6 +22,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private EditText fullNameEditText;
     private EditText phoneEditText;
     private EditText emailEditText;
+    private EditText addressEditText;
     private Button saveButton;
     private Button cancelButton;
     private ProgressBar progressBar;
@@ -45,6 +46,7 @@ public class EditProfileActivity extends AppCompatActivity {
         fullNameEditText = findViewById(R.id.fullNameEditText);
         phoneEditText = findViewById(R.id.phoneEditText);
         emailEditText = findViewById(R.id.emailEditText);
+        addressEditText = findViewById(R.id.addressEditText);
         saveButton = findViewById(R.id.saveButton);
         cancelButton = findViewById(R.id.cancelButton);
         progressBar = findViewById(R.id.progressBar);
@@ -69,6 +71,7 @@ public class EditProfileActivity extends AppCompatActivity {
         saveButton.setOnClickListener(v -> {
             String fullName = fullNameEditText.getText() != null ? fullNameEditText.getText().toString().trim() : "";
             String phone = phoneEditText.getText() != null ? phoneEditText.getText().toString().trim() : "";
+            String address = addressEditText.getText() != null ? addressEditText.getText().toString().trim() : "";
 
             // Validate inputs
             if (fullName.isEmpty()) {
@@ -84,7 +87,7 @@ public class EditProfileActivity extends AppCompatActivity {
             }
 
             // Update profile
-            profileViewModel.updateProfile(fullName, phone);
+            profileViewModel.updateProfile(fullName, phone, address);
         });
 
         cancelButton.setOnClickListener(v -> finish());
@@ -96,6 +99,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 fullNameEditText.setText(user.getFullName());
                 phoneEditText.setText(user.getPhone());
                 emailEditText.setText(user.getEmail());
+                addressEditText.setText(user.getAddress());
             }
         });
 
