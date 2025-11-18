@@ -20,6 +20,25 @@
             android:textStyle="bold"
             android:layout_marginBottom="24dp" />
 
+        <!-- Phone Number Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/phone_number"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_phone_number"
+            android:inputType="phone"
+            android:padding="16dp"
+            android:background="@drawable/card_background"
+            android:layout_marginBottom="16dp" />
+
         <!-- Delivery Address Section -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -116,26 +135,13 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
+                <!-- Order Items List -->
                 <LinearLayout
+                    android:id="@+id/orderItemsContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/items"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tvItemCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/default_zero"
-                        android:textSize="14sp" />
-                </LinearLayout>
+                    android:orientation="vertical"
+                    android:layout_marginBottom="8dp" />
 
                 <View
                     android:layout_width="match_parent"

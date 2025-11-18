@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -31,9 +33,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CheckoutActivity extends AppCompatActivity {
-    private EditText etDeliveryAddress, etOrderNote;
+    private EditText etDeliveryAddress, etOrderNote, etPhoneNumber;
     private RadioGroup rgPaymentMethod;
-    private TextView tvItemCount, tvTotalAmount, tvNewAddress;
+    private TextView tvTotalAmount, tvNewAddress;
+    private LinearLayout orderItemsContainer;
     private Button btnPlaceOrder;
     private ProgressBar progressBar;
 
@@ -55,10 +58,11 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        etPhoneNumber = findViewById(R.id.etPhoneNumber);
         etDeliveryAddress = findViewById(R.id.etDeliveryAddress);
         etOrderNote = findViewById(R.id.etOrderNote);
         rgPaymentMethod = findViewById(R.id.rgPaymentMethod);
-        tvItemCount = findViewById(R.id.tvItemCount);
+        orderItemsContainer = findViewById(R.id.orderItemsContainer);
         tvTotalAmount = findViewById(R.id.tvTotalAmount);
         tvNewAddress = findViewById(R.id.tvNewAddress);
         btnPlaceOrder = findViewById(R.id.btnPlaceOrder);
@@ -84,8 +88,43 @@ public class CheckoutActivity extends AppCompatActivity {
         }
 
         // Display order summary
-        tvItemCount.setText(String.valueOf(cartItems.size()));
+        displayOrderItems();
         tvTotalAmount.setText(CurrencyUtils.formatVND(totalAmount));
+    }
+
+    private void displayOrderItems() {
+        orderItemsContainer.removeAllViews();
+        
+        for (CartItem item : cartItems) {
+            View itemView = getLayoutInflater().inflate(R.layout.item_checkout_food, orderItemsContainer, false);
+            
+            ImageView foodImageView = itemView.findViewById(R.id.foodImageView);
+            TextView foodNameTextView = itemView.findViewById(R.id.foodNameTextView);
+            TextView quantityPriceTextView = itemView.findViewById(R.id.quantityPriceTextView);
+            TextView itemTotalTextView = itemView.findViewById(R.id.itemTotalTextView);
+            
+            // Set food name
+            foodNameTextView.setText(item.getFoodName());
+            
+            // Set quantity and unit price
+            String quantityPrice = "x" + item.getQuantity() + " - " + CurrencyUtils.formatVND(item.getPrice());
+            quantityPriceTextView.setText(quantityPrice);
+            
+            // Set item total
+            double itemTotal = item.getPrice() * item.getQuantity();
+            itemTotalTextView.setText(CurrencyUtils.formatVND(itemTotal));
+            
+            // Load image if available
+            if (item.getFoodImageUrl() != null && !item.getFoodImageUrl().isEmpty()) {
+                com.bumptech.glide.Glide.with(this)
+                    .load(item.getFoodImageUrl())
+                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.ic_launcher_foreground)
+                    .into(foodImageView);
+            }
+            
+            orderItemsContainer.addView(itemView);
+        }
     }
 
     private void setupListeners() {
@@ -98,8 +137,22 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     private void placeOrder() {
+        String phoneNumber = etPhoneNumber.getText().toString().trim();
         String deliveryAddress = etDeliveryAddress.getText().toString().trim();
         String orderNote = etOrderNote.getText().toString().trim();
+
+        // Validate phone number
+        if (phoneNumber.isEmpty()) {
+            etPhoneNumber.setError(getString(R.string.validation_phone_required));
+            etPhoneNumber.requestFocus();
+            return;
+        }
+
+        if (!android.util.Patterns.PHONE.matcher(phoneNumber).matches() || phoneNumber.length() < 10) {
+            etPhoneNumber.setError(getString(R.string.validation_phone_invalid));
+            etPhoneNumber.requestFocus();
+            return;
+        }
 
         // Validate delivery address
         if (deliveryAddress.isEmpty()) {
@@ -118,12 +171,21 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     private void observeViewModel() {
-        // Observe profile to get default address
+        // Observe profile to get default address and phone
         profileViewModel.getUserProfile().observe(this, user -> {
-            if (user != null && user.getAddress() != null && !user.getAddress().isEmpty()) {
-                // Only set default address if field is empty
-                if (etDeliveryAddress.getText().toString().trim().isEmpty()) {
-                    etDeliveryAddress.setText(user.getAddress());
+            if (user != null) {
+                // Set default phone number
+                if (user.getPhone() != null && !user.getPhone().isEmpty()) {
+                    if (etPhoneNumber.getText().toString().trim().isEmpty()) {
+                        etPhoneNumber.setText(user.getPhone());
+                    }
+                }
+                
+                // Set default address
+                if (user.getAddress() != null && !user.getAddress().isEmpty()) {
+                    if (etDeliveryAddress.getText().toString().trim().isEmpty()) {
+                        etDeliveryAddress.setText(user.getAddress());
+                    }
                 }
             }
         });
