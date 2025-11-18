@@ -143,7 +143,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Orders by Status Card -->
+        <!-- Orders by Status Card with Pie Chart -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -166,6 +166,12 @@
                     android:textStyle="bold"
                     android:layout_marginBottom="12dp" />
 
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChartOrderStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginBottom="16dp" />
+
                 <LinearLayout
                     android:id="@+id/statusContainer"
                     android:layout_width="match_parent"
@@ -176,10 +182,41 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Top Selling Foods Card -->
+        <!-- Revenue Trend Card with Line Chart -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_marginHorizontal="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/revenue_trend"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/lineChartRevenue"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Top Selling Foods Card with Bar Chart -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="2dp">
 
@@ -197,6 +234,12 @@
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="12dp" />
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/barChartTopFoods"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginBottom="16dp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvTopFoods"

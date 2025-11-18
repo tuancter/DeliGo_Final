@@ -169,6 +169,9 @@
     <string name="orders_by_status">Đơn hàng theo trạng thái</string>
     <string name="top_selling_foods">Món ăn bán chạy</string>
     <string name="no_data_available">Không có dữ liệu</string>
+    <string name="revenue_trend">Xu hướng doanh thu</string>
+    <string name="revenue_vnd">Doanh thu (VND)</string>
+    <string name="quantity_sold">Số lượng đã bán</string>
     
     <!-- Complaints -->
     <string name="my_complaints">Khiếu nại của tôi</string>
