@@ -3,4 +3,3 @@
     <item android:state_enabled="false" android:color="@color/disabled_on_surface" />
     <item android:color="@color/outlined_button_text_color" />
 </selector>
-

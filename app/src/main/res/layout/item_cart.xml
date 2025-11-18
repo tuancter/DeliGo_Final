@@ -33,7 +33,7 @@
             android:layout_marginEnd="8dp"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="#212121"
+            android:textColor="@color/text_dark"
             android:maxLines="2"
             android:ellipsize="end"
             app:layout_constraintEnd_toStartOf="@id/removeButton"
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:textSize="14sp"
-            android:textColor="#757575"
+            android:textColor="@color/text_light"
             app:layout_constraintStart_toStartOf="@id/foodNameTextView"
             app:layout_constraintTop_toBottomOf="@id/foodNameTextView"
             tools:text="50.000đ" />
@@ -101,7 +101,7 @@
                 android:gravity="center"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="#212121"
+                android:textColor="@color/text_dark"
                 tools:text="2" />
 
             <!-- Increase Button -->
@@ -143,7 +143,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:textSize="13sp"
-            android:textColor="#9E9E9E"
+            android:textColor="@color/text_lighter"
             android:textStyle="italic"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"

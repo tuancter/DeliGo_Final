@@ -19,8 +19,12 @@
         <item name="android:textColorSecondary">@color/text_secondary</item>
         <item name="android:textColorHint">@color/text_hint</item>
         
-        <!-- Button style -->
+        <!-- Widget styles -->
         <item name="buttonStyle">@style/Widget.DeliGo.Button</item>
+        <item name="editTextStyle">@style/Widget.DeliGo.EditText</item>
+        
+        <!-- CardView default background -->
+        <item name="cardViewStyle">@style/Widget.DeliGo.CardView</item>
     </style>
 
     <style name="Theme.DeliGo" parent="Base.Theme.DeliGo" />
@@ -56,6 +60,19 @@
     <style name="Widget.DeliGo.Card">
         <item name="android:background">@drawable/card_background</item>
         <item name="android:padding">16dp</item>
+    </style>
+    
+    <!-- EditText Style -->
+    <style name="Widget.DeliGo.EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+        <item name="android:background">@drawable/card_background</item>
+        <item name="android:padding">16dp</item>
+    </style>
+    
+    <!-- CardView Style -->
+    <style name="Widget.DeliGo.CardView" parent="CardView">
+        <item name="cardBackgroundColor">@color/card_background</item>
     </style>
     
     <!-- Base Text Appearance -->
@@ -104,8 +121,8 @@
         <item name="colorAccent">@color/primary</item>
         
         <!-- Background -->
-        <item name="android:windowBackground">@color/white</item>
-        <item name="android:background">@color/white</item>
+        <item name="android:windowBackground">@color/card_background</item>
+        <item name="android:background">@color/card_background</item>
         
         <!-- Text colors -->
         <item name="android:textColorPrimary">@color/text_primary</item>

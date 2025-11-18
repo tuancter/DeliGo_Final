@@ -20,7 +20,7 @@
             android:layout_height="80dp"
             android:scaleType="centerCrop"
             android:contentDescription="@string/content_desc_food_image"
-            android:background="#E0E0E0"
+            android:background="@color/image_placeholder"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@android:drawable/ic_menu_gallery" />
@@ -34,7 +34,7 @@
             android:layout_marginEnd="8dp"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="#212121"
+            android:textColor="@color/text_dark"
             android:maxLines="2"
             android:ellipsize="end"
             app:layout_constraintEnd_toEndOf="parent"

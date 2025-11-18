@@ -35,4 +35,14 @@
     <color name="card_background">#2C2C2E</color>
     <color name="overlay">#CC000000</color>
     <color name="design_default_color_primary">#FFB74D</color>
+    
+    <!-- Additional Text Colors for Dark Mode -->
+    <color name="text_dark">#FFFFFF</color>
+    <color name="text_medium">#E5E5E7</color>
+    <color name="text_light">#AEAEB2</color>
+    <color name="text_lighter">#8E8E93</color>
+    
+    <!-- Background Variants for Dark Mode -->
+    <color name="background_grey">#1C1C1E</color>
+    <color name="image_placeholder">#3A3A3C</color>
 </resources>

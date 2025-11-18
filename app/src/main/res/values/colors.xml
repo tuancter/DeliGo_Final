@@ -51,4 +51,14 @@
     <color name="card_background">#FFFFFF</color>
     <color name="overlay">#80000000</color>
     <color name="design_default_color_primary">#FFB74D</color>
+    
+    <!-- Additional Text Colors -->
+    <color name="text_dark">#212121</color>
+    <color name="text_medium">#424242</color>
+    <color name="text_light">#757575</color>
+    <color name="text_lighter">#9E9E9E</color>
+    
+    <!-- Background Variants -->
+    <color name="background_grey">#F5F5F5</color>
+    <color name="image_placeholder">#E0E0E0</color>
 </resources>

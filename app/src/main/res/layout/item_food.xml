@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -33,7 +33,7 @@
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:textColor="#212121"
+            android:textColor="@color/text_dark"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +56,7 @@
             android:background="@drawable/status_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/foodPriceTextView"
-            tools:text="Đang bán" />
+            tools:text="Available" />
 
         <!-- Food Price -->
         <TextView
@@ -69,7 +69,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/foodRatingTextView"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="50.000đ" />
+            tools:text="50.000d" />
 
         <!-- Rating -->
         <TextView
@@ -80,7 +80,7 @@
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="★ 5.0" />
+            tools:text="? 5.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

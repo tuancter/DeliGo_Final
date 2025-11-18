@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5">
+    android:background="@color/background_grey">
 
     <!-- Search View -->
     <androidx.appcompat.widget.SearchView
@@ -75,7 +75,7 @@
         android:layout_height="wrap_content"
         android:text="@string/no_food_items_available"
         android:textSize="16sp"
-        android:textColor="#757575"
+        android:textColor="@color/text_light"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
