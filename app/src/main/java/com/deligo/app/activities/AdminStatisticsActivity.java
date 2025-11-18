@@ -74,9 +74,6 @@ public class AdminStatisticsActivity extends AppCompatActivity {
 
         // Load initial statistics (Today)
         statisticsViewModel.loadStatistics(StatisticsViewModel.StatisticsPeriod.TODAY);
-        
-        // Update line chart with sample data
-        updateLineChart();
     }
 
     private void initViews() {
@@ -142,6 +139,15 @@ public class AdminStatisticsActivity extends AppCompatActivity {
                 rvTopFoods.setVisibility(View.GONE);
                 tvNoTopFoods.setVisibility(View.VISIBLE);
                 barChartTopFoods.clear();
+            }
+        });
+
+        // Observe daily revenue for trend chart
+        statisticsViewModel.getDailyRevenue().observe(this, dailyRevenueMap -> {
+            if (dailyRevenueMap != null && !dailyRevenueMap.isEmpty()) {
+                updateLineChart(dailyRevenueMap);
+            } else {
+                lineChartRevenue.clear();
             }
         });
 
@@ -374,19 +380,47 @@ public class AdminStatisticsActivity extends AppCompatActivity {
         barChartTopFoods.animateY(1000);
     }
 
-    private void updateLineChart() {
-        // Sample data for revenue trend
-        // In a real app, you would get this from your ViewModel
+    private void updateLineChart(Map<String, Double> dailyRevenueMap) {
+        if (dailyRevenueMap == null || dailyRevenueMap.isEmpty()) {
+            lineChartRevenue.clear();
+            return;
+        }
+
+        // Sort dates and create entries
+        List<String> sortedDates = new ArrayList<>(dailyRevenueMap.keySet());
+        java.util.Collections.sort(sortedDates);
+
         ArrayList<Entry> entries = new ArrayList<>();
+        ArrayList<String> labels = new ArrayList<>();
         
-        // Example: Last 7 days revenue (you should replace this with actual data)
-        entries.add(new Entry(0, 500000));
-        entries.add(new Entry(1, 750000));
-        entries.add(new Entry(2, 600000));
-        entries.add(new Entry(3, 900000));
-        entries.add(new Entry(4, 800000));
-        entries.add(new Entry(5, 1200000));
-        entries.add(new Entry(6, 1000000));
+        java.text.SimpleDateFormat displayFormat = new java.text.SimpleDateFormat("dd/MM", Locale.getDefault());
+        
+        for (int i = 0; i < sortedDates.size(); i++) {
+            String dateKey = sortedDates.get(i);
+            Double revenue = dailyRevenueMap.get(dateKey);
+            
+            if (revenue != null) {
+                entries.add(new Entry(i, revenue.floatValue()));
+                
+                // Format date for display
+                try {
+                    java.text.SimpleDateFormat parseFormat = new java.text.SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                    java.util.Date date = parseFormat.parse(dateKey);
+                    if (date != null) {
+                        labels.add(displayFormat.format(date));
+                    } else {
+                        labels.add(dateKey);
+                    }
+                } catch (Exception e) {
+                    labels.add(dateKey);
+                }
+            }
+        }
+
+        if (entries.isEmpty()) {
+            lineChartRevenue.clear();
+            return;
+        }
 
         LineDataSet dataSet = new LineDataSet(entries, getString(R.string.revenue_vnd));
         dataSet.setColor(ContextCompat.getColor(this, R.color.primary));
@@ -394,7 +428,7 @@ public class AdminStatisticsActivity extends AppCompatActivity {
         dataSet.setLineWidth(2f);
         dataSet.setCircleRadius(4f);
         dataSet.setDrawCircleHole(false);
-        dataSet.setValueTextSize(10f);
+        dataSet.setValueTextSize(9f);
         dataSet.setDrawFilled(true);
         dataSet.setFillColor(ContextCompat.getColor(this, R.color.primary));
         dataSet.setFillAlpha(50);
@@ -403,23 +437,20 @@ public class AdminStatisticsActivity extends AppCompatActivity {
         dataSet.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
-                return String.format(Locale.getDefault(), "%.0fK", value / 1000);
+                if (value >= 1000000) {
+                    return String.format(Locale.getDefault(), "%.1fM", value / 1000000);
+                } else if (value >= 1000) {
+                    return String.format(Locale.getDefault(), "%.0fK", value / 1000);
+                } else {
+                    return String.format(Locale.getDefault(), "%.0f", value);
+                }
             }
         });
 
         LineData data = new LineData(dataSet);
         
-        ArrayList<String> labels = new ArrayList<>();
-        labels.add("Mon");
-        labels.add("Tue");
-        labels.add("Wed");
-        labels.add("Thu");
-        labels.add("Fri");
-        labels.add("Sat");
-        labels.add("Sun");
-        
         lineChartRevenue.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
-        lineChartRevenue.getXAxis().setLabelCount(labels.size());
+        lineChartRevenue.getXAxis().setLabelCount(Math.min(labels.size(), 7));
         lineChartRevenue.setData(data);
         lineChartRevenue.invalidate();
         lineChartRevenue.animateX(1000);

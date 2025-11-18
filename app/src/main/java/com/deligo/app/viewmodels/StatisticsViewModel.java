@@ -18,6 +18,7 @@ public class StatisticsViewModel extends ViewModel {
     private final MutableLiveData<Integer> orderCount = new MutableLiveData<>();
     private final MutableLiveData<Map<String, Integer>> ordersByStatus = new MutableLiveData<>();
     private final MutableLiveData<List<FoodSales>> topSellingFoods = new MutableLiveData<>();
+    private final MutableLiveData<Map<String, Double>> dailyRevenue = new MutableLiveData<>();
     private final MutableLiveData<String> errorMessage = new MutableLiveData<>();
     private final MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
 
@@ -42,6 +43,10 @@ public class StatisticsViewModel extends ViewModel {
 
     public LiveData<List<FoodSales>> getTopSellingFoods() {
         return topSellingFoods;
+    }
+
+    public LiveData<Map<String, Double>> getDailyRevenue() {
+        return dailyRevenue;
     }
 
     public LiveData<String> getErrorMessage() {
@@ -117,6 +122,23 @@ public class StatisticsViewModel extends ViewModel {
                 isLoading.setValue(false);
 
                 Log.e("FIRESTORE_INDEX", "Top food error: " + message);
+                String url = extractIndexUrl(message);
+                if (url != null) {
+                    Log.e("FIRESTORE_INDEX", "👉 CREATE INDEX HERE:\n" + url);
+                }
+            }
+        });
+
+        // Load daily revenue for trend chart
+        statisticsRepository.getDailyRevenue(startDate, endDate, new StatisticsRepository.DataCallback<Map<String, Double>>() {
+            @Override
+            public void onSuccess(Map<String, Double> data) {
+                dailyRevenue.setValue(data);
+            }
+
+            @Override
+            public void onError(String message) {
+                Log.e("FIRESTORE_INDEX", "Daily revenue error: " + message);
                 String url = extractIndexUrl(message);
                 if (url != null) {
                     Log.e("FIRESTORE_INDEX", "👉 CREATE INDEX HERE:\n" + url);

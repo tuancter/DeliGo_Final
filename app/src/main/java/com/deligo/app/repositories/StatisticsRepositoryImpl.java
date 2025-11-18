@@ -260,4 +260,48 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
                     });
         }
     }
+
+    @Override
+    public void getDailyRevenue(long startDate, long endDate, DataCallback<Map<String, Double>> callback) {
+        Log.d("TESTMINHTUAN", "========== START getDailyRevenue ==========");
+        Log.d("TESTMINHTUAN", "Date range: " + startDate + " to " + endDate);
+        
+        firestore.collection("orders")
+                .whereGreaterThanOrEqualTo("createdAt", startDate)
+                .whereLessThanOrEqualTo("createdAt", endDate)
+                .whereEqualTo("orderStatus", OrderStatus.COMPLETED.getVietnameseName())
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    Log.d("TESTMINHTUAN", "Found " + queryDocumentSnapshots.size() + " completed orders for daily revenue");
+                    
+                    // Map to store date -> total revenue
+                    Map<String, Double> dailyRevenueMap = new HashMap<>();
+                    
+                    java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault());
+                    
+                    for (com.google.firebase.firestore.QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        Order order = document.toObject(Order.class);
+                        
+                        // Get date string from timestamp
+                        String dateKey = dateFormat.format(new java.util.Date(order.getCreatedAt()));
+                        
+                        // Add revenue to that date
+                        double currentRevenue = dailyRevenueMap.getOrDefault(dateKey, 0.0);
+                        dailyRevenueMap.put(dateKey, currentRevenue + order.getTotalAmount());
+                        
+                        Log.d("TESTMINHTUAN", "Order " + document.getId() + " | Date: " + dateKey + " | Amount: " + order.getTotalAmount());
+                    }
+                    
+                    Log.d("TESTMINHTUAN", "Daily revenue map size: " + dailyRevenueMap.size());
+                    for (Map.Entry<String, Double> entry : dailyRevenueMap.entrySet()) {
+                        Log.d("TESTMINHTUAN", "Date: " + entry.getKey() + " | Revenue: " + entry.getValue());
+                    }
+                    
+                    callback.onSuccess(dailyRevenueMap);
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("TESTMINHTUAN", "Failed to get daily revenue: " + e.getMessage());
+                    callback.onError(e.getMessage());
+                });
+    }
 }

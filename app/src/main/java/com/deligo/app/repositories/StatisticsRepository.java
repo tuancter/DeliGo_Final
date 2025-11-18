@@ -15,6 +15,8 @@ public interface StatisticsRepository {
 
     void getTopSellingFoods(long startDate, long endDate, int limit, DataCallback<List<FoodSales>> callback);
 
+    void getDailyRevenue(long startDate, long endDate, DataCallback<Map<String, Double>> callback);
+
     interface DataCallback<T> {
         void onSuccess(T data);
         void onError(String message);
