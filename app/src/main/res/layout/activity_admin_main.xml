@@ -29,6 +29,7 @@
                 android:textSize="24dp"
                 android:text="@string/admin_dashboard_title"
                 android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textColor="@color/text_primary"
                 android:textStyle="bold"
                 android:layout_marginBottom="4dp" />
 
@@ -39,7 +40,7 @@
                 android:textSize="16dp"
                 android:text="@string/admin_dashboard_subtitle"
                 android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/text_secondary"
                 android:layout_marginBottom="24dp" />
 
             <FrameLayout

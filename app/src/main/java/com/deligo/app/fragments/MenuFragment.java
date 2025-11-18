@@ -185,11 +185,11 @@ public class MenuFragment extends Fragment implements FoodAdapter.OnFoodClickLis
 
     private void updateButtonStyle(Button button, boolean isSelected) {
         if (isSelected) {
-            button.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.primary));
-            button.setTextColor(Color.WHITE);
+            button.setBackgroundResource(R.drawable.category_button_selected);
+            button.setTextColor(ContextCompat.getColor(requireContext(), R.color.on_primary));
         } else {
-            button.setBackgroundColor(Color.parseColor("#F0F0F0"));
-            button.setTextColor(Color.parseColor("#666666"));
+            button.setBackgroundResource(R.drawable.category_button_background);
+            button.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_secondary));
         }
     }
 

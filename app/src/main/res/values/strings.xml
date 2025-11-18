@@ -241,7 +241,7 @@
     <string name="add_to_cart">Thêm vào giỏ</string>
     
     <!-- Menu -->
-    <string name="no_food_items_available">Không có món ăn</string>
+    <string name="no_food_items_available">Không tìm thấy món ăn phù hợp</string>
     
     <!-- Login & Register -->
     <string name="welcome_back">Chào mừng trở lại!</string>

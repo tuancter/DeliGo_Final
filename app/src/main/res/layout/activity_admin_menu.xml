@@ -26,7 +26,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@android:color/white"
+        android:background="@color/surface"
         android:elevation="2dp"
         android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
