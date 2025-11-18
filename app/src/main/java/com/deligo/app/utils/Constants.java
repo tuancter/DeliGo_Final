@@ -25,16 +25,16 @@ public class Constants {
     public static final String USER_STATUS_INACTIVE = "inactive";
     
     // Payment Status
-    public static final String PAYMENT_STATUS_PENDING = "pending";
-    public static final String PAYMENT_STATUS_COMPLETED = "completed";
-    public static final String PAYMENT_STATUS_FAILED = "failed";
+    public static final String PAYMENT_STATUS_PENDING = "Chờ xác nhận";
+    public static final String PAYMENT_STATUS_COMPLETED = "Đã hoàn thành";
+    public static final String PAYMENT_STATUS_FAILED = "Bị huỷ";
     
     // Order Status
-    public static final String ORDER_STATUS_PENDING = "pending";
-    public static final String ORDER_STATUS_ACCEPTED = "accepted";
-    public static final String ORDER_STATUS_PREPARING = "preparing";
-    public static final String ORDER_STATUS_COMPLETED = "completed";
-    public static final String ORDER_STATUS_CANCELLED = "cancelled";
+    public static final String ORDER_STATUS_PENDING = "Chờ xác nhận";
+    public static final String ORDER_STATUS_ACCEPTED = "Đã nhận đơn";
+    public static final String ORDER_STATUS_PREPARING = "Đang chuẩn bị";
+    public static final String ORDER_STATUS_COMPLETED = "Đã hoàn thành";
+    public static final String ORDER_STATUS_CANCELLED = "Bị huỷ";
     
     // Complaint Status
     public static final String COMPLAINT_STATUS_PENDING = "pending";

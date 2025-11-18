@@ -40,28 +40,35 @@ public class OrderRepositoryImpl implements OrderRepository {
         order.setPaymentMethod(paymentMethod);
         order.setNote(note);
         order.setTotalAmount(totalAmount);
-        order.setPaymentStatus("pending");
-        order.setOrderStatus("pending");
+        order.setPaymentStatus("Chờ xác nhận");
+        order.setOrderStatus("Chờ xác nhận");
         order.setCreatedAt(System.currentTimeMillis());
 
-        // Create order in Firestore
-        firestore.collection("orders")
-                .add(order)
-                .addOnSuccessListener(documentReference -> {
-                    String orderId = documentReference.getId();
-                    order.setOrderId(orderId);
+        // Generate custom OrderID: ORD-{Year-mm-dd}{Timestamp 4 digits}
+        long timestamp = System.currentTimeMillis();
+        java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault());
+        String datePart = dateFormat.format(new java.util.Date(timestamp));
+        String timestampPart = String.format("%04d", (int)(timestamp % 10000));
+        String customOrderId = "ORD-" + datePart + timestampPart;
+        order.setOrderId(customOrderId);
 
+        // Create order in Firestore with custom ID
+        firestore.collection("orders")
+                .document(customOrderId)
+                .set(order)
+                .addOnSuccessListener(aVoid -> {
                     // Create batch to add order details
                     WriteBatch batch = firestore.batch();
 
                     for (CartItem cartItem : cartItems) {
                         OrderDetail orderDetail = new OrderDetail();
-                        orderDetail.setOrderId(orderId);
+                        orderDetail.setOrderId(customOrderId);
                         orderDetail.setFoodId(cartItem.getFoodId());
                         orderDetail.setQuantity(cartItem.getQuantity());
                         orderDetail.setUnitPrice(cartItem.getPrice());
 
-                        DocumentReference detailRef = documentReference
+                        DocumentReference detailRef = firestore.collection("orders")
+                                .document(customOrderId)
                                 .collection("orderDetails")
                                 .document();
                         orderDetail.setOrderDetailId(detailRef.getId());
@@ -70,7 +77,7 @@ public class OrderRepositoryImpl implements OrderRepository {
 
                     // Commit batch
                     batch.commit()
-                            .addOnSuccessListener(aVoid -> callback.onSuccess(order))
+                            .addOnSuccessListener(batchVoid -> callback.onSuccess(order))
                             .addOnFailureListener(e -> callback.onError(e.getMessage()));
                 })
                 .addOnFailureListener(e -> callback.onError(e.getMessage()));
@@ -134,8 +141,11 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     public void updateOrderStatus(String orderId, String status, ActionCallback callback) {
+        // Convert status to Vietnamese
+        String vietnameseStatus = convertStatusToVietnamese(status);
+        
         Map<String, Object> updates = new HashMap<>();
-        updates.put("orderStatus", status);
+        updates.put("orderStatus", vietnameseStatus);
 
         firestore.collection("orders")
                 .document(orderId)
@@ -143,11 +153,33 @@ public class OrderRepositoryImpl implements OrderRepository {
                 .addOnSuccessListener(aVoid -> callback.onSuccess())
                 .addOnFailureListener(e -> callback.onError(e.getMessage()));
     }
+    
+    private String convertStatusToVietnamese(String status) {
+        if (status == null) return status;
+        
+        switch (status.toLowerCase()) {
+            case "pending":
+                return "Chờ xác nhận";
+            case "accepted":
+                return "Đã nhận đơn";
+            case "preparing":
+                return "Đang chuẩn bị";
+            case "completed":
+                return "Đã hoàn thành";
+            case "cancelled":
+                return "Bị huỷ";
+            default:
+                return status;
+        }
+    }
 
     @Override
     public void updatePaymentStatus(String orderId, String status, ActionCallback callback) {
+        // Convert status to Vietnamese
+        String vietnameseStatus = convertStatusToVietnamese(status);
+        
         Map<String, Object> updates = new HashMap<>();
-        updates.put("paymentStatus", status);
+        updates.put("paymentStatus", vietnameseStatus);
 
         firestore.collection("orders")
                 .document(orderId)
@@ -158,9 +190,13 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     public void updateOrderAndPaymentStatus(String orderId, String orderStatus, String paymentStatus, ActionCallback callback) {
+        // Convert statuses to Vietnamese
+        String vietnameseOrderStatus = convertStatusToVietnamese(orderStatus);
+        String vietnamesePaymentStatus = convertStatusToVietnamese(paymentStatus);
+        
         Map<String, Object> updates = new HashMap<>();
-        updates.put("orderStatus", orderStatus);
-        updates.put("paymentStatus", paymentStatus);
+        updates.put("orderStatus", vietnameseOrderStatus);
+        updates.put("paymentStatus", vietnamesePaymentStatus);
 
         firestore.collection("orders")
                 .document(orderId)
@@ -223,7 +259,7 @@ public class OrderRepositoryImpl implements OrderRepository {
     @Override
     public void getPendingOrdersCount(DataCallback<Integer> callback) {
         firestore.collection("orders")
-                .whereEqualTo("orderStatus", Constants.ORDER_STATUS_PENDING)
+                .whereEqualTo("orderStatus", "Chờ xác nhận")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     callback.onSuccess(queryDocumentSnapshots.size());
@@ -238,7 +274,7 @@ public class OrderRepositoryImpl implements OrderRepository {
 
         // Listen to pending orders in real-time
         orderListener = firestore.collection("orders")
-                .whereEqualTo("orderStatus", Constants.ORDER_STATUS_PENDING)
+                .whereEqualTo("orderStatus", "Chờ xác nhận")
                 .addSnapshotListener((queryDocumentSnapshots, error) -> {
                     if (error != null) {
                         return;

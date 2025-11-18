@@ -109,7 +109,7 @@ public class AdminOrdersFragment extends Fragment implements AdminOrderAdapter.O
             filteredOrders = allOrders;
         } else {
             filteredOrders = allOrders.stream()
-                    .filter(order -> selectedStatus.equalsIgnoreCase(order.getOrderStatus()))
+                    .filter(order -> matchesStatus(order.getOrderStatus(), selectedStatus))
                     .collect(Collectors.toList());
         }
 
@@ -123,6 +123,25 @@ public class AdminOrdersFragment extends Fragment implements AdminOrderAdapter.O
             layoutEmpty.setVisibility(View.GONE);
             rvOrders.setVisibility(View.VISIBLE);
         }
+    }
+    
+    private boolean matchesStatus(String orderStatus, String filterStatus) {
+        if (orderStatus == null || filterStatus == null) return false;
+        
+        String orderLower = orderStatus.toLowerCase();
+        String filterLower = filterStatus.toLowerCase();
+        
+        // Direct match
+        if (orderLower.equals(filterLower)) return true;
+        
+        // Match Vietnamese to English
+        if (filterLower.equals("pending") && orderLower.contains("chờ")) return true;
+        if (filterLower.equals("accepted") && orderLower.contains("nhận")) return true;
+        if (filterLower.equals("preparing") && orderLower.contains("chuẩn bị")) return true;
+        if (filterLower.equals("completed") && orderLower.contains("hoàn thành")) return true;
+        if (filterLower.equals("cancelled") && (orderLower.contains("huỷ") || orderLower.contains("hủy"))) return true;
+        
+        return false;
     }
 
     @Override

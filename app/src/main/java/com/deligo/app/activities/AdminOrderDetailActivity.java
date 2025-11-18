@@ -169,7 +169,9 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
         tvTotalAmount.setText(CurrencyUtils.formatVND(order.getTotalAmount()));
         
         // Show payment buttons only if payment status is pending
-        if ("pending".equalsIgnoreCase(order.getPaymentStatus())) {
+        String paymentStatus = order.getPaymentStatus();
+        if (paymentStatus != null && (paymentStatus.toLowerCase().contains("chờ") || 
+            "pending".equalsIgnoreCase(paymentStatus))) {
             layoutPaymentButtons.setVisibility(View.VISIBLE);
         } else {
             layoutPaymentButtons.setVisibility(View.GONE);
@@ -185,28 +187,23 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
         btnComplete.setVisibility(View.GONE);
         btnCancel.setVisibility(View.GONE);
 
-        // Show appropriate buttons based on status
-        switch (status.toLowerCase()) {
-            case "pending":
-                btnAccept.setVisibility(View.VISIBLE);
-                btnCancel.setVisibility(View.VISIBLE);
-                break;
-
-            case "accepted":
-                btnPreparing.setVisibility(View.VISIBLE);
-                btnCancel.setVisibility(View.VISIBLE);
-                break;
-
-            case "preparing":
-                btnComplete.setVisibility(View.VISIBLE);
-                btnCancel.setVisibility(View.VISIBLE);
-                break;
-
-            case "completed":
-            case "cancelled":
-                // No buttons for final states
-                layoutButtons.setVisibility(View.GONE);
-                break;
+        // Show appropriate buttons based on status (Vietnamese)
+        if (status == null) return;
+        
+        String statusLower = status.toLowerCase();
+        if (statusLower.contains("chờ") || statusLower.equals("pending")) {
+            btnAccept.setVisibility(View.VISIBLE);
+            btnCancel.setVisibility(View.VISIBLE);
+        } else if (statusLower.contains("nhận") || statusLower.equals("accepted")) {
+            btnPreparing.setVisibility(View.VISIBLE);
+            btnCancel.setVisibility(View.VISIBLE);
+        } else if (statusLower.contains("chuẩn bị") || statusLower.equals("preparing")) {
+            btnComplete.setVisibility(View.VISIBLE);
+            btnCancel.setVisibility(View.VISIBLE);
+        } else if (statusLower.contains("hoàn thành") || statusLower.contains("huỷ") || 
+                   statusLower.equals("completed") || statusLower.equals("cancelled")) {
+            // No buttons for final states
+            layoutButtons.setVisibility(View.GONE);
         }
     }
 
@@ -219,13 +216,13 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
 
         btnPreparing.setOnClickListener(v -> {
             if (currentOrder != null) {
-                viewModel.updateOrderStatus(currentOrder.getOrderId(), "preparing");
+                viewModel.updateOrderStatus(currentOrder.getOrderId(), "Đang chuẩn bị");
             }
         });
 
         btnComplete.setOnClickListener(v -> {
             if (currentOrder != null) {
-                viewModel.updateOrderStatus(currentOrder.getOrderId(), "completed");
+                viewModel.updateOrderStatus(currentOrder.getOrderId(), "Đã hoàn thành");
             }
         });
 
@@ -236,8 +233,8 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
                         .setMessage(getString(R.string.confirm_cancel_order_message))
                         .setPositiveButton(getString(R.string.action_confirm), (dialog, which) -> {
                             // Update order status to cancelled and payment status to failed
-                            viewModel.updateOrderStatus(currentOrder.getOrderId(), "cancelled");
-                            viewModel.updatePaymentStatus(currentOrder.getOrderId(), "cancelled");
+                            viewModel.updateOrderStatus(currentOrder.getOrderId(), "Bị huỷ");
+                            viewModel.updatePaymentStatus(currentOrder.getOrderId(), "Bị huỷ");
                         })
                         .setNegativeButton(getString(R.string.action_cancel), null)
                         .show();
@@ -260,11 +257,20 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
     }
 
     private void showPaymentConfirmationDialog(String paymentStatus, String message) {
+        // Convert to Vietnamese status
+        String vietnameseStatus = paymentStatus;
+        if ("completed".equals(paymentStatus)) {
+            vietnameseStatus = "Đã hoàn thành";
+        } else if ("cancelled".equals(paymentStatus)) {
+            vietnameseStatus = "Bị huỷ";
+        }
+        
+        String finalStatus = vietnameseStatus;
         new androidx.appcompat.app.AlertDialog.Builder(this, R.style.Theme_DeliGo_Dialog_Alert)
                 .setTitle(getString(R.string.confirm_payment_update))
                 .setMessage(message)
                 .setPositiveButton(getString(R.string.action_confirm), (dialog, which) -> {
-                    viewModel.updatePaymentStatus(currentOrder.getOrderId(), paymentStatus);
+                    viewModel.updatePaymentStatus(currentOrder.getOrderId(), finalStatus);
                 })
                 .setNegativeButton(getString(R.string.action_cancel), null)
                 .show();

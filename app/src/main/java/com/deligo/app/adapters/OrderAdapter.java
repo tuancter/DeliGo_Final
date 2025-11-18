@@ -103,19 +103,21 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         }
 
         private int getStatusColor(String status) {
-            switch (status.toLowerCase()) {
-                case "pending":
-                    return Color.parseColor("#FF9800"); // Orange
-                case "accepted":
-                case "preparing":
-                    return Color.parseColor("#2196F3"); // Blue
-                case "completed":
-                    return Color.parseColor("#4CAF50"); // Green
-                case "cancelled":
-                case "failed":
-                    return Color.parseColor("#F44336"); // Red
-                default:
-                    return Color.parseColor("#757575"); // Gray
+            if (status == null) return Color.parseColor("#757575");
+            
+            String statusLower = status.toLowerCase();
+            if (statusLower.contains("chờ") || statusLower.contains("pending")) {
+                return Color.parseColor("#FF9800"); // Orange
+            } else if (statusLower.contains("nhận") || statusLower.contains("chuẩn bị") || 
+                       statusLower.contains("accepted") || statusLower.contains("preparing")) {
+                return Color.parseColor("#2196F3"); // Blue
+            } else if (statusLower.contains("hoàn thành") || statusLower.contains("completed")) {
+                return Color.parseColor("#4CAF50"); // Green
+            } else if (statusLower.contains("huỷ") || statusLower.contains("hủy") || 
+                       statusLower.contains("cancelled") || statusLower.contains("failed")) {
+                return Color.parseColor("#F44336"); // Red
+            } else {
+                return Color.parseColor("#757575"); // Gray
             }
         }
     }

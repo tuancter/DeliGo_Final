@@ -29,14 +29,14 @@ public class AdminOrderViewModel extends ViewModel {
     private final FirebaseFirestore firestore;
     private ListenerRegistration ordersListener;
 
-    // Valid status transitions
+    // Valid status transitions (Vietnamese)
     private static final Map<String, List<String>> VALID_TRANSITIONS = new HashMap<>();
     static {
-        VALID_TRANSITIONS.put("pending", Arrays.asList("accepted", "cancelled"));
-        VALID_TRANSITIONS.put("accepted", Arrays.asList("preparing", "cancelled"));
-        VALID_TRANSITIONS.put("preparing", Arrays.asList("completed", "cancelled"));
-        VALID_TRANSITIONS.put("completed", new ArrayList<>());
-        VALID_TRANSITIONS.put("cancelled", new ArrayList<>());
+        VALID_TRANSITIONS.put("Chờ xác nhận", Arrays.asList("Đã nhận đơn", "Bị huỷ"));
+        VALID_TRANSITIONS.put("Đã nhận đơn", Arrays.asList("Đang chuẩn bị", "Bị huỷ"));
+        VALID_TRANSITIONS.put("Đang chuẩn bị", Arrays.asList("Đã hoàn thành", "Bị huỷ"));
+        VALID_TRANSITIONS.put("Đã hoàn thành", new ArrayList<>());
+        VALID_TRANSITIONS.put("Bị huỷ", new ArrayList<>());
     }
 
     public AdminOrderViewModel(OrderRepository orderRepository) {
@@ -106,8 +106,8 @@ public class AdminOrderViewModel extends ViewModel {
         orderRepository.getOrderById(orderId, new OrderRepository.DataCallback<Order>() {
             @Override
             public void onSuccess(Order order) {
-                if (!"pending".equals(order.getOrderStatus())) {
-                    errorMessage.setValue("Only pending orders can be accepted");
+                if (!"Chờ xác nhận".equals(order.getOrderStatus())) {
+                    errorMessage.setValue("Chỉ có thể chấp nhận đơn hàng đang chờ xác nhận");
                     isLoading.setValue(false);
                     return;
                 }
@@ -153,7 +153,7 @@ public class AdminOrderViewModel extends ViewModel {
                 }
 
                 // Update status - if cancelling, also update payment status to cancelled
-                if ("cancelled".equals(newStatus)) {
+                if ("cancelled".equals(newStatus) || "Bị huỷ".equals(newStatus)) {
                     orderRepository.updateOrderAndPaymentStatus(orderId, newStatus, "cancelled", new OrderRepository.ActionCallback() {
                         @Override
                         public void onSuccess() {

@@ -114,58 +114,52 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.Ad
             btnComplete.setVisibility(View.GONE);
             btnCancel.setVisibility(View.GONE);
 
-            // Show appropriate buttons based on status
-            switch (status.toLowerCase()) {
-                case "pending":
-                    btnAccept.setVisibility(View.VISIBLE);
-                    btnCancel.setVisibility(View.VISIBLE);
-                    btnAccept.setOnClickListener(v -> {
-                        if (listener != null) {
-                            listener.onAcceptOrder(order);
-                        }
-                    });
-                    btnCancel.setOnClickListener(v -> {
-                        if (listener != null) {
-                            listener.onUpdateStatus(order, "cancelled");
-                        }
-                    });
-                    break;
-
-                case "accepted":
-                    btnPreparing.setVisibility(View.VISIBLE);
-                    btnCancel.setVisibility(View.VISIBLE);
-                    btnPreparing.setOnClickListener(v -> {
-                        if (listener != null) {
-                            listener.onUpdateStatus(order, "preparing");
-                        }
-                    });
-                    btnCancel.setOnClickListener(v -> {
-                        if (listener != null) {
-                            listener.onUpdateStatus(order, "cancelled");
-                        }
-                    });
-                    break;
-
-                case "preparing":
-                    btnComplete.setVisibility(View.VISIBLE);
-                    btnCancel.setVisibility(View.VISIBLE);
-                    btnComplete.setOnClickListener(v -> {
-                        if (listener != null) {
-                            listener.onUpdateStatus(order, "completed");
-                        }
-                    });
-                    btnCancel.setOnClickListener(v -> {
-                        if (listener != null) {
-                            listener.onUpdateStatus(order, "cancelled");
-                        }
-                    });
-                    break;
-
-                case "completed":
-                case "cancelled":
-                    // No buttons for final states
-                    break;
+            if (status == null) return;
+            
+            String statusLower = status.toLowerCase();
+            
+            // Show appropriate buttons based on status (Vietnamese)
+            if (statusLower.contains("chờ") || statusLower.equals("pending")) {
+                btnAccept.setVisibility(View.VISIBLE);
+                btnCancel.setVisibility(View.VISIBLE);
+                btnAccept.setOnClickListener(v -> {
+                    if (listener != null) {
+                        listener.onAcceptOrder(order);
+                    }
+                });
+                btnCancel.setOnClickListener(v -> {
+                    if (listener != null) {
+                        listener.onUpdateStatus(order, "Bị huỷ");
+                    }
+                });
+            } else if (statusLower.contains("nhận") || statusLower.equals("accepted")) {
+                btnPreparing.setVisibility(View.VISIBLE);
+                btnCancel.setVisibility(View.VISIBLE);
+                btnPreparing.setOnClickListener(v -> {
+                    if (listener != null) {
+                        listener.onUpdateStatus(order, "Đang chuẩn bị");
+                    }
+                });
+                btnCancel.setOnClickListener(v -> {
+                    if (listener != null) {
+                        listener.onUpdateStatus(order, "Bị huỷ");
+                    }
+                });
+            } else if (statusLower.contains("chuẩn bị") || statusLower.equals("preparing")) {
+                btnComplete.setVisibility(View.VISIBLE);
+                btnCancel.setVisibility(View.VISIBLE);
+                btnComplete.setOnClickListener(v -> {
+                    if (listener != null) {
+                        listener.onUpdateStatus(order, "Đã hoàn thành");
+                    }
+                });
+                btnCancel.setOnClickListener(v -> {
+                    if (listener != null) {
+                        listener.onUpdateStatus(order, "Bị huỷ");
+                    }
+                });
             }
+            // No buttons for final states (completed/cancelled)
         }
 
         private String capitalizeFirst(String text) {
@@ -176,18 +170,21 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.Ad
         }
 
         private int getStatusColor(String status) {
-            switch (status.toLowerCase()) {
-                case "pending":
-                    return Color.parseColor("#FF9800"); // Orange
-                case "accepted":
-                case "preparing":
-                    return Color.parseColor("#2196F3"); // Blue
-                case "completed":
-                    return Color.parseColor("#4CAF50"); // Green
-                case "cancelled":
-                    return Color.parseColor("#F44336"); // Red
-                default:
-                    return Color.parseColor("#757575"); // Gray
+            if (status == null) return Color.parseColor("#757575");
+            
+            String statusLower = status.toLowerCase();
+            if (statusLower.contains("chờ") || statusLower.contains("pending")) {
+                return Color.parseColor("#FF9800"); // Orange
+            } else if (statusLower.contains("nhận") || statusLower.contains("chuẩn bị") || 
+                       statusLower.contains("accepted") || statusLower.contains("preparing")) {
+                return Color.parseColor("#2196F3"); // Blue
+            } else if (statusLower.contains("hoàn thành") || statusLower.contains("completed")) {
+                return Color.parseColor("#4CAF50"); // Green
+            } else if (statusLower.contains("huỷ") || statusLower.contains("hủy") || 
+                       statusLower.contains("cancelled")) {
+                return Color.parseColor("#F44336"); // Red
+            } else {
+                return Color.parseColor("#757575"); // Gray
             }
         }
     }

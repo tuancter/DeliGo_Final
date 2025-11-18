@@ -154,7 +154,7 @@
     
     <!-- Cart -->
     <string name="shopping_cart">Giỏ hàng</string>
-    <string name="proceed_to_checkout">Tiến hành thanh toán</string>
+    <string name="proceed_to_checkout">Tiến hành đặt hàng</string>
     <string name="your_cart_is_empty">Giỏ hàng trống</string>
     <string name="add_items_to_get_started">Thêm món để bắt đầu</string>
     
