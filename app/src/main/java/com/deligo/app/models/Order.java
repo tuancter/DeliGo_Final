@@ -3,6 +3,7 @@ package com.deligo.app.models;
 public class Order {
     private String orderId;
     private String customerId;
+    private String phoneNumber;
     private String deliveryAddress;
     private double totalAmount;
     private String paymentMethod;
@@ -15,10 +16,11 @@ public class Order {
     public Order() {
     }
 
-    public Order(String orderId, String customerId, String deliveryAddress, double totalAmount, 
+    public Order(String orderId, String customerId, String phoneNumber, String deliveryAddress, double totalAmount, 
                  String paymentMethod, String paymentStatus, String orderStatus, String note, long createdAt) {
         this.orderId = orderId;
         this.customerId = customerId;
+        this.phoneNumber = phoneNumber;
         this.deliveryAddress = deliveryAddress;
         this.totalAmount = totalAmount;
         this.paymentMethod = paymentMethod;
@@ -43,6 +45,14 @@ public class Order {
 
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getDeliveryAddress() {

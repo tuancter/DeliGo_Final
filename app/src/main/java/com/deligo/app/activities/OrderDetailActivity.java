@@ -31,7 +31,7 @@ import java.util.Locale;
 
 public class OrderDetailActivity extends AppCompatActivity {
     private TextView tvOrderId, tvOrderDate, tvOrderStatus, tvPaymentStatus, tvPaymentMethod;
-    private TextView tvDeliveryAddress, tvTotalAmount;
+    private TextView tvPhoneNumber, tvDeliveryAddress, tvTotalAmount;
     private RecyclerView orderItemsRecyclerView;
     private Button btnReviewProducts;
     private Button btnSubmitComplaint;
@@ -75,6 +75,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         tvOrderStatus = findViewById(R.id.tvOrderStatus);
         tvPaymentStatus = findViewById(R.id.tvPaymentStatus);
         tvPaymentMethod = findViewById(R.id.tvPaymentMethod);
+        tvPhoneNumber = findViewById(R.id.tvPhoneNumber);
         tvDeliveryAddress = findViewById(R.id.tvDeliveryAddress);
         tvTotalAmount = findViewById(R.id.tvTotalAmount);
         orderItemsRecyclerView = findViewById(R.id.orderItemsRecyclerView);
@@ -160,6 +161,13 @@ public class OrderDetailActivity extends AppCompatActivity {
                 // Payment Method
                 tvPaymentMethod.setText(order.getPaymentMethod());
 
+                // Phone Number
+                if (order.getPhoneNumber() != null && !order.getPhoneNumber().isEmpty()) {
+                    tvPhoneNumber.setText(order.getPhoneNumber());
+                } else {
+                    tvPhoneNumber.setText("-");
+                }
+
                 // Delivery Address
                 tvDeliveryAddress.setText(order.getDeliveryAddress());
 
@@ -177,7 +185,7 @@ public class OrderDetailActivity extends AppCompatActivity {
                 }
 
                 // Show review and complaint buttons only for completed orders
-                if ("completed".equalsIgnoreCase(order.getOrderStatus())) {
+                if ("đã hoàn thành".equalsIgnoreCase(order.getOrderStatus())) {
                     btnReviewProducts.setVisibility(View.VISIBLE);
                     btnSubmitComplaint.setVisibility(View.VISIBLE);
                 } else {

@@ -376,6 +376,7 @@
     <!-- Additional UI strings -->
     <string name="title_order_details">Chi tiết đơn hàng</string>
     <string name="delivery_address_placeholder">123 Đường Chính, Thành phố, Tỉnh 12345</string>
+    <string name="phone_number_placeholder">0123456789</string>
     <string name="text_hello_world">Xin chào thế giới!</string>
     <string name="text_no_complaints_submitted">Bạn chưa gửi khiếu nại nào</string>
     <string name="emoji_clipboard">📋</string>

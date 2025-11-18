@@ -55,7 +55,7 @@ public class OrderViewModel extends ViewModel {
         return orderPlaced;
     }
 
-    public void placeOrder(String deliveryAddress, String paymentMethod, String note, List<CartItem> cartItems) {
+    public void placeOrder(String phoneNumber, String deliveryAddress, String paymentMethod, String note, List<CartItem> cartItems) {
         String userId = firebaseAuth.getCurrentUser() != null ? firebaseAuth.getCurrentUser().getUid() : null;
         if (userId == null) {
             errorMessage.setValue("User not authenticated");
@@ -68,7 +68,7 @@ public class OrderViewModel extends ViewModel {
         }
 
         isLoading.setValue(true);
-        orderRepository.createOrder(userId, deliveryAddress, paymentMethod, note, cartItems,
+        orderRepository.createOrder(userId, phoneNumber, deliveryAddress, paymentMethod, note, cartItems,
                 new OrderRepository.DataCallback<Order>() {
                     @Override
                     public void onSuccess(Order order) {

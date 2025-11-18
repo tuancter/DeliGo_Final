@@ -25,7 +25,7 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     @Override
-    public void createOrder(String customerId, String deliveryAddress, String paymentMethod,
+    public void createOrder(String customerId, String phoneNumber, String deliveryAddress, String paymentMethod,
                             String note, List<CartItem> cartItems, DataCallback<Order> callback) {
         // Calculate total amount
         double totalAmount = 0;
@@ -36,6 +36,7 @@ public class OrderRepositoryImpl implements OrderRepository {
         // Create order object
         Order order = new Order();
         order.setCustomerId(customerId);
+        order.setPhoneNumber(phoneNumber);
         order.setDeliveryAddress(deliveryAddress);
         order.setPaymentMethod(paymentMethod);
         order.setNote(note);

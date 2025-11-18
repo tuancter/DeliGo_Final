@@ -7,7 +7,7 @@ import com.deligo.app.models.OrderDetail;
 import java.util.List;
 
 public interface OrderRepository {
-    void createOrder(String customerId, String deliveryAddress, String paymentMethod,
+    void createOrder(String customerId, String phoneNumber, String deliveryAddress, String paymentMethod,
                      String note, List<CartItem> cartItems, DataCallback<Order> callback);
 
     void getOrdersByCustomer(String customerId, DataCallback<List<Order>> callback);

@@ -28,7 +28,7 @@ import java.util.Locale;
 public class AdminOrderDetailActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TextView tvOrderId, tvCustomerId, tvOrderDate, tvOrderStatus, tvPaymentStatus;
-    private TextView tvPaymentMethod, tvDeliveryAddress, tvNote, tvTotalAmount;
+    private TextView tvPaymentMethod, tvPhoneNumber, tvDeliveryAddress, tvNote, tvTotalAmount;
     private RecyclerView rvOrderDetails;
     private LinearLayout layoutButtons, layoutPaymentButtons;
     private Button btnAccept, btnPreparing, btnComplete, btnCancel;
@@ -69,6 +69,7 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
         tvOrderStatus = findViewById(R.id.tvOrderStatus);
         tvPaymentStatus = findViewById(R.id.tvPaymentStatus);
         tvPaymentMethod = findViewById(R.id.tvPaymentMethod);
+        tvPhoneNumber = findViewById(R.id.tvPhoneNumber);
         tvDeliveryAddress = findViewById(R.id.tvDeliveryAddress);
         tvNote = findViewById(R.id.tvNote);
         tvTotalAmount = findViewById(R.id.tvTotalAmount);
@@ -157,6 +158,15 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
         tvOrderStatus.setText(getString(R.string.label_status, capitalizeFirst(order.getOrderStatus())));
         tvPaymentStatus.setText(getString(R.string.label_payment, capitalizeFirst(order.getPaymentStatus())));
         tvPaymentMethod.setText(getString(R.string.label_payment_method, order.getPaymentMethod()));
+        
+        // Phone Number
+        if (order.getPhoneNumber() != null && !order.getPhoneNumber().isEmpty()) {
+            tvPhoneNumber.setText(getString(R.string.phone_number) + order.getPhoneNumber());
+            tvPhoneNumber.setVisibility(View.VISIBLE);
+        } else {
+            tvPhoneNumber.setVisibility(View.GONE);
+        }
+        
         tvDeliveryAddress.setText(getString(R.string.label_address, order.getDeliveryAddress()));
 
         if (order.getNote() != null && !order.getNote().isEmpty()) {

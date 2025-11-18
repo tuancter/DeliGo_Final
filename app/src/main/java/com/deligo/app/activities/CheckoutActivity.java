@@ -168,7 +168,7 @@ public class CheckoutActivity extends AppCompatActivity {
         String paymentMethod = selectedPaymentButton.getText().toString();
 
         // Place order
-        orderViewModel.placeOrder(deliveryAddress, paymentMethod, orderNote, cartItems);
+        orderViewModel.placeOrder(phoneNumber, deliveryAddress, paymentMethod, orderNote, cartItems);
     }
 
     private void observeViewModel() {

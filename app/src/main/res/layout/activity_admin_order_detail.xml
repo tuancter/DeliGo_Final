@@ -173,9 +173,17 @@
                         android:background="@android:color/darker_gray" />
 
                     <TextView
+                        android:id="@+id/tvPhoneNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/phone_number"
+                        android:textSize="14sp" />
+
+                    <TextView
                         android:id="@+id/tvDeliveryAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:text="@string/address"
                         android:textSize="14sp" />
 
