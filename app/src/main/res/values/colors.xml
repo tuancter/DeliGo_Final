@@ -61,4 +61,7 @@
     <!-- Background Variants -->
     <color name="background_grey">#F5F5F5</color>
     <color name="image_placeholder">#E0E0E0</color>
+    
+    <!-- Statistics Colors -->
+    <color name="quantity_sold_color">#FF5722</color>
 </resources>

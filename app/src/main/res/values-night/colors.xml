@@ -45,4 +45,7 @@
     <!-- Background Variants for Dark Mode -->
     <color name="background_grey">#1C1C1E</color>
     <color name="image_placeholder">#3A3A3C</color>
+    
+    <!-- Statistics Colors for Dark Mode -->
+    <color name="quantity_sold_color">#FF8A65</color>
 </resources>

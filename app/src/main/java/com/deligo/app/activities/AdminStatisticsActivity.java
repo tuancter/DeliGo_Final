@@ -61,10 +61,18 @@ public class AdminStatisticsActivity extends AppCompatActivity {
     private BarChart barChartTopFoods;
     private LineChart lineChartRevenue;
 
+    private boolean isDarkMode;
+    private int textColorPrimary;
+    private int textColorSecondary;
+    private int chartBackgroundColor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_statistics);
+
+        // Detect dark mode
+        detectDarkMode();
 
         initViews();
         setupToolbar();
@@ -74,6 +82,23 @@ public class AdminStatisticsActivity extends AppCompatActivity {
 
         // Load initial statistics (Today)
         statisticsViewModel.loadStatistics(StatisticsViewModel.StatisticsPeriod.TODAY);
+    }
+
+    private void detectDarkMode() {
+        int nightModeFlags = getResources().getConfiguration().uiMode & 
+                android.content.res.Configuration.UI_MODE_NIGHT_MASK;
+        isDarkMode = nightModeFlags == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+        
+        // Set colors based on mode
+        if (isDarkMode) {
+            textColorPrimary = Color.WHITE;
+            textColorSecondary = Color.rgb(200, 200, 200);
+            chartBackgroundColor = Color.rgb(30, 30, 30);
+        } else {
+            textColorPrimary = Color.BLACK;
+            textColorSecondary = Color.DKGRAY;
+            chartBackgroundColor = Color.WHITE;
+        }
     }
 
     private void initViews() {
@@ -198,6 +223,7 @@ public class AdminStatisticsActivity extends AppCompatActivity {
             noDataText.setText(R.string.label_no_orders_this_period);
             noDataText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             noDataText.setPadding(16, 16, 16, 16);
+            noDataText.setTextColor(textColorPrimary);
             statusContainer.addView(noDataText);
             return;
         }
@@ -210,11 +236,11 @@ public class AdminStatisticsActivity extends AppCompatActivity {
 
             text1.setText(capitalizeFirstLetter(entry.getKey()));
             text1.setTextSize(16);
-            text1.setTextColor(getResources().getColor(android.R.color.black, null));
+            text1.setTextColor(textColorPrimary);
 
             text2.setText(getString(R.string.label_orders_count, entry.getValue()));
             text2.setTextSize(14);
-            text2.setTextColor(getResources().getColor(android.R.color.darker_gray, null));
+            text2.setTextColor(textColorSecondary);
 
             statusContainer.addView(statusItem);
         }
@@ -239,11 +265,12 @@ public class AdminStatisticsActivity extends AppCompatActivity {
         pieChartOrderStatus.setExtraOffsets(5, 10, 5, 5);
         pieChartOrderStatus.setDragDecelerationFrictionCoef(0.95f);
         pieChartOrderStatus.setDrawHoleEnabled(true);
-        pieChartOrderStatus.setHoleColor(Color.WHITE);
+        pieChartOrderStatus.setHoleColor(chartBackgroundColor);
         pieChartOrderStatus.setTransparentCircleRadius(61f);
         pieChartOrderStatus.setDrawCenterText(true);
         pieChartOrderStatus.setCenterText(getString(R.string.orders_by_status));
         pieChartOrderStatus.setCenterTextSize(14f);
+        pieChartOrderStatus.setCenterTextColor(textColorPrimary);
         pieChartOrderStatus.setRotationEnabled(true);
         pieChartOrderStatus.setHighlightPerTapEnabled(true);
 
@@ -253,6 +280,7 @@ public class AdminStatisticsActivity extends AppCompatActivity {
         legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         legend.setDrawInside(false);
         legend.setWordWrapEnabled(true);
+        legend.setTextColor(textColorPrimary);
     }
 
     private void setupBarChart() {
@@ -268,8 +296,10 @@ public class AdminStatisticsActivity extends AppCompatActivity {
         xAxis.setDrawGridLines(false);
         xAxis.setGranularity(1f);
         xAxis.setLabelRotationAngle(-45);
+        xAxis.setTextColor(textColorPrimary);
 
         barChartTopFoods.getAxisLeft().setDrawGridLines(false);
+        barChartTopFoods.getAxisLeft().setTextColor(textColorPrimary);
         barChartTopFoods.getAxisRight().setEnabled(false);
         barChartTopFoods.getAxisLeft().setAxisMinimum(0f);
 
@@ -289,8 +319,11 @@ public class AdminStatisticsActivity extends AppCompatActivity {
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(false);
         xAxis.setGranularity(1f);
+        xAxis.setTextColor(textColorPrimary);
 
         lineChartRevenue.getAxisLeft().setDrawGridLines(true);
+        lineChartRevenue.getAxisLeft().setGridColor(isDarkMode ? Color.rgb(60, 60, 60) : Color.rgb(220, 220, 220));
+        lineChartRevenue.getAxisLeft().setTextColor(textColorPrimary);
         lineChartRevenue.getAxisRight().setEnabled(false);
         lineChartRevenue.getAxisLeft().setAxisMinimum(0f);
 
@@ -299,6 +332,7 @@ public class AdminStatisticsActivity extends AppCompatActivity {
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         legend.setOrientation(Legend.LegendOrientation.VERTICAL);
         legend.setDrawInside(false);
+        legend.setTextColor(textColorPrimary);
     }
 
     private void updatePieChart(Map<String, Integer> statusMap) {
@@ -367,7 +401,7 @@ public class AdminStatisticsActivity extends AppCompatActivity {
         BarDataSet dataSet = new BarDataSet(entries, getString(R.string.quantity_sold));
         dataSet.setColor(ContextCompat.getColor(this, R.color.primary));
         dataSet.setValueTextSize(10f);
-        dataSet.setValueTextColor(Color.BLACK);
+        dataSet.setValueTextColor(textColorPrimary);
 
         BarData data = new BarData(dataSet);
         data.setBarWidth(0.8f);
@@ -429,6 +463,7 @@ public class AdminStatisticsActivity extends AppCompatActivity {
         dataSet.setCircleRadius(4f);
         dataSet.setDrawCircleHole(false);
         dataSet.setValueTextSize(9f);
+        dataSet.setValueTextColor(textColorPrimary);
         dataSet.setDrawFilled(true);
         dataSet.setFillColor(ContextCompat.getColor(this, R.color.primary));
         dataSet.setFillAlpha(50);
