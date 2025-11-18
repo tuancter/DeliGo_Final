@@ -180,15 +180,17 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Note -->
-            <TextView
+            <!-- Transfer Completed Button -->
+            <Button
+                android:id="@+id/btnTransferCompleted"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/transfer_note"
-                android:textSize="14sp"
-                android:textColor="@android:color/darker_gray"
-                android:gravity="center"
-                android:layout_marginTop="16dp" />
+                android:text="@string/transfer_completed"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginTop="12dp"
+                android:paddingVertical="12dp"
+                android:backgroundTint="?attr/colorPrimary" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

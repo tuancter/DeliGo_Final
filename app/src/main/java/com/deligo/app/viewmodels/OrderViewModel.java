@@ -159,4 +159,9 @@ public class OrderViewModel extends ViewModel {
     public void resetOrderPlaced() {
         orderPlaced.setValue(false);
     }
+
+    public String getCreatedOrderId() {
+        Order order = currentOrder.getValue();
+        return order != null ? order.getOrderId() : null;
+    }
 }

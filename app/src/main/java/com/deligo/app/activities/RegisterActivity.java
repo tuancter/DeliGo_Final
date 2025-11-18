@@ -3,8 +3,11 @@ package com.deligo.app.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -28,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText etPhone;
     private EditText etPassword;
     private EditText etConfirmPassword;
+    private CheckBox cbShowPassword;
     private Button btnRegister;
     private ProgressBar progressBar;
     private TextView tvLogin;
@@ -51,6 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
         etPhone = findViewById(R.id.etPhone);
         etPassword = findViewById(R.id.etPassword);
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
+        cbShowPassword = findViewById(R.id.cbShowPassword);
         btnRegister = findViewById(R.id.btnRegister);
         progressBar = findViewById(R.id.progressBar);
         tvLogin = findViewById(R.id.tvLogin);
@@ -66,6 +71,18 @@ public class RegisterActivity extends AppCompatActivity {
         
         tvLogin.setOnClickListener(v -> {
             finish(); // Go back to login
+        });
+        
+        cbShowPassword.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                etPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                etConfirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            } else {
+                etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                etConfirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            }
+            etPassword.setSelection(etPassword.getText().length());
+            etConfirmPassword.setSelection(etConfirmPassword.getText().length());
         });
     }
     

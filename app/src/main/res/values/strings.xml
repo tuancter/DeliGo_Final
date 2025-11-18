@@ -239,6 +239,7 @@
     <string name="transfer_amount">Số tiền chuyển khoản</string>
     <string name="transfer_note">Vui lòng chuyển khoản đúng số tiền và nội dung để đơn hàng được xử lý nhanh chóng.</string>
     <string name="view_bank_transfer_info">Thông tin chuyển khoản</string>
+    <string name="transfer_completed">Đã chuyển khoản</string>
     
     <!-- Food Detail -->
     <string name="back">← Quay lại</string>

@@ -1,22 +1,29 @@
 package com.deligo.app.activities;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.deligo.app.R;
+import com.deligo.app.repositories.OrderRepository;
+import com.deligo.app.repositories.OrderRepositoryImpl;
 import com.deligo.app.utils.CurrencyUtils;
 
 public class BankTransferActivity extends AppCompatActivity {
     private ImageView ivQRCode;
     private TextView tvAccountName, tvAccountNumber, tvBankName, tvTransferAmount;
+    private Button btnTransferCompleted;
     
     private String customerName;
+    private String orderId;
     private double totalAmount;
+    private OrderRepository orderRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +32,16 @@ public class BankTransferActivity extends AppCompatActivity {
 
         // Get data from intent
         customerName = getIntent().getStringExtra("customerName");
+        orderId = getIntent().getStringExtra("orderId");
         totalAmount = getIntent().getDoubleExtra("totalAmount", 0.0);
+
+        orderRepository = new OrderRepositoryImpl();
 
         initViews();
         setupToolbar();
         loadQRCode();
         displayBankInfo();
+        setupTransferButton();
     }
 
     private void initViews() {
@@ -39,6 +50,7 @@ public class BankTransferActivity extends AppCompatActivity {
         tvAccountNumber = findViewById(R.id.tvAccountNumber);
         tvBankName = findViewById(R.id.tvBankName);
         tvTransferAmount = findViewById(R.id.tvTransferAmount);
+        btnTransferCompleted = findViewById(R.id.btnTransferCompleted);
     }
 
     private void setupToolbar() {
@@ -81,5 +93,32 @@ public class BankTransferActivity extends AppCompatActivity {
         tvAccountNumber.setText("9901239999");
         tvBankName.setText("Techcombank");
         tvTransferAmount.setText(CurrencyUtils.formatVND(totalAmount));
+    }
+
+    private void setupTransferButton() {
+        btnTransferCompleted.setOnClickListener(v -> {
+            if (orderId == null || orderId.isEmpty()) {
+                Toast.makeText(this, "Không tìm thấy thông tin đơn hàng", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Disable button to prevent multiple clicks
+            btnTransferCompleted.setEnabled(false);
+
+            // Update payment status to "Khách hàng đã chuyển khoản"
+            orderRepository.updatePaymentStatus(orderId, "Khách hàng đã chuyển khoản", new OrderRepository.ActionCallback() {
+                @Override
+                public void onSuccess() {
+                    Toast.makeText(BankTransferActivity.this, "Đã xác nhận chuyển khoản", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+
+                @Override
+                public void onError(String message) {
+                    Toast.makeText(BankTransferActivity.this, "Lỗi: " + message, Toast.LENGTH_SHORT).show();
+                    btnTransferCompleted.setEnabled(true);
+                }
+            });
+        });
     }
 }

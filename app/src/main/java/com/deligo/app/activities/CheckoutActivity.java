@@ -103,8 +103,9 @@ public class CheckoutActivity extends AppCompatActivity {
             TextView quantityPriceTextView = itemView.findViewById(R.id.quantityPriceTextView);
             TextView itemTotalTextView = itemView.findViewById(R.id.itemTotalTextView);
             
-            // Set food name
-            foodNameTextView.setText(item.getFoodName());
+            // Get food name from Food object
+            String foodName = item.getFood() != null ? item.getFood().getName() : "Unknown";
+            foodNameTextView.setText(foodName);
             
             // Set quantity and unit price
             String quantityPrice = "x" + item.getQuantity() + " - " + CurrencyUtils.formatVND(item.getPrice());
@@ -115,9 +116,9 @@ public class CheckoutActivity extends AppCompatActivity {
             itemTotalTextView.setText(CurrencyUtils.formatVND(itemTotal));
             
             // Load image if available
-            if (item.getFoodImageUrl() != null && !item.getFoodImageUrl().isEmpty()) {
+            if (item.getFood() != null && item.getFood().getImageUrl() != null && !item.getFood().getImageUrl().isEmpty()) {
                 com.bumptech.glide.Glide.with(this)
-                    .load(item.getFoodImageUrl())
+                    .load(item.getFood().getImageUrl())
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .error(R.drawable.ic_launcher_foreground)
                     .into(foodImageView);
@@ -205,6 +206,7 @@ public class CheckoutActivity extends AppCompatActivity {
                         if (user != null && user.getFullName() != null) {
                             Intent intent = new Intent(CheckoutActivity.this, BankTransferActivity.class);
                             intent.putExtra("customerName", user.getFullName());
+                            intent.putExtra("orderId", orderViewModel.getCreatedOrderId());
                             intent.putExtra("totalAmount", totalAmount);
                             startActivity(intent);
                         }

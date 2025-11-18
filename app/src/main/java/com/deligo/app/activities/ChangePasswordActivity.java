@@ -1,8 +1,12 @@
 package com.deligo.app.activities;
 
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -10,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.deligo.app.R;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,9 +21,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 
-    private TextInputEditText currentPasswordEditText;
-    private TextInputEditText newPasswordEditText;
-    private TextInputEditText confirmPasswordEditText;
+    private EditText currentPasswordEditText;
+    private EditText newPasswordEditText;
+    private EditText confirmPasswordEditText;
+    private CheckBox cbShowPassword;
     private Button saveButton;
     private Button cancelButton;
     private ProgressBar progressBar;
@@ -42,6 +46,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         currentPasswordEditText = findViewById(R.id.currentPasswordEditText);
         newPasswordEditText = findViewById(R.id.newPasswordEditText);
         confirmPasswordEditText = findViewById(R.id.confirmPasswordEditText);
+        cbShowPassword = findViewById(R.id.cbShowPassword);
         saveButton = findViewById(R.id.saveButton);
         cancelButton = findViewById(R.id.cancelButton);
         progressBar = findViewById(R.id.progressBar);
@@ -60,6 +65,21 @@ public class ChangePasswordActivity extends AppCompatActivity {
     private void setupClickListeners() {
         saveButton.setOnClickListener(v -> changePassword());
         cancelButton.setOnClickListener(v -> finish());
+        
+        cbShowPassword.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                currentPasswordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                newPasswordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                confirmPasswordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            } else {
+                currentPasswordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                newPasswordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                confirmPasswordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            }
+            currentPasswordEditText.setSelection(currentPasswordEditText.getText().length());
+            newPasswordEditText.setSelection(newPasswordEditText.getText().length());
+            confirmPasswordEditText.setSelection(confirmPasswordEditText.getText().length());
+        });
     }
 
     private void changePassword() {

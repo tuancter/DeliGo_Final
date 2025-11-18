@@ -26,7 +26,7 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     public void createOrder(String customerId, String deliveryAddress, String paymentMethod,
-                           String note, List<CartItem> cartItems, DataCallback<Order> callback) {
+                            String note, List<CartItem> cartItems, DataCallback<Order> callback) {
         // Calculate total amount
         double totalAmount = 0;
         for (CartItem item : cartItems) {
@@ -44,13 +44,18 @@ public class OrderRepositoryImpl implements OrderRepository {
         order.setOrderStatus("Chờ xác nhận");
         order.setCreatedAt(System.currentTimeMillis());
 
-        // Generate custom OrderID: ORD-{Year-mm-dd}{Timestamp 4 digits}
         long timestamp = System.currentTimeMillis();
-        java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault());
-        String datePart = dateFormat.format(new java.util.Date(timestamp));
-        String timestampPart = String.format("%04d", (int)(timestamp % 10000));
-        String customOrderId = "ORD-" + datePart + timestampPart;
+
+        // Lấy mỗi năm (YYYY)
+        java.text.SimpleDateFormat yearFormat =
+                new java.text.SimpleDateFormat("yyyy", java.util.Locale.getDefault());
+        String yearPart = yearFormat.format(new java.util.Date(timestamp));
+        // Lấy 4 số cuối của timestamp
+        String last4 = String.format("%04d", (int) (timestamp % 10000));
+        String customOrderId = "DH" + yearPart + last4;
+
         order.setOrderId(customOrderId);
+
 
         // Create order in Firestore with custom ID
         firestore.collection("orders")
@@ -143,7 +148,7 @@ public class OrderRepositoryImpl implements OrderRepository {
     public void updateOrderStatus(String orderId, String status, ActionCallback callback) {
         // Convert status to Vietnamese
         String vietnameseStatus = convertStatusToVietnamese(status);
-        
+
         Map<String, Object> updates = new HashMap<>();
         updates.put("orderStatus", vietnameseStatus);
 
@@ -153,10 +158,10 @@ public class OrderRepositoryImpl implements OrderRepository {
                 .addOnSuccessListener(aVoid -> callback.onSuccess())
                 .addOnFailureListener(e -> callback.onError(e.getMessage()));
     }
-    
+
     private String convertStatusToVietnamese(String status) {
         if (status == null) return status;
-        
+
         switch (status.toLowerCase()) {
             case "pending":
                 return "Chờ xác nhận";
@@ -175,11 +180,8 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     public void updatePaymentStatus(String orderId, String status, ActionCallback callback) {
-        // Convert status to Vietnamese
-        String vietnameseStatus = convertStatusToVietnamese(status);
-        
         Map<String, Object> updates = new HashMap<>();
-        updates.put("paymentStatus", vietnameseStatus);
+        updates.put("paymentStatus", status);
 
         firestore.collection("orders")
                 .document(orderId)
@@ -193,7 +195,7 @@ public class OrderRepositoryImpl implements OrderRepository {
         // Convert statuses to Vietnamese
         String vietnameseOrderStatus = convertStatusToVietnamese(orderStatus);
         String vietnamesePaymentStatus = convertStatusToVietnamese(paymentStatus);
-        
+
         Map<String, Object> updates = new HashMap<>();
         updates.put("orderStatus", vietnameseOrderStatus);
         updates.put("paymentStatus", vietnamesePaymentStatus);

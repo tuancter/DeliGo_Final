@@ -126,6 +126,7 @@ public class OrderDetailActivity extends AppCompatActivity {
     private void openBankTransferInfo(String customerName, double totalAmount) {
         Intent intent = new Intent(OrderDetailActivity.this, BankTransferActivity.class);
         intent.putExtra("customerName", customerName);
+        intent.putExtra("orderId", orderId);
         intent.putExtra("totalAmount", totalAmount);
         startActivity(intent);
     }

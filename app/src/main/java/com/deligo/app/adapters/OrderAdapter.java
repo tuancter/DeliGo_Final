@@ -76,7 +76,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
         public void bind(Order order) {
             // Order ID
-            tvOrderId.setText("Order #" + order.getOrderId().substring(0, Math.min(8, order.getOrderId().length())));
+//            tvOrderId.setText("Đơn hàng #" + order.getOrderId().substring(0, Math.min(8, order.getOrderId().length())));
+            tvOrderId.setText("Đơn hàng #" + order.getOrderId());
 
             // Order Date
             SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
