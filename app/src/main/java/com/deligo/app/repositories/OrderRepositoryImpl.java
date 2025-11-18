@@ -4,8 +4,10 @@ import com.deligo.app.models.CartItem;
 import com.deligo.app.models.Food;
 import com.deligo.app.models.Order;
 import com.deligo.app.models.OrderDetail;
+import com.deligo.app.utils.Constants;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.WriteBatch;
 
@@ -16,6 +18,7 @@ import java.util.Map;
 
 public class OrderRepositoryImpl implements OrderRepository {
     private final FirebaseFirestore firestore;
+    private ListenerRegistration orderListener;
 
     public OrderRepositoryImpl() {
         this.firestore = FirebaseFirestore.getInstance();
@@ -215,5 +218,42 @@ public class OrderRepositoryImpl implements OrderRepository {
                     });
                 })
                 .addOnFailureListener(e -> callback.onError(e.getMessage()));
+    }
+
+    @Override
+    public void getPendingOrdersCount(DataCallback<Integer> callback) {
+        firestore.collection("orders")
+                .whereEqualTo("orderStatus", Constants.ORDER_STATUS_PENDING)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    callback.onSuccess(queryDocumentSnapshots.size());
+                })
+                .addOnFailureListener(e -> callback.onError(e.getMessage()));
+    }
+
+    @Override
+    public void listenToPendingOrders(OrderCountListener listener) {
+        // Remove existing listener if any
+        removeOrderListener();
+
+        // Listen to pending orders in real-time
+        orderListener = firestore.collection("orders")
+                .whereEqualTo("orderStatus", Constants.ORDER_STATUS_PENDING)
+                .addSnapshotListener((queryDocumentSnapshots, error) -> {
+                    if (error != null) {
+                        return;
+                    }
+                    if (queryDocumentSnapshots != null) {
+                        listener.onCountChanged(queryDocumentSnapshots.size());
+                    }
+                });
+    }
+
+    @Override
+    public void removeOrderListener() {
+        if (orderListener != null) {
+            orderListener.remove();
+            orderListener = null;
+        }
     }
 }

@@ -24,6 +24,12 @@ public interface OrderRepository {
 
     void getOrderDetails(String orderId, DataCallback<List<OrderDetail>> callback);
 
+    void getPendingOrdersCount(DataCallback<Integer> callback);
+
+    void listenToPendingOrders(OrderCountListener listener);
+
+    void removeOrderListener();
+
     interface DataCallback<T> {
         void onSuccess(T data);
         void onError(String message);
@@ -32,5 +38,9 @@ public interface OrderRepository {
     interface ActionCallback {
         void onSuccess();
         void onError(String message);
+    }
+
+    interface OrderCountListener {
+        void onCountChanged(int count);
     }
 }
