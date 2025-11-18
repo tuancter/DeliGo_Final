@@ -33,6 +33,7 @@ public class OrderDetailActivity extends AppCompatActivity {
     private TextView tvOrderId, tvOrderDate, tvOrderStatus, tvPaymentStatus, tvPaymentMethod;
     private TextView tvPhoneNumber, tvDeliveryAddress, tvTotalAmount;
     private RecyclerView orderItemsRecyclerView;
+    private Button btnCancelOrder;
     private Button btnReviewProducts;
     private Button btnSubmitComplaint;
     private ProgressBar progressBar;
@@ -80,6 +81,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         tvTotalAmount = findViewById(R.id.tvTotalAmount);
         orderItemsRecyclerView = findViewById(R.id.orderItemsRecyclerView);
         btnBankTransferInfo = findViewById(R.id.btnBankTransferInfo);
+        btnCancelOrder = findViewById(R.id.btnCancelOrder);
         btnReviewProducts = findViewById(R.id.btnReviewProducts);
         btnSubmitComplaint = findViewById(R.id.btnSubmitComplaint);
         progressBar = findViewById(R.id.progressBar);
@@ -111,6 +113,8 @@ public class OrderDetailActivity extends AppCompatActivity {
     }
 
     private void setupListeners() {
+        btnCancelOrder.setOnClickListener(v -> showCancelOrderDialog());
+
         btnReviewProducts.setOnClickListener(v -> {
             Intent intent = new Intent(OrderDetailActivity.this, ReviewFoodActivity.class);
             intent.putExtra("orderId", orderId);
@@ -122,6 +126,18 @@ public class OrderDetailActivity extends AppCompatActivity {
             intent.putExtra("orderId", orderId);
             startActivity(intent);
         });
+    }
+
+    private void showCancelOrderDialog() {
+        new androidx.appcompat.app.AlertDialog.Builder(this, R.style.Theme_DeliGo_Dialog_Alert)
+                .setTitle(getString(R.string.confirm_cancel_order))
+                .setMessage(getString(R.string.confirm_cancel_order_customer_message))
+                .setPositiveButton(getString(R.string.action_confirm), (dialog, which) -> {
+                    orderViewModel.cancelOrder(orderId);
+                    Toast.makeText(this, getString(R.string.toast_order_cancelled), Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton(getString(R.string.action_cancel), null)
+                .show();
     }
     
     private void openBankTransferInfo(String customerName, double totalAmount) {
@@ -182,6 +198,14 @@ public class OrderDetailActivity extends AppCompatActivity {
                     });
                 } else {
                     btnBankTransferInfo.setVisibility(View.GONE);
+                }
+
+                // Show cancel button only for pending orders
+                String orderStatus = order.getOrderStatus();
+                if (orderStatus != null && orderStatus.toLowerCase().contains("chờ")) {
+                    btnCancelOrder.setVisibility(View.VISIBLE);
+                } else {
+                    btnCancelOrder.setVisibility(View.GONE);
                 }
 
                 // Show review and complaint buttons only for completed orders

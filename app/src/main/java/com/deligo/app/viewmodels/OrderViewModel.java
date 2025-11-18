@@ -156,6 +156,25 @@ public class OrderViewModel extends ViewModel {
         });
     }
 
+    public void cancelOrder(String orderId) {
+        isLoading.setValue(true);
+        orderRepository.updateOrderAndPaymentStatus(orderId, "Bị huỷ", "Bị huỷ", 
+                new OrderRepository.ActionCallback() {
+                    @Override
+                    public void onSuccess() {
+                        isLoading.setValue(false);
+                        // Reload order details to show updated status
+                        loadOrderDetails(orderId);
+                    }
+
+                    @Override
+                    public void onError(String message) {
+                        errorMessage.setValue(message);
+                        isLoading.setValue(false);
+                    }
+                });
+    }
+
     public void resetOrderPlaced() {
         orderPlaced.setValue(false);
     }

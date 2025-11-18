@@ -301,6 +301,17 @@
                 android:visibility="gone"
                 android:layout_marginTop="8dp" />
 
+            <!-- Cancel Order Button (only for pending orders) -->
+            <Button
+                android:id="@+id/btnCancelOrder" style="@style/Widget.DeliGo.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel_order"
+                android:backgroundTint="#F44336"
+                android:textColor="@android:color/white"
+                android:visibility="gone"
+                android:layout_marginTop="8dp" />
+
             <!-- Review Products Button (only for completed orders) -->
             <Button
                 android:id="@+id/btnReviewProducts" style="@style/Widget.DeliGo.Button"

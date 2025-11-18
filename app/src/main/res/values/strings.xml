@@ -83,6 +83,7 @@
     <string name="confirm_logout">Bạn có chắc muốn đăng xuất?</string>
     <string name="confirm_cancel_order">Bạn có chắc muốn hủy đơn hàng?</string>
     <string name="confirm_cancel_order_message">Hủy đơn hàng sẽ đồng thời đánh dấu thanh toán là thất bại.</string>
+    <string name="confirm_cancel_order_customer_message">Bạn có chắc muốn hủy đơn hàng này? Hành động này không thể hoàn tác.</string>
     <string name="edit">Sửa</string>
     <string name="delete">Xoá</string>
     
@@ -298,6 +299,7 @@
     <!-- Toast messages -->
     <string name="toast_profile_updated">Cập nhật hồ sơ thành công</string>
     <string name="toast_order_updated">Cập nhật đơn hàng thành công</string>
+    <string name="toast_order_cancelled">Đơn hàng đã được hủy</string>
     <string name="toast_complaint_updated">Cập nhật khiếu nại thành công</string>
     <string name="toast_review_submitted">Đánh giá đã được gửi!</string>
     <string name="toast_complaint_submitted">Khiếu nại đã được gửi!</string>
