@@ -19,9 +19,11 @@ import com.deligo.app.R;
 import com.deligo.app.adapters.OrderDetailAdapter;
 import com.deligo.app.repositories.CartRepositoryImpl;
 import com.deligo.app.repositories.OrderRepositoryImpl;
+import com.deligo.app.repositories.ProfileRepositoryImpl;
 import com.deligo.app.utils.CurrencyUtils;
 import com.deligo.app.utils.ViewModelFactory;
 import com.deligo.app.viewmodels.OrderViewModel;
+import com.deligo.app.viewmodels.ProfileViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,8 +38,10 @@ public class OrderDetailActivity extends AppCompatActivity {
     private ProgressBar progressBar;
 
     private OrderViewModel orderViewModel;
+    private ProfileViewModel profileViewModel;
     private OrderDetailAdapter orderDetailAdapter;
     private String orderId;
+    private String customerName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +67,8 @@ public class OrderDetailActivity extends AppCompatActivity {
         orderViewModel.loadOrderDetails(orderId);
     }
 
+    private Button btnBankTransferInfo;
+
     private void initViews() {
         tvOrderId = findViewById(R.id.tvOrderId);
         tvOrderDate = findViewById(R.id.tvOrderDate);
@@ -72,6 +78,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         tvDeliveryAddress = findViewById(R.id.tvDeliveryAddress);
         tvTotalAmount = findViewById(R.id.tvTotalAmount);
         orderItemsRecyclerView = findViewById(R.id.orderItemsRecyclerView);
+        btnBankTransferInfo = findViewById(R.id.btnBankTransferInfo);
         btnReviewProducts = findViewById(R.id.btnReviewProducts);
         btnSubmitComplaint = findViewById(R.id.btnSubmitComplaint);
         progressBar = findViewById(R.id.progressBar);
@@ -90,6 +97,10 @@ public class OrderDetailActivity extends AppCompatActivity {
     private void setupViewModel() {
         ViewModelFactory factory = new ViewModelFactory();
         orderViewModel = new ViewModelProvider(this, factory).get(OrderViewModel.class);
+        profileViewModel = new ViewModelProvider(this, factory).get(ProfileViewModel.class);
+        
+        // Load user profile to get customer name
+        profileViewModel.loadProfile();
     }
 
     private void setupRecyclerView() {
@@ -111,8 +122,22 @@ public class OrderDetailActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
+    
+    private void openBankTransferInfo(String customerName, double totalAmount) {
+        Intent intent = new Intent(OrderDetailActivity.this, BankTransferActivity.class);
+        intent.putExtra("customerName", customerName);
+        intent.putExtra("totalAmount", totalAmount);
+        startActivity(intent);
+    }
 
     private void observeViewModel() {
+        // Observe profile to get customer name
+        profileViewModel.getUserProfile().observe(this, user -> {
+            if (user != null && user.getFullName() != null) {
+                customerName = user.getFullName();
+            }
+        });
+        
         orderViewModel.getCurrentOrder().observe(this, order -> {
             if (order != null) {
                 // Order ID
@@ -139,6 +164,16 @@ public class OrderDetailActivity extends AppCompatActivity {
 
                 // Total Amount
                 tvTotalAmount.setText(CurrencyUtils.formatVND(order.getTotalAmount()));
+
+                // Show bank transfer info button if payment method is bank transfer
+                if (order.getPaymentMethod() != null && order.getPaymentMethod().contains("Chuyển khoản")) {
+                    btnBankTransferInfo.setVisibility(View.VISIBLE);
+                    btnBankTransferInfo.setOnClickListener(v -> {
+                        openBankTransferInfo(customerName, order.getTotalAmount());
+                    });
+                } else {
+                    btnBankTransferInfo.setVisibility(View.GONE);
+                }
 
                 // Show review and complaint buttons only for completed orders
                 if ("completed".equalsIgnoreCase(order.getOrderStatus())) {

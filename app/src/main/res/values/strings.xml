@@ -214,7 +214,8 @@
     <string name="delivery_address">Địa chỉ giao hàng</string>
     <string name="enter_delivery_address">Nhập địa chỉ giao hàng</string>
     <string name="new_address">Địa chỉ mới</string>
-    <string name="cash_on_delivery">Thanh toán khi nhận hàng</string>
+    <string name="cash_on_delivery">Thanh toán khi nhận hàng (COD)</string>
+    <string name="bank_transfer">Chuyển khoản ngân hàng</string>
     <string name="credit_debit_card">Thẻ tín dụng/Ghi nợ</string>
     <string name="e_wallet">Ví điện tử</string>
     <string name="order_note_optional">Ghi chú đơn hàng (Tùy chọn)</string>
@@ -222,6 +223,18 @@
     <string name="order_summary">Tóm tắt đơn hàng</string>
     <string name="items">Món</string>
     <string name="place_order">Đặt hàng</string>
+    
+    <!-- Bank Transfer -->
+    <string name="bank_transfer_info">Thông tin chuyển khoản</string>
+    <string name="scan_qr_to_transfer">Quét mã QR để chuyển khoản</string>
+    <string name="qr_code">Mã QR</string>
+    <string name="transfer_information">Thông tin chuyển khoản</string>
+    <string name="account_name">Tên tài khoản</string>
+    <string name="account_number">Số tài khoản</string>
+    <string name="bank_name">Ngân hàng</string>
+    <string name="transfer_amount">Số tiền chuyển khoản</string>
+    <string name="transfer_note">Vui lòng chuyển khoản đúng số tiền và nội dung để đơn hàng được xử lý nhanh chóng.</string>
+    <string name="view_bank_transfer_info">Thông tin chuyển khoản</string>
     
     <!-- Food Detail -->
     <string name="back">← Quay lại</string>

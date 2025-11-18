@@ -135,6 +135,19 @@ public class CheckoutActivity extends AppCompatActivity {
 
         orderViewModel.getOrderPlaced().observe(this, orderPlaced -> {
             if (orderPlaced) {
+                // Check if bank transfer is selected
+                int selectedPaymentId = rgPaymentMethod.getCheckedRadioButtonId();
+                if (selectedPaymentId == R.id.rbBankTransfer) {
+                    // Navigate to bank transfer screen
+                    profileViewModel.getUserProfile().observe(this, user -> {
+                        if (user != null && user.getFullName() != null) {
+                            Intent intent = new Intent(CheckoutActivity.this, BankTransferActivity.class);
+                            intent.putExtra("customerName", user.getFullName());
+                            intent.putExtra("totalAmount", totalAmount);
+                            startActivity(intent);
+                        }
+                    });
+                }
                 showOrderConfirmation();
             }
         });

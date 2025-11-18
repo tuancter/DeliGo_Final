@@ -48,6 +48,9 @@
             android:name=".activities.CheckoutActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.BankTransferActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.OrderHistoryActivity"
             android:exported="false" />
         <activity

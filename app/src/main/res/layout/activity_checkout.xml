@@ -76,17 +76,10 @@
                 android:padding="12dp" />
 
             <RadioButton
-                android:id="@+id/rbCard"
+                android:id="@+id/rbBankTransfer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/credit_debit_card"
-                android:padding="12dp" />
-
-            <RadioButton
-                android:id="@+id/rbEWallet"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/e_wallet"
+                android:text="@string/bank_transfer"
                 android:padding="12dp" />
         </RadioGroup>
 

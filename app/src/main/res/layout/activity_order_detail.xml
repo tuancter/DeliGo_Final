@@ -255,6 +255,15 @@
                 android:visibility="gone"
                 android:layout_marginBottom="16dp" />
 
+            <!-- Bank Transfer Info Button (only for bank transfer orders) -->
+            <Button
+                android:id="@+id/btnBankTransferInfo" style="@style/Widget.DeliGo.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/view_bank_transfer_info"
+                android:visibility="gone"
+                android:layout_marginTop="8dp" />
+
             <!-- Review Products Button (only for completed orders) -->
             <Button
                 android:id="@+id/btnReviewProducts" style="@style/Widget.DeliGo.Button"
