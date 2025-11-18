@@ -1,5 +1,8 @@
 package com.deligo.app.repositories;
 
+import android.util.Log;
+
+import com.deligo.app.constants.OrderStatus;
 import com.deligo.app.models.Food;
 import com.deligo.app.models.FoodSales;
 import com.deligo.app.models.Order;
@@ -42,7 +45,7 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
         firestore.collection("orders")
                 .whereGreaterThanOrEqualTo("createdAt", startDate)
                 .whereLessThanOrEqualTo("createdAt", endDate)
-                .whereEqualTo("orderStatus", "completed")
+                .whereEqualTo("orderStatus", OrderStatus.COMPLETED.getVietnameseName())
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     double totalRevenue = 0.0;
@@ -75,60 +78,113 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
 
     @Override
     public void getTopSellingFoods(long startDate, long endDate, int limit, DataCallback<List<FoodSales>> callback) {
-        // First, get all orders in the date range
+        Log.d("TESTMINHTUAN", "========== START getTopSellingFoods ==========");
+        Log.d("TESTMINHTUAN", "Date range: " + startDate + " to " + endDate);
+        Log.d("TESTMINHTUAN", "Limit: " + limit);
+        
+        // First, get ALL orders in the date range (without status filter) to debug
         firestore.collection("orders")
                 .whereGreaterThanOrEqualTo("createdAt", startDate)
                 .whereLessThanOrEqualTo("createdAt", endDate)
-                .whereEqualTo("orderStatus", "completed")
                 .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    // Map to store foodId -> total quantity sold
-                    Map<String, Integer> foodQuantityMap = new HashMap<>();
-                    int[] pendingOrders = {queryDocumentSnapshots.size()};
-
-                    if (pendingOrders[0] == 0) {
-                        callback.onSuccess(new ArrayList<>());
-                        return;
+                .addOnSuccessListener(allOrdersSnapshot -> {
+                    Log.d("TESTMINHTUAN", "Total orders in date range: " + allOrdersSnapshot.size());
+                    
+                    // Log all order statuses for debugging
+                    Map<String, Integer> statusDebug = new HashMap<>();
+                    for (QueryDocumentSnapshot doc : allOrdersSnapshot) {
+                        Order order = doc.toObject(Order.class);
+                        String status = order.getOrderStatus();
+                        statusDebug.put(status, statusDebug.getOrDefault(status, 0) + 1);
                     }
+                    Log.d("TESTMINHTUAN", "Order statuses breakdown: " + statusDebug.toString());
+                    
+                    // Now get only completed orders
+                    firestore.collection("orders")
+                            .whereGreaterThanOrEqualTo("createdAt", startDate)
+                            .whereLessThanOrEqualTo("createdAt", endDate)
+                            .whereEqualTo("orderStatus", OrderStatus.COMPLETED.getVietnameseName())
+                            .get()
+                            .addOnSuccessListener(queryDocumentSnapshots -> {
+                                Log.d("TESTMINHTUAN", "Found " + queryDocumentSnapshots.size() + " completed orders");
+                                
+                                // Map to store foodId -> total quantity sold
+                                Map<String, Integer> foodQuantityMap = new HashMap<>();
+                                int[] pendingOrders = {queryDocumentSnapshots.size()};
 
-                    // For each order, get its order details
-                    for (QueryDocumentSnapshot orderDoc : queryDocumentSnapshots) {
-                        String orderId = orderDoc.getId();
-                        
-                        firestore.collection("orders")
-                                .document(orderId)
-                                .collection("orderDetails")
-                                .get()
-                                .addOnSuccessListener(detailSnapshots -> {
-                                    for (QueryDocumentSnapshot detailDoc : detailSnapshots) {
-                                        OrderDetail detail = detailDoc.toObject(OrderDetail.class);
-                                        String foodId = detail.getFoodId();
-                                        int quantity = detail.getQuantity();
-                                        foodQuantityMap.put(foodId, 
-                                            foodQuantityMap.getOrDefault(foodId, 0) + quantity);
-                                    }
+                                if (pendingOrders[0] == 0) {
+                                    Log.d("TESTMINHTUAN", "No completed orders found in date range");
+                                    callback.onSuccess(new ArrayList<>());
+                                    return;
+                                }
 
-                                    pendingOrders[0]--;
+                                // For each order, get its order details
+                                for (QueryDocumentSnapshot orderDoc : queryDocumentSnapshots) {
+                                    String orderId = orderDoc.getId();
+                                    Order order = orderDoc.toObject(Order.class);
+                                    Log.d("TESTMINHTUAN", "Processing order: " + orderId + " | Status: " + order.getOrderStatus() + " | Total: " + order.getTotalAmount());
                                     
-                                    // When all orders are processed
-                                    if (pendingOrders[0] == 0) {
-                                        processFoodSales(foodQuantityMap, limit, callback);
-                                    }
-                                })
-                                .addOnFailureListener(e -> {
-                                    pendingOrders[0]--;
-                                    if (pendingOrders[0] == 0) {
-                                        processFoodSales(foodQuantityMap, limit, callback);
-                                    }
-                                });
-                    }
+                                    firestore.collection("orders")
+                                            .document(orderId)
+                                            .collection("orderDetails")
+                                            .get()
+                                            .addOnSuccessListener(detailSnapshots -> {
+                                                Log.d("TESTMINHTUAN", "Order " + orderId + " has " + detailSnapshots.size() + " items");
+                                                
+                                                synchronized (foodQuantityMap) {
+                                                    for (QueryDocumentSnapshot detailDoc : detailSnapshots) {
+                                                        OrderDetail detail = detailDoc.toObject(OrderDetail.class);
+                                                        String foodId = detail.getFoodId();
+                                                        int quantity = detail.getQuantity();
+                                                        
+                                                        int oldQuantity = foodQuantityMap.getOrDefault(foodId, 0);
+                                                        int newQuantity = oldQuantity + quantity;
+                                                        foodQuantityMap.put(foodId, newQuantity);
+                                                        
+                                                        Log.d("TESTMINHTUAN", "FoodId: " + foodId + " | Quantity: " + quantity + " | Total: " + newQuantity);
+                                                    }
+                                                }
+
+                                                synchronized (pendingOrders) {
+                                                    pendingOrders[0]--;
+                                                    Log.d("TESTMINHTUAN", "Pending orders remaining: " + pendingOrders[0]);
+                                                    
+                                                    // When all orders are processed
+                                                    if (pendingOrders[0] == 0) {
+                                                        Log.d("TESTMINHTUAN", "All orders processed. Total unique foods: " + foodQuantityMap.size());
+                                                        processFoodSales(foodQuantityMap, limit, callback);
+                                                    }
+                                                }
+                                            })
+                                            .addOnFailureListener(e -> {
+                                                Log.e("TESTMINHTUAN", "Failed to get order details for " + orderId + ": " + e.getMessage());
+                                                synchronized (pendingOrders) {
+                                                    pendingOrders[0]--;
+                                                    if (pendingOrders[0] == 0) {
+                                                        processFoodSales(foodQuantityMap, limit, callback);
+                                                    }
+                                                }
+                                            });
+                                }
+                            })
+                            .addOnFailureListener(e -> {
+                                Log.e("TESTMINHTUAN", "Failed to get completed orders: " + e.getMessage());
+                                callback.onError(e.getMessage());
+                            });
                 })
-                .addOnFailureListener(e -> callback.onError(e.getMessage()));
+                .addOnFailureListener(e -> {
+                    Log.e("TESTMINHTUAN", "Failed to get all orders: " + e.getMessage());
+                    callback.onError(e.getMessage());
+                });
     }
 
     private void processFoodSales(Map<String, Integer> foodQuantityMap, int limit, 
                                   DataCallback<List<FoodSales>> callback) {
+        Log.d("TESTMINHTUAN", "========== START processFoodSales ==========");
+        Log.d("TESTMINHTUAN", "Food quantity map size: " + foodQuantityMap.size());
+        
         if (foodQuantityMap.isEmpty()) {
+            Log.d("TESTMINHTUAN", "Food quantity map is empty - returning empty list");
             callback.onSuccess(new ArrayList<>());
             return;
         }
@@ -137,10 +193,18 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
         List<Map.Entry<String, Integer>> sortedEntries = new ArrayList<>(foodQuantityMap.entrySet());
         sortedEntries.sort((a, b) -> b.getValue().compareTo(a.getValue()));
 
+        Log.d("TESTMINHTUAN", "Top foods by quantity:");
+        for (int i = 0; i < Math.min(sortedEntries.size(), limit); i++) {
+            Map.Entry<String, Integer> entry = sortedEntries.get(i);
+            Log.d("TESTMINHTUAN", (i + 1) + ". FoodId: " + entry.getKey() + " | Quantity: " + entry.getValue());
+        }
+
         // Limit the results
         int resultSize = Math.min(limit, sortedEntries.size());
         List<FoodSales> foodSalesList = new ArrayList<>();
         int[] pendingFoods = {resultSize};
+        
+        Log.d("TESTMINHTUAN", "Fetching details for top " + resultSize + " foods");
 
         for (int i = 0; i < resultSize; i++) {
             Map.Entry<String, Integer> entry = sortedEntries.get(i);
@@ -158,18 +222,35 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
                                 food.setFoodId(documentSnapshot.getId());
                                 FoodSales foodSales = new FoodSales(food, quantitySold);
                                 foodSalesList.add(foodSales);
+                                Log.d("TESTMINHTUAN", "Added food: " + food.getName() + " | Quantity: " + quantitySold);
+                            } else {
+                                Log.e("TESTMINHTUAN", "Food object is null for foodId: " + foodId);
                             }
+                        } else {
+                            Log.e("TESTMINHTUAN", "Food document does not exist for foodId: " + foodId);
                         }
 
                         pendingFoods[0]--;
+                        Log.d("TESTMINHTUAN", "Pending foods remaining: " + pendingFoods[0]);
+                        
                         if (pendingFoods[0] == 0) {
                             // Sort again to maintain order after async operations
                             foodSalesList.sort((a, b) -> 
                                 Integer.compare(b.getQuantitySold(), a.getQuantitySold()));
+                            
+                            Log.d("TESTMINHTUAN", "========== FINAL RESULT ==========");
+                            Log.d("TESTMINHTUAN", "Total foods in result: " + foodSalesList.size());
+                            for (int j = 0; j < foodSalesList.size(); j++) {
+                                FoodSales fs = foodSalesList.get(j);
+                                Log.d("TESTMINHTUAN", (j + 1) + ". " + fs.getFood().getName() + " - Sold: " + fs.getQuantitySold());
+                            }
+                            Log.d("TESTMINHTUAN", "========== END ==========");
+                            
                             callback.onSuccess(foodSalesList);
                         }
                     })
                     .addOnFailureListener(e -> {
+                        Log.e("TESTMINHTUAN", "Failed to fetch food details for " + foodId + ": " + e.getMessage());
                         pendingFoods[0]--;
                         if (pendingFoods[0] == 0) {
                             foodSalesList.sort((a, b) -> 

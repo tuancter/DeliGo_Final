@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.deligo.app.constants.OrderStatus;
 import com.deligo.app.models.Order;
 import com.deligo.app.models.OrderDetail;
 import com.deligo.app.repositories.OrderRepository;
@@ -32,11 +33,14 @@ public class AdminOrderViewModel extends ViewModel {
     // Valid status transitions (Vietnamese)
     private static final Map<String, List<String>> VALID_TRANSITIONS = new HashMap<>();
     static {
-        VALID_TRANSITIONS.put("Chờ xác nhận", Arrays.asList("Đã nhận đơn", "Bị huỷ"));
-        VALID_TRANSITIONS.put("Đã nhận đơn", Arrays.asList("Đang chuẩn bị", "Bị huỷ"));
-        VALID_TRANSITIONS.put("Đang chuẩn bị", Arrays.asList("Đã hoàn thành", "Bị huỷ"));
-        VALID_TRANSITIONS.put("Đã hoàn thành", new ArrayList<>());
-        VALID_TRANSITIONS.put("Bị huỷ", new ArrayList<>());
+        VALID_TRANSITIONS.put(OrderStatus.PENDING.getVietnameseName(), 
+            Arrays.asList(OrderStatus.ACCEPTED.getVietnameseName(), OrderStatus.CANCELLED.getVietnameseName()));
+        VALID_TRANSITIONS.put(OrderStatus.ACCEPTED.getVietnameseName(), 
+            Arrays.asList(OrderStatus.PREPARING.getVietnameseName(), OrderStatus.CANCELLED.getVietnameseName()));
+        VALID_TRANSITIONS.put(OrderStatus.PREPARING.getVietnameseName(), 
+            Arrays.asList(OrderStatus.COMPLETED.getVietnameseName(), OrderStatus.CANCELLED.getVietnameseName()));
+        VALID_TRANSITIONS.put(OrderStatus.COMPLETED.getVietnameseName(), new ArrayList<>());
+        VALID_TRANSITIONS.put(OrderStatus.CANCELLED.getVietnameseName(), new ArrayList<>());
     }
 
     public AdminOrderViewModel(OrderRepository orderRepository) {
@@ -106,14 +110,14 @@ public class AdminOrderViewModel extends ViewModel {
         orderRepository.getOrderById(orderId, new OrderRepository.DataCallback<Order>() {
             @Override
             public void onSuccess(Order order) {
-                if (!"Chờ xác nhận".equals(order.getOrderStatus())) {
+                if (!OrderStatus.PENDING.matches(order.getOrderStatus())) {
                     errorMessage.setValue("Chỉ có thể chấp nhận đơn hàng đang chờ xác nhận");
                     isLoading.setValue(false);
                     return;
                 }
 
                 // Update status to accepted
-                orderRepository.updateOrderStatus(orderId, "accepted", new OrderRepository.ActionCallback() {
+                orderRepository.updateOrderStatus(orderId, OrderStatus.ACCEPTED.getVietnameseName(), new OrderRepository.ActionCallback() {
                     @Override
                     public void onSuccess() {
                         actionSuccess.setValue(true);
@@ -153,8 +157,8 @@ public class AdminOrderViewModel extends ViewModel {
                 }
 
                 // Update status - if cancelling, also update payment status to cancelled
-                if ("cancelled".equals(newStatus) || "Bị huỷ".equals(newStatus)) {
-                    orderRepository.updateOrderAndPaymentStatus(orderId, newStatus, "cancelled", new OrderRepository.ActionCallback() {
+                if (OrderStatus.CANCELLED.matches(newStatus)) {
+                    orderRepository.updateOrderAndPaymentStatus(orderId, newStatus, OrderStatus.CANCELLED.getVietnameseName(), new OrderRepository.ActionCallback() {
                         @Override
                         public void onSuccess() {
                             actionSuccess.setValue(true);

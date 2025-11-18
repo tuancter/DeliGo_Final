@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.deligo.app.R;
 import com.deligo.app.adapters.OrderDetailAdapter;
+import com.deligo.app.constants.OrderStatus;
+import com.deligo.app.constants.PaymentStatus;
 import com.deligo.app.models.Order;
 import com.deligo.app.utils.CurrencyUtils;
 import com.deligo.app.utils.ViewModelFactory;
@@ -180,8 +182,7 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
         
         // Show payment buttons only if payment status is pending
         String paymentStatus = order.getPaymentStatus();
-        if (paymentStatus != null && (paymentStatus.toLowerCase().contains("chờ") || 
-            "pending".equalsIgnoreCase(paymentStatus))) {
+        if (paymentStatus != null && PaymentStatus.PENDING.matches(paymentStatus)) {
             layoutPaymentButtons.setVisibility(View.VISIBLE);
         } else {
             layoutPaymentButtons.setVisibility(View.GONE);
@@ -200,18 +201,16 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
         // Show appropriate buttons based on status (Vietnamese)
         if (status == null) return;
         
-        String statusLower = status.toLowerCase();
-        if (statusLower.contains("chờ") || statusLower.equals("pending")) {
+        if (OrderStatus.PENDING.matches(status)) {
             btnAccept.setVisibility(View.VISIBLE);
             btnCancel.setVisibility(View.VISIBLE);
-        } else if (statusLower.contains("nhận") || statusLower.equals("accepted")) {
+        } else if (OrderStatus.ACCEPTED.matches(status)) {
             btnPreparing.setVisibility(View.VISIBLE);
             btnCancel.setVisibility(View.VISIBLE);
-        } else if (statusLower.contains("chuẩn bị") || statusLower.equals("preparing")) {
+        } else if (OrderStatus.PREPARING.matches(status)) {
             btnComplete.setVisibility(View.VISIBLE);
             btnCancel.setVisibility(View.VISIBLE);
-        } else if (statusLower.contains("hoàn thành") || statusLower.contains("huỷ") || 
-                   statusLower.equals("completed") || statusLower.equals("cancelled")) {
+        } else if (OrderStatus.COMPLETED.matches(status) || OrderStatus.CANCELLED.matches(status)) {
             // No buttons for final states
             layoutButtons.setVisibility(View.GONE);
         }
@@ -226,13 +225,13 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
 
         btnPreparing.setOnClickListener(v -> {
             if (currentOrder != null) {
-                viewModel.updateOrderStatus(currentOrder.getOrderId(), "Đang chuẩn bị");
+                viewModel.updateOrderStatus(currentOrder.getOrderId(), OrderStatus.PREPARING.getVietnameseName());
             }
         });
 
         btnComplete.setOnClickListener(v -> {
             if (currentOrder != null) {
-                viewModel.updateOrderStatus(currentOrder.getOrderId(), "Đã hoàn thành");
+                viewModel.updateOrderStatus(currentOrder.getOrderId(), OrderStatus.COMPLETED.getVietnameseName());
             }
         });
 
@@ -243,8 +242,8 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
                         .setMessage(getString(R.string.confirm_cancel_order_message))
                         .setPositiveButton(getString(R.string.action_confirm), (dialog, which) -> {
                             // Update order status to cancelled and payment status to failed
-                            viewModel.updateOrderStatus(currentOrder.getOrderId(), "Bị huỷ");
-                            viewModel.updatePaymentStatus(currentOrder.getOrderId(), "Bị huỷ");
+                            viewModel.updateOrderStatus(currentOrder.getOrderId(), OrderStatus.CANCELLED.getVietnameseName());
+                            viewModel.updatePaymentStatus(currentOrder.getOrderId(), PaymentStatus.CANCELLED.getVietnameseName());
                         })
                         .setNegativeButton(getString(R.string.action_cancel), null)
                         .show();
@@ -267,12 +266,12 @@ public class AdminOrderDetailActivity extends AppCompatActivity {
     }
 
     private void showPaymentConfirmationDialog(String paymentStatus, String message) {
-        // Convert to Vietnamese status
+        // Get Vietnamese status from enum
         String vietnameseStatus = paymentStatus;
         if ("completed".equals(paymentStatus)) {
-            vietnameseStatus = "Đã hoàn thành";
+            vietnameseStatus = PaymentStatus.COMPLETED.getVietnameseName();
         } else if ("cancelled".equals(paymentStatus)) {
-            vietnameseStatus = "Bị huỷ";
+            vietnameseStatus = PaymentStatus.CANCELLED.getVietnameseName();
         }
         
         String finalStatus = vietnameseStatus;
