@@ -10,6 +10,7 @@ public class Food implements Serializable {
     private double price;
     private String imageUrl;
     private boolean isAvailable;
+    private int soldCount;
 
     // Required empty constructor for Firestore
     public Food() {
@@ -80,5 +81,13 @@ public class Food implements Serializable {
 
     public void setAvailable(boolean available) {
         isAvailable = available;
+    }
+
+    public int getSoldCount() {
+        return soldCount;
+    }
+
+    public void setSoldCount(int soldCount) {
+        this.soldCount = soldCount;
     }
 }

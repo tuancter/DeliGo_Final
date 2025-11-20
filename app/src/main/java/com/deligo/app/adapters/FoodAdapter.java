@@ -25,6 +25,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     private List<Food> foodList = new ArrayList<>();
     private OnFoodClickListener listener;
     private ReviewRepository reviewRepository;
+    private com.deligo.app.repositories.StatisticsRepository statisticsRepository;
 
     public interface OnFoodClickListener {
         void onFoodClick(Food food);
@@ -33,6 +34,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     public FoodAdapter(OnFoodClickListener listener) {
         this.listener = listener;
         this.reviewRepository = new ReviewRepositoryImpl();
+        this.statisticsRepository = new com.deligo.app.repositories.StatisticsRepositoryImpl();
     }
 
     public void setFoodList(List<Food> foodList) {
@@ -64,6 +66,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         private final TextView foodNameTextView;
         private final TextView foodPriceTextView;
         private final TextView foodRatingTextView;
+        private final TextView foodSoldCountTextView;
         private final TextView availabilityTextView;
 
         public FoodViewHolder(@NonNull View itemView) {
@@ -72,6 +75,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             foodNameTextView = itemView.findViewById(R.id.foodNameTextView);
             foodPriceTextView = itemView.findViewById(R.id.foodPriceTextView);
             foodRatingTextView = itemView.findViewById(R.id.foodRatingTextView);
+            foodSoldCountTextView = itemView.findViewById(R.id.foodSoldCountTextView);
             availabilityTextView = itemView.findViewById(R.id.availabilityTextView);
         }
 
@@ -89,6 +93,24 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
                 availabilityTextView.setTextColor(Color.WHITE);
                 availabilityTextView.setBackgroundColor(Color.parseColor("#9E9E9E"));
             }
+
+            // Load sold count from completed orders
+            statisticsRepository.getTotalSoldCountForFood(food.getFoodId(), new com.deligo.app.repositories.StatisticsRepository.DataCallback<Integer>() {
+                @Override
+                public void onSuccess(Integer soldCount) {
+                    if (soldCount != null && soldCount > 0) {
+                        foodSoldCountTextView.setVisibility(View.VISIBLE);
+                        foodSoldCountTextView.setText(String.format(Locale.US, "Đã bán: %d", soldCount));
+                    } else {
+                        foodSoldCountTextView.setVisibility(View.GONE);
+                    }
+                }
+
+                @Override
+                public void onError(String message) {
+                    foodSoldCountTextView.setVisibility(View.GONE);
+                }
+            });
 
             // Load average rating
             reviewRepository.getAverageRating(food.getFoodId(), new ReviewRepository.DataCallback<Double>() {

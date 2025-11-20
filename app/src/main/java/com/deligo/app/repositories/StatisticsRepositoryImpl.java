@@ -262,6 +262,60 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
     }
 
     @Override
+    public void getTotalSoldCountForFood(String foodId, DataCallback<Integer> callback) {
+        // Get all completed orders
+        firestore.collection("orders")
+                .whereEqualTo("orderStatus", OrderStatus.COMPLETED.getVietnameseName())
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    int totalSold = 0;
+                    int[] pendingOrders = {queryDocumentSnapshots.size()};
+
+                    if (pendingOrders[0] == 0) {
+                        callback.onSuccess(0);
+                        return;
+                    }
+
+                    final int[] totalSoldCount = {0};
+
+                    // For each completed order, check if it contains this food
+                    for (QueryDocumentSnapshot orderDoc : queryDocumentSnapshots) {
+                        String orderId = orderDoc.getId();
+                        
+                        firestore.collection("orders")
+                                .document(orderId)
+                                .collection("orderDetails")
+                                .whereEqualTo("foodId", foodId)
+                                .get()
+                                .addOnSuccessListener(detailSnapshots -> {
+                                    synchronized (totalSoldCount) {
+                                        for (QueryDocumentSnapshot detailDoc : detailSnapshots) {
+                                            OrderDetail detail = detailDoc.toObject(OrderDetail.class);
+                                            totalSoldCount[0] += detail.getQuantity();
+                                        }
+                                    }
+
+                                    synchronized (pendingOrders) {
+                                        pendingOrders[0]--;
+                                        if (pendingOrders[0] == 0) {
+                                            callback.onSuccess(totalSoldCount[0]);
+                                        }
+                                    }
+                                })
+                                .addOnFailureListener(e -> {
+                                    synchronized (pendingOrders) {
+                                        pendingOrders[0]--;
+                                        if (pendingOrders[0] == 0) {
+                                            callback.onSuccess(totalSoldCount[0]);
+                                        }
+                                    }
+                                });
+                    }
+                })
+                .addOnFailureListener(e -> callback.onError(e.getMessage()));
+    }
+
+    @Override
     public void getDailyRevenue(long startDate, long endDate, DataCallback<Map<String, Double>> callback) {
         Log.d("TESTMINHTUAN", "========== START getDailyRevenue ==========");
         Log.d("TESTMINHTUAN", "Date range: " + startDate + " to " + endDate);

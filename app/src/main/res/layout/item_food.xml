@@ -67,9 +67,20 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/foodRatingTextView"
+            app:layout_constraintEnd_toStartOf="@id/foodSoldCountTextView"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:text="50.000d" />
+
+        <!-- Sold Count -->
+        <TextView
+            android:id="@+id/foodSoldCountTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/foodRatingTextView"
+            tools:text="Đã bán: 120" />
 
         <!-- Rating -->
         <TextView
@@ -80,7 +91,7 @@
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="? 5.0" />
+            tools:text="★ 5.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

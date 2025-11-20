@@ -17,6 +17,8 @@ public interface StatisticsRepository {
 
     void getDailyRevenue(long startDate, long endDate, DataCallback<Map<String, Double>> callback);
 
+    void getTotalSoldCountForFood(String foodId, DataCallback<Integer> callback);
+
     interface DataCallback<T> {
         void onSuccess(T data);
         void onError(String message);
