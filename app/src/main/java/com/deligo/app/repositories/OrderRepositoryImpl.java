@@ -41,7 +41,7 @@ public class OrderRepositoryImpl implements OrderRepository {
         order.setPaymentMethod(paymentMethod);
         order.setNote(note);
         order.setTotalAmount(totalAmount);
-        order.setPaymentStatus("Chờ xác nhận");
+        order.setPaymentStatus("Chờ thanh toán");
         order.setOrderStatus("Chờ xác nhận");
         order.setCreatedAt(System.currentTimeMillis());
 

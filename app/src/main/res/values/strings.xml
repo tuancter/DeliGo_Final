@@ -218,7 +218,7 @@
     <string name="delivery_address">Địa chỉ giao hàng</string>
     <string name="enter_delivery_address">Nhập địa chỉ giao hàng</string>
     <string name="new_address">Địa chỉ mới</string>
-    <string name="phone_number">Số điện thoại</string>
+    <string name="phone_number">Số điện thoại: </string>
     <string name="enter_phone_number">Nhập số điện thoại</string>
     <string name="cash_on_delivery">Thanh toán khi nhận hàng (COD)</string>
     <string name="bank_transfer">Chuyển khoản ngân hàng</string>
