@@ -78,18 +78,12 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
 
     @Override
     public void getTopSellingFoods(long startDate, long endDate, int limit, DataCallback<List<FoodSales>> callback) {
-        Log.d("TESTMINHTUAN", "========== START getTopSellingFoods ==========");
-        Log.d("TESTMINHTUAN", "Date range: " + startDate + " to " + endDate);
-        Log.d("TESTMINHTUAN", "Limit: " + limit);
-        
         // First, get ALL orders in the date range (without status filter) to debug
         firestore.collection("orders")
                 .whereGreaterThanOrEqualTo("createdAt", startDate)
                 .whereLessThanOrEqualTo("createdAt", endDate)
                 .get()
                 .addOnSuccessListener(allOrdersSnapshot -> {
-                    Log.d("TESTMINHTUAN", "Total orders in date range: " + allOrdersSnapshot.size());
-                    
                     // Log all order statuses for debugging
                     Map<String, Integer> statusDebug = new HashMap<>();
                     for (QueryDocumentSnapshot doc : allOrdersSnapshot) {
@@ -97,8 +91,6 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
                         String status = order.getOrderStatus();
                         statusDebug.put(status, statusDebug.getOrDefault(status, 0) + 1);
                     }
-                    Log.d("TESTMINHTUAN", "Order statuses breakdown: " + statusDebug.toString());
-                    
                     // Now get only completed orders
                     firestore.collection("orders")
                             .whereGreaterThanOrEqualTo("createdAt", startDate)
@@ -106,14 +98,11 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
                             .whereEqualTo("orderStatus", OrderStatus.COMPLETED.getVietnameseName())
                             .get()
                             .addOnSuccessListener(queryDocumentSnapshots -> {
-                                Log.d("TESTMINHTUAN", "Found " + queryDocumentSnapshots.size() + " completed orders");
-                                
                                 // Map to store foodId -> total quantity sold
                                 Map<String, Integer> foodQuantityMap = new HashMap<>();
                                 int[] pendingOrders = {queryDocumentSnapshots.size()};
 
                                 if (pendingOrders[0] == 0) {
-                                    Log.d("TESTMINHTUAN", "No completed orders found in date range");
                                     callback.onSuccess(new ArrayList<>());
                                     return;
                                 }
@@ -122,15 +111,12 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
                                 for (QueryDocumentSnapshot orderDoc : queryDocumentSnapshots) {
                                     String orderId = orderDoc.getId();
                                     Order order = orderDoc.toObject(Order.class);
-                                    Log.d("TESTMINHTUAN", "Processing order: " + orderId + " | Status: " + order.getOrderStatus() + " | Total: " + order.getTotalAmount());
-                                    
+
                                     firestore.collection("orders")
                                             .document(orderId)
                                             .collection("orderDetails")
                                             .get()
                                             .addOnSuccessListener(detailSnapshots -> {
-                                                Log.d("TESTMINHTUAN", "Order " + orderId + " has " + detailSnapshots.size() + " items");
-                                                
                                                 synchronized (foodQuantityMap) {
                                                     for (QueryDocumentSnapshot detailDoc : detailSnapshots) {
                                                         OrderDetail detail = detailDoc.toObject(OrderDetail.class);
@@ -140,24 +126,18 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
                                                         int oldQuantity = foodQuantityMap.getOrDefault(foodId, 0);
                                                         int newQuantity = oldQuantity + quantity;
                                                         foodQuantityMap.put(foodId, newQuantity);
-                                                        
-                                                        Log.d("TESTMINHTUAN", "FoodId: " + foodId + " | Quantity: " + quantity + " | Total: " + newQuantity);
                                                     }
                                                 }
 
                                                 synchronized (pendingOrders) {
                                                     pendingOrders[0]--;
-                                                    Log.d("TESTMINHTUAN", "Pending orders remaining: " + pendingOrders[0]);
-                                                    
                                                     // When all orders are processed
                                                     if (pendingOrders[0] == 0) {
-                                                        Log.d("TESTMINHTUAN", "All orders processed. Total unique foods: " + foodQuantityMap.size());
                                                         processFoodSales(foodQuantityMap, limit, callback);
                                                     }
                                                 }
                                             })
                                             .addOnFailureListener(e -> {
-                                                Log.e("TESTMINHTUAN", "Failed to get order details for " + orderId + ": " + e.getMessage());
                                                 synchronized (pendingOrders) {
                                                     pendingOrders[0]--;
                                                     if (pendingOrders[0] == 0) {
@@ -168,12 +148,10 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
                                 }
                             })
                             .addOnFailureListener(e -> {
-                                Log.e("TESTMINHTUAN", "Failed to get completed orders: " + e.getMessage());
                                 callback.onError(e.getMessage());
                             });
                 })
                 .addOnFailureListener(e -> {
-                    Log.e("TESTMINHTUAN", "Failed to get all orders: " + e.getMessage());
                     callback.onError(e.getMessage());
                 });
     }
@@ -317,8 +295,6 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
 
     @Override
     public void getDailyRevenue(long startDate, long endDate, DataCallback<Map<String, Double>> callback) {
-        Log.d("TESTMINHTUAN", "========== START getDailyRevenue ==========");
-        Log.d("TESTMINHTUAN", "Date range: " + startDate + " to " + endDate);
         
         firestore.collection("orders")
                 .whereGreaterThanOrEqualTo("createdAt", startDate)
@@ -326,35 +302,20 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
                 .whereEqualTo("orderStatus", OrderStatus.COMPLETED.getVietnameseName())
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
-                    Log.d("TESTMINHTUAN", "Found " + queryDocumentSnapshots.size() + " completed orders for daily revenue");
-                    
                     // Map to store date -> total revenue
                     Map<String, Double> dailyRevenueMap = new HashMap<>();
-                    
                     java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault());
-                    
                     for (com.google.firebase.firestore.QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         Order order = document.toObject(Order.class);
-                        
                         // Get date string from timestamp
                         String dateKey = dateFormat.format(new java.util.Date(order.getCreatedAt()));
-                        
                         // Add revenue to that date
                         double currentRevenue = dailyRevenueMap.getOrDefault(dateKey, 0.0);
                         dailyRevenueMap.put(dateKey, currentRevenue + order.getTotalAmount());
-                        
-                        Log.d("TESTMINHTUAN", "Order " + document.getId() + " | Date: " + dateKey + " | Amount: " + order.getTotalAmount());
                     }
-                    
-                    Log.d("TESTMINHTUAN", "Daily revenue map size: " + dailyRevenueMap.size());
-                    for (Map.Entry<String, Double> entry : dailyRevenueMap.entrySet()) {
-                        Log.d("TESTMINHTUAN", "Date: " + entry.getKey() + " | Revenue: " + entry.getValue());
-                    }
-                    
                     callback.onSuccess(dailyRevenueMap);
                 })
                 .addOnFailureListener(e -> {
-                    Log.e("TESTMINHTUAN", "Failed to get daily revenue: " + e.getMessage());
                     callback.onError(e.getMessage());
                 });
     }
