@@ -85,25 +85,25 @@ public class LoginActivity extends AppCompatActivity {
         
         // Validation
         if (TextUtils.isEmpty(email)) {
-            etEmail.setError("Email is required");
+            etEmail.setError("Email là bắt buộc");
             etEmail.requestFocus();
             return;
         }
         
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            etEmail.setError("Please enter a valid email");
+            etEmail.setError(getString(R.string.validation_email_invalid));
             etEmail.requestFocus();
             return;
         }
         
         if (TextUtils.isEmpty(password)) {
-            etPassword.setError("Password is required");
+            etPassword.setError("Mật khẩu là bắt buộc");
             etPassword.requestFocus();
             return;
         }
         
         if (password.length() < 6) {
-            etPassword.setError("Password must be at least 6 characters");
+            etPassword.setError("Mật khẩu phải có ít nhất 6 ký tự");
             etPassword.requestFocus();
             return;
         }
@@ -126,14 +126,14 @@ public class LoginActivity extends AppCompatActivity {
                     
                 case SUCCESS:
                     showLoading(false);
-                    UIHelper.showSuccessToast(this, "Login successful!");
+                    UIHelper.showSuccessToast(this, getString(R.string.success_login));
                     navigateToMainScreen(authState.getUser());
                     break;
                     
                 case ERROR:
                     showLoading(false);
                     String errorMessage = authState.getMessage() != null ? 
-                        authState.getMessage() : "Login failed";
+                        authState.getMessage() : "Đăng nhập thất bại";
                     String friendlyMessage = UIHelper.getFirestoreErrorMessage(errorMessage);
                     UIHelper.showErrorSnackbar(findViewById(android.R.id.content), 
                         friendlyMessage, v -> handleLogin());

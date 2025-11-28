@@ -94,49 +94,49 @@ public class RegisterActivity extends AppCompatActivity {
         
         // Validation
         if (TextUtils.isEmpty(fullName)) {
-            etFullName.setError("Full name is required");
+            etFullName.setError(getString(R.string.validation_name_required));
             etFullName.requestFocus();
             return;
         }
         
         if (fullName.length() < 2) {
-            etFullName.setError("Full name must be at least 2 characters");
+            etFullName.setError("Họ tên phải có ít nhất 2 ký tự");
             etFullName.requestFocus();
             return;
         }
         
         if (TextUtils.isEmpty(email)) {
-            etEmail.setError("Email is required");
+            etEmail.setError("Email là bắt buộc");
             etEmail.requestFocus();
             return;
         }
         
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            etEmail.setError("Please enter a valid email");
+            etEmail.setError(getString(R.string.validation_email_invalid));
             etEmail.requestFocus();
             return;
         }
         
         if (TextUtils.isEmpty(phone)) {
-            etPhone.setError("Phone is required");
+            etPhone.setError(getString(R.string.validation_phone_required));
             etPhone.requestFocus();
             return;
         }
         
         if (!android.util.Patterns.PHONE.matcher(phone).matches() || phone.length() < 10) {
-            etPhone.setError("Please enter a valid phone number");
+            etPhone.setError(getString(R.string.validation_phone_invalid));
             etPhone.requestFocus();
             return;
         }
         
         if (TextUtils.isEmpty(password)) {
-            etPassword.setError("Password is required");
+            etPassword.setError("Mật khẩu là bắt buộc");
             etPassword.requestFocus();
             return;
         }
         
         if (password.length() < 6) {
-            etPassword.setError("Password must be at least 6 characters");
+            etPassword.setError("Mật khẩu phải có ít nhất 6 ký tự");
             etPassword.requestFocus();
             return;
         }
@@ -173,14 +173,14 @@ public class RegisterActivity extends AppCompatActivity {
                     
                 case SUCCESS:
                     showLoading(false);
-                    UIHelper.showSuccessToast(this, "Registration successful!");
+                    UIHelper.showSuccessToast(this, getString(R.string.success_register));
                     navigateToMainScreen(authState.getUser());
                     break;
                     
                 case ERROR:
                     showLoading(false);
                     String errorMessage = authState.getMessage() != null ? 
-                        authState.getMessage() : "Registration failed";
+                        authState.getMessage() : "Đăng ký thất bại";
                     String friendlyMessage = UIHelper.getFirestoreErrorMessage(errorMessage);
                     UIHelper.showErrorSnackbar(findViewById(android.R.id.content), 
                         friendlyMessage, v -> handleRegister());

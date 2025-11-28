@@ -174,27 +174,80 @@ public class UIHelper {
     }
 
     /**
-     * Handle Firestore exceptions with user-friendly messages
+     * Handle Firestore exceptions with user-friendly messages in Vietnamese
      */
     public static String getFirestoreErrorMessage(String errorMessage) {
         if (errorMessage == null || errorMessage.isEmpty()) {
-            return "An error occurred. Please try again.";
+            return "Đã xảy ra lỗi. Vui lòng thử lại.";
         }
         
-        // Convert technical error messages to user-friendly ones
-        if (errorMessage.toLowerCase().contains("permission")) {
-            return "You don't have permission to perform this action.";
-        } else if (errorMessage.toLowerCase().contains("network")) {
-            return "Network error. Please check your internet connection.";
-        } else if (errorMessage.toLowerCase().contains("not found")) {
-            return "The requested item was not found.";
-        } else if (errorMessage.toLowerCase().contains("already exists")) {
-            return "This item already exists.";
-        } else if (errorMessage.toLowerCase().contains("invalid")) {
-            return "Invalid data provided. Please check your input.";
+        String lowerError = errorMessage.toLowerCase();
+        
+        // Firebase Authentication Errors
+        if (lowerError.contains("invalid-email") || lowerError.contains("invalid email")) {
+            return "Email không hợp lệ. Vui lòng kiểm tra lại.";
+        } else if (lowerError.contains("user-disabled") || lowerError.contains("user disabled")) {
+            return "Tài khoản này đã bị vô hiệu hóa.";
+        } else if (lowerError.contains("user-not-found") || lowerError.contains("user not found")) {
+            return "Không tìm thấy tài khoản với email này.";
+        } else if (lowerError.contains("wrong-password") || lowerError.contains("wrong password")) {
+            return "Mật khẩu không chính xác. Vui lòng thử lại.";
+        } else if (lowerError.contains("invalid-credential") || lowerError.contains("invalid credential")) {
+            return "Thông tin đăng nhập không hợp lệ. Vui lòng kiểm tra lại email và mật khẩu.";
+        } else if (lowerError.contains("email-already-in-use") || lowerError.contains("email already in use")) {
+            return "Email này đã được sử dụng. Vui lòng sử dụng email khác.";
+        } else if (lowerError.contains("weak-password") || lowerError.contains("weak password")) {
+            return "Mật khẩu quá yếu. Vui lòng sử dụng mật khẩu mạnh hơn.";
+        } else if (lowerError.contains("operation-not-allowed") || lowerError.contains("operation not allowed")) {
+            return "Thao tác này không được phép.";
+        } else if (lowerError.contains("too-many-requests") || lowerError.contains("too many requests")) {
+            return "Quá nhiều yêu cầu. Vui lòng thử lại sau.";
+        } else if (lowerError.contains("requires-recent-login") || lowerError.contains("requires recent login")) {
+            return "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.";
         }
         
-        return errorMessage;
+        // Firebase Firestore Errors
+        else if (lowerError.contains("permission") || lowerError.contains("permission-denied")) {
+            return "Bạn không có quyền thực hiện thao tác này.";
+        } else if (lowerError.contains("not-found") || lowerError.contains("not found")) {
+            return "Không tìm thấy dữ liệu yêu cầu.";
+        } else if (lowerError.contains("already-exists") || lowerError.contains("already exists")) {
+            return "Dữ liệu này đã tồn tại.";
+        } else if (lowerError.contains("resource-exhausted") || lowerError.contains("resource exhausted")) {
+            return "Đã vượt quá giới hạn. Vui lòng thử lại sau.";
+        } else if (lowerError.contains("failed-precondition") || lowerError.contains("failed precondition")) {
+            return "Không đáp ứng điều kiện để thực hiện thao tác.";
+        } else if (lowerError.contains("aborted")) {
+            return "Thao tác đã bị hủy. Vui lòng thử lại.";
+        } else if (lowerError.contains("out-of-range") || lowerError.contains("out of range")) {
+            return "Giá trị nằm ngoài phạm vi cho phép.";
+        } else if (lowerError.contains("unimplemented")) {
+            return "Chức năng này chưa được triển khai.";
+        } else if (lowerError.contains("internal")) {
+            return "Lỗi hệ thống nội bộ. Vui lòng thử lại sau.";
+        } else if (lowerError.contains("unavailable")) {
+            return "Dịch vụ tạm thời không khả dụng. Vui lòng thử lại sau.";
+        } else if (lowerError.contains("data-loss") || lowerError.contains("data loss")) {
+            return "Mất dữ liệu không thể khôi phục.";
+        } else if (lowerError.contains("unauthenticated")) {
+            return "Bạn chưa đăng nhập. Vui lòng đăng nhập để tiếp tục.";
+        } else if (lowerError.contains("deadline-exceeded") || lowerError.contains("deadline exceeded")) {
+            return "Yêu cầu đã hết thời gian chờ. Vui lòng thử lại.";
+        } else if (lowerError.contains("cancelled")) {
+            return "Thao tác đã bị hủy.";
+        } else if (lowerError.contains("invalid-argument") || lowerError.contains("invalid argument") || lowerError.contains("invalid")) {
+            return "Dữ liệu không hợp lệ. Vui lòng kiểm tra lại.";
+        }
+        
+        // Network Errors
+        else if (lowerError.contains("network") || lowerError.contains("connection")) {
+            return "Lỗi kết nối mạng. Vui lòng kiểm tra kết nối internet của bạn.";
+        } else if (lowerError.contains("timeout")) {
+            return "Yêu cầu đã hết thời gian chờ. Vui lòng thử lại.";
+        }
+        
+        // Default error message
+        return "Đã xảy ra lỗi. Vui lòng thử lại.";
     }
 
     /**
